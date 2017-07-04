@@ -1,25 +1,31 @@
 # global表示全局配置，online: 线上配置，test：测试环境配置
+
 [global]
+# 版本号
 version	= 1.0
+# 线上、测试模式
 mode = test
-project = 大亨钱包
+# 工程名
+project = xxx
+
+# 工程类型，0：单工程方案；1：多工程baas系统
+project_type = 0
 db = wallet
 
-WX_ACCESSTOKEN_SERVER = 1
-WX_APPID = wx1fe011436b82b249
-WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
-WX_REDIRECT = http://wallet.me-yun.com/wx/login
-
 [online]
+
+# mongodb数据库配置
 MONGO_ADDR1	=	dds-2ze8a84bc24526141.mongodb.rds.aliyuncs.com:3717
 MONGO_ADDR2	=	dds-2ze8a84bc24526142.mongodb.rds.aliyuncs.com:3717
 REPLICAT_SET=	mgset-1076461
 USERNAME	=	root
 PASSWORD	=	2egRPV4LaDtoNUE18ZSwB7
-USER_UPPER_LIMIT = 1000
 
 DOMAIN = file.visualogies.com
+
+# OSS库名
 BUCKET = vsfile
+
 # 需要和lib/config.py一致
 PORT = 8000
 
@@ -33,6 +39,7 @@ BUCKET = vsdevelop
 PORT = 8000
 
 [handlers]
+
 /1.0/classes/(\w+)/(\w+) = api.ClassHandler.ClassHandler
 /1.0/classes/(\w+) = api.ClassHandler.ClassHandler
 /1.0/user/(\w+) = api.UserHandler.UserHandler
@@ -41,13 +48,12 @@ PORT = 8000
 /sms/(.+) = api.SMSHandler.SMSHandler
 /wx/(\w+) = api.WxHandler.WxHandler
 
-# 我的页面、代理页面
-/login = handler.MyHandler.LoginHandler
-/user/(\w+)/(.+) = handler.MyHandler.MyHandler
-/user/(\w+) = handler.MyHandler.MyHandler
-/goods/(\w+) = handler.GoodsHandler.GoodsHandler
-/buy/(\w+)/(\w+) = handler.GoodsHandler.GoodsHandler
-/pack/(\w+)/(\w+)/(\w+) = handler.GoodsHandler.PackHandler
-/pack/(\w+) = handler.GoodsHandler.PackHandler
-# 微信页面
-/ = handler.WxHandler.WxHandler
+[wx]
+# 当前实例是否作为access_token实例
+WX_ACCESSTOKEN_SERVER = 1
+
+WX_APPID = wx1fe011436b82b249
+WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
+
+# 微信条状登录url
+WX_REDIRECT = xxx

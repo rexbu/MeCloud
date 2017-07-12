@@ -6,11 +6,11 @@ version	= 1.0
 # 线上、测试模式
 mode = test
 # 工程名
-project = xxx
+project = honey
 
 # 工程类型，0：单工程方案；1：多工程baas系统
 project_type = 0
-db = wallet
+db = honey
 
 [online]
 
@@ -50,7 +50,7 @@ PORT = 8000
 
 [wx]
 # 当前实例是否作为access_token实例
-WX_ACCESSTOKEN_SERVER = 1
+WX_ACCESSTOKEN_SERVER = 0
 
 WX_APPID = wx1fe011436b82b249
 WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c

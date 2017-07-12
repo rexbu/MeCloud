@@ -13,7 +13,7 @@ from datetime import *
 
 class ClassHandler(BaseHandler):
     ### 获取对象 及 批量查询
-    #@tornado.web.authenticated
+    @tornado.web.authenticated
     def get(self, className, objectId=None):
         if objectId:
             obj = MeObject(self.appName, className)

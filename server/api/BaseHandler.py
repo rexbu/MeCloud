@@ -27,7 +27,19 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def prepare(self):
         # weixin
-        self.wxconfig = self.wxConfig()
+        # self.wxconfig = self.wxConfig()
+        method = self.request.method
+        # 检查包体
+        if method=='POST' or method=='post' or method=='Post' or method=='PUT' or method=='put' or method=='Put':
+            try:
+                self.jsonBody = json.loads(self.request.body)
+                print self.jsonBody
+            except Exception,e:
+                log.err("JSON Error:%s , error:%s", self.request.body, str(e))
+                self.write(ERR_INVALID.message)
+                self.finish()
+                return
+
         userid = self.get_current_user()
         if userid:
             userQuery = MeQuery("User")

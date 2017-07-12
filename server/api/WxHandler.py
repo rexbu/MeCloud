@@ -18,6 +18,7 @@ from helper.DbHelper import *
 from helper.ClassHelper import *
 from helper.Util import *
 from lib import *
+from ConfigParser import *
 import time, os, sched
 
 access_token = None
@@ -35,7 +36,10 @@ class WxHandler(BaseHandler):
     wx_thread = None
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self, *args, **kwargs)
-        if not WxHandler.wx_thread:
+        config = ConfigParser()
+        config.read('./config')
+        access_server = config.get('global', 'WX_ACCESSTOKEN_SERVER')
+        if access_server and (not WxHandler.wx_thread):
             WxHandler.wx_thread = threading.Thread(target=accessTokenTask, args=(7000,))
             WxHandler.wx_thread.start()
 

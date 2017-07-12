@@ -25,17 +25,47 @@ class UserHandler(BaseHandler):
 			self.write(user)
 		else:
 			self.write(ERR_USER_PERMISSION.message)
+
 	def post(self, action=None):
-		if action=='loginWithoutPwd':
-			self.loginWithoutPwd()
-		elif action=='singUp':
-			pass
+		if action=='signup':
+			print "Signup"
+			self.signup()
 		elif action=='login':
-			pass
+			self.login()
 		elif action=='modifyPwd':
 			pass
 		elif action=='update':
 			pass
+		elif action=='loginWithoutPwd':
+			self.loginWithoutPwd()
+		else:
+			print "action error: "+action
+
+	### 注册接口
+	def signup(self):
+		user = MeUser(self.jsonBody)
+		if user['username']==None or user['password']==None:
+			self.write(ERR_PARA.message)
+			return
+		print user
+		try:
+			user.signup()
+			print user
+			self.write(json.dumps(user, cls=MeEncoder))
+		except Exception,e:
+			#TODO: 暂时只有重复
+			self.write(ERR_USER_TAKEN.message)
+
+	### 登录接口
+	def login(self):
+		user = MeUser(self.jsonBody)
+		if user['username']==None or user['password']==None:
+			self.write(ERR_PARA.message)
+
+		if user.login(user['username'], user['password']):
+			self.write(json.dumps(user, cls=MeEncoder))
+		else:
+			self.write(ERR_USERPWD_MISMATCH.message)
 
 	def loginWithoutPwd(self):
 		obj = json.loads(self.request.body)

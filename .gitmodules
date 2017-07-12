@@ -1,0 +1,3 @@
+[submodule "MobileCross"]
+	path = MobileCross
+	url = https://github.com/rexbu/MobileCross

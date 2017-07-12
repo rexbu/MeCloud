@@ -1,0 +1,6 @@
+framework module MobileCross {
+  umbrella header "MobileCross.h"
+
+  export *
+  module * { export * }
+}

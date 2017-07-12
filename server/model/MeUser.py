@@ -20,14 +20,23 @@ class MeUser(MeObject):
 		MeObject.__init__(self, 'User', obj)
 
 	def login(self, username, password):
-		userHelper = ClassHelper(self.appDb, self.className)
+		userHelper = ClassHelper(self.className)
 		user = userHelper.find_one({'username': username, 'password': password})
 		if user!=None:
-			del(user['password'])
 			self.copySelf(user)
+			del(user['username'])
+			del(user['password'])
 			return True
 		else:
 			return False
+
+	### 注册
+	def signup(self, username=None, password=None):
+		self.save()
+
+	### 修改密码
+	def modPwd(self, username, password, newPwd):
+		pass
 
 	def loginWithoutPwd(self):
 		appUserHelper = ClassHelper('develop', "AppUser")
@@ -56,8 +65,4 @@ class MeUser(MeObject):
 		else:
 			self.copySelf(user)
 			self.dirty.clear()
-		
-	def signUp(self, username, password):
-		pass
-	def modPwd(self, username, password, newPwd):
-		pass
+	

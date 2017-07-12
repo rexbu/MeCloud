@@ -29,9 +29,12 @@ class Application(tornado.web.Application):
             handle = (url, self.config.get('handlers', url))
             handlers.append(handle)
         
-        self.wx_redirect = self.config.get('global', 'WX_REDIRECT')
-        self.wx_appid = self.config.get('global', 'WX_APPID')
-        self.wx_appsecret = self.config.get('global', 'WX_APPSECRECT')
+        try:
+            self.wx_redirect = self.config.get('global', 'WX_REDIRECT')
+            self.wx_appid = self.config.get('global', 'WX_APPID')
+            self.wx_appsecret = self.config.get('global', 'WX_APPSECRECT')
+        except Exception, e:
+            pass
         
         settings = dict(
             cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
@@ -63,11 +66,16 @@ if __name__ == "__main__":
     # 是否是accessstoken server
     global access_token
     global jsapi_ticket
-    access_server = config.get('global', 'WX_ACCESSTOKEN_SERVER')
-    if access_server:
-        access_token = wx.accessTokenFromWx()
-        jsapi_ticket = wx.jsapiTicketFromWx()
+    try:
+        access_server = config.get('global', 'WX_ACCESSTOKEN_SERVER')
+        if access_server:
+            access_token = wx.accessTokenFromWx()
+            jsapi_ticket = wx.jsapiTicketFromWx()
+    except Exception, e:
+        access_server = False
+        print  "Not Weixin Config"
 
+    # mongodb及oss配置
     if mode=='online':
         Db.conn = pymongo.MongoClient([config.get(mode, 'MONGO_ADDR1'), config.get(mode, 'MONGO_ADDR2')], replicaSet=config.get(mode, 'REPLICAT_SET'))
         Db.conn.admin.authenticate(config.get(mode, 'USERNAME'), config.get(mode, 'PASSWORD'))
@@ -77,8 +85,12 @@ if __name__ == "__main__":
         Db.conn = pymongo.MongoClient('127.0.0.1', 27017)
         MeFile.bucketUrl = 'http://'+ MeFile.bucketName+'.'+MeFile.domain
         MeFile.bucket = oss2.Bucket(MeFile.auth, 'http://'+MeFile.domain, MeFile.bucketName)
-    print MeFile.bucket
+    # 单工程模式
+    if config.get('global', 'project_type')==0:
+        Db.name = config.get('global', 'db')
+
     print MongoDb.conn
+    print "Listen Port: "+config.get(mode, 'PORT')
 
     # xheaders获取真实ip
     server = tornado.httpserver.HTTPServer(Application(), xheaders=True)

@@ -7,13 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C82E79C21F0BA2A8008CD7D8 /* MeCloud.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E79C01F0BA2A8008CD7D8 /* MeCloud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E79F91F0BA3A8008CD7D8 /* MobileCross.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82E79F61F0BA397008CD7D8 /* MobileCross.framework */; };
+		C82E7AEB1F0F8974008CD7D8 /* Me.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AEA1F0F8974008CD7D8 /* Me.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7AFE1F0F8983008CD7D8 /* MeCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AEC1F0F8983008CD7D8 /* MeCallback.cpp */; };
+		C82E7AFF1F0F8983008CD7D8 /* MeCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AED1F0F8983008CD7D8 /* MeCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B001F0F8983008CD7D8 /* MeCloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AEE1F0F8983008CD7D8 /* MeCloud.cpp */; };
+		C82E7B011F0F8983008CD7D8 /* MeCloud.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AEF1F0F8983008CD7D8 /* MeCloud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B021F0F8983008CD7D8 /* MeDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF01F0F8983008CD7D8 /* MeDevice.cpp */; };
+		C82E7B031F0F8983008CD7D8 /* MeDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF11F0F8983008CD7D8 /* MeDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B041F0F8983008CD7D8 /* MeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF21F0F8983008CD7D8 /* MeFile.cpp */; };
+		C82E7B051F0F8983008CD7D8 /* MeFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF31F0F8983008CD7D8 /* MeFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B061F0F8983008CD7D8 /* MeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF41F0F8983008CD7D8 /* MeObject.cpp */; };
+		C82E7B071F0F8983008CD7D8 /* MeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF51F0F8983008CD7D8 /* MeObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B081F0F8983008CD7D8 /* MeQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF61F0F8983008CD7D8 /* MeQuery.cpp */; };
+		C82E7B091F0F8983008CD7D8 /* MeQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF71F0F8983008CD7D8 /* MeQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B0A1F0F8983008CD7D8 /* MeSMS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF81F0F8983008CD7D8 /* MeSMS.cpp */; };
+		C82E7B0B1F0F8983008CD7D8 /* MeSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF91F0F8983008CD7D8 /* MeSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B0C1F0F8983008CD7D8 /* MeTimeStat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AFA1F0F8983008CD7D8 /* MeTimeStat.cpp */; };
+		C82E7B0D1F0F8983008CD7D8 /* MeTimeStat.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AFB1F0F8983008CD7D8 /* MeTimeStat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B0E1F0F8983008CD7D8 /* MeUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AFC1F0F8983008CD7D8 /* MeUser.cpp */; };
+		C82E7B0F1F0F8983008CD7D8 /* MeUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AFD1F0F8983008CD7D8 /* MeUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B141F0F898F008CD7D8 /* MeIOSCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B151F0F898F008CD7D8 /* MeIOSCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */; };
+		C82E7B161F0F898F008CD7D8 /* MeObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E7B121F0F898E008CD7D8 /* MeObject.mm */; };
+		C82E7B171F0F898F008CD7D8 /* MeUser.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E7B131F0F898F008CD7D8 /* MeUser.mm */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C82E79F51F0BA397008CD7D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C82E79F11F0BA397008CD7D8 /* MobileCross.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C82E77DE1F0A2E93008CD7D8;
+			remoteInfo = MobileCross;
+		};
+		C82E79F71F0BA3A4008CD7D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C82E79F11F0BA397008CD7D8 /* MobileCross.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C82E77DD1F0A2E93008CD7D8;
+			remoteInfo = MobileCross;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C82E79BD1F0BA2A8008CD7D8 /* MeCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C82E79C01F0BA2A8008CD7D8 /* MeCloud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeCloud.h; sourceTree = "<group>"; };
 		C82E79C11F0BA2A8008CD7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C82E79F11F0BA397008CD7D8 /* MobileCross.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileCross.xcodeproj; path = ../../MobileCross/ios/MobileCross.xcodeproj; sourceTree = "<group>"; };
+		C82E7AEA1F0F8974008CD7D8 /* Me.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Me.h; path = ../../src/Me.h; sourceTree = "<group>"; };
+		C82E7AEC1F0F8983008CD7D8 /* MeCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeCallback.cpp; path = ../../src/MeCallback.cpp; sourceTree = "<group>"; };
+		C82E7AED1F0F8983008CD7D8 /* MeCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeCallback.h; path = ../../src/MeCallback.h; sourceTree = "<group>"; };
+		C82E7AEE1F0F8983008CD7D8 /* MeCloud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeCloud.cpp; path = ../../src/MeCloud.cpp; sourceTree = "<group>"; };
+		C82E7AEF1F0F8983008CD7D8 /* MeCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeCloud.h; path = ../../src/MeCloud.h; sourceTree = "<group>"; };
+		C82E7AF01F0F8983008CD7D8 /* MeDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeDevice.cpp; path = ../../src/MeDevice.cpp; sourceTree = "<group>"; };
+		C82E7AF11F0F8983008CD7D8 /* MeDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeDevice.h; path = ../../src/MeDevice.h; sourceTree = "<group>"; };
+		C82E7AF21F0F8983008CD7D8 /* MeFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeFile.cpp; path = ../../src/MeFile.cpp; sourceTree = "<group>"; };
+		C82E7AF31F0F8983008CD7D8 /* MeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeFile.h; path = ../../src/MeFile.h; sourceTree = "<group>"; };
+		C82E7AF41F0F8983008CD7D8 /* MeObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeObject.cpp; path = ../../src/MeObject.cpp; sourceTree = "<group>"; };
+		C82E7AF51F0F8983008CD7D8 /* MeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeObject.h; path = ../../src/MeObject.h; sourceTree = "<group>"; };
+		C82E7AF61F0F8983008CD7D8 /* MeQuery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeQuery.cpp; path = ../../src/MeQuery.cpp; sourceTree = "<group>"; };
+		C82E7AF71F0F8983008CD7D8 /* MeQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeQuery.h; path = ../../src/MeQuery.h; sourceTree = "<group>"; };
+		C82E7AF81F0F8983008CD7D8 /* MeSMS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeSMS.cpp; path = ../../src/MeSMS.cpp; sourceTree = "<group>"; };
+		C82E7AF91F0F8983008CD7D8 /* MeSMS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSMS.h; path = ../../src/MeSMS.h; sourceTree = "<group>"; };
+		C82E7AFA1F0F8983008CD7D8 /* MeTimeStat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeTimeStat.cpp; path = ../../src/MeTimeStat.cpp; sourceTree = "<group>"; };
+		C82E7AFB1F0F8983008CD7D8 /* MeTimeStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeTimeStat.h; path = ../../src/MeTimeStat.h; sourceTree = "<group>"; };
+		C82E7AFC1F0F8983008CD7D8 /* MeUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeUser.cpp; path = ../../src/MeUser.cpp; sourceTree = "<group>"; };
+		C82E7AFD1F0F8983008CD7D8 /* MeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeUser.h; path = ../../src/MeUser.h; sourceTree = "<group>"; };
+		C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSCallback.h; path = ../../src/ios/MeIOSCallback.h; sourceTree = "<group>"; };
+		C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSCallback.mm; path = ../../src/ios/MeIOSCallback.mm; sourceTree = "<group>"; };
+		C82E7B121F0F898E008CD7D8 /* MeObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeObject.mm; path = ../../src/ios/MeObject.mm; sourceTree = "<group>"; };
+		C82E7B131F0F898F008CD7D8 /* MeUser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeUser.mm; path = ../../src/ios/MeUser.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82E79F91F0BA3A8008CD7D8 /* MobileCross.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,6 +94,7 @@
 		C82E79B31F0BA2A7008CD7D8 = {
 			isa = PBXGroup;
 			children = (
+				C82E79F11F0BA397008CD7D8 /* MobileCross.xcodeproj */,
 				C82E79BF1F0BA2A8008CD7D8 /* MeCloud */,
 				C82E79BE1F0BA2A8008CD7D8 /* Products */,
 			);
@@ -46,10 +111,40 @@
 		C82E79BF1F0BA2A8008CD7D8 /* MeCloud */ = {
 			isa = PBXGroup;
 			children = (
-				C82E79C01F0BA2A8008CD7D8 /* MeCloud.h */,
 				C82E79C11F0BA2A8008CD7D8 /* Info.plist */,
+				C82E7AEA1F0F8974008CD7D8 /* Me.h */,
+				C82E7AEC1F0F8983008CD7D8 /* MeCallback.cpp */,
+				C82E7AED1F0F8983008CD7D8 /* MeCallback.h */,
+				C82E7AEE1F0F8983008CD7D8 /* MeCloud.cpp */,
+				C82E7AEF1F0F8983008CD7D8 /* MeCloud.h */,
+				C82E7AF01F0F8983008CD7D8 /* MeDevice.cpp */,
+				C82E7AF11F0F8983008CD7D8 /* MeDevice.h */,
+				C82E7AF21F0F8983008CD7D8 /* MeFile.cpp */,
+				C82E7AF31F0F8983008CD7D8 /* MeFile.h */,
+				C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */,
+				C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */,
+				C82E7AF41F0F8983008CD7D8 /* MeObject.cpp */,
+				C82E7AF51F0F8983008CD7D8 /* MeObject.h */,
+				C82E7B121F0F898E008CD7D8 /* MeObject.mm */,
+				C82E7AF61F0F8983008CD7D8 /* MeQuery.cpp */,
+				C82E7AF71F0F8983008CD7D8 /* MeQuery.h */,
+				C82E7AF81F0F8983008CD7D8 /* MeSMS.cpp */,
+				C82E7AF91F0F8983008CD7D8 /* MeSMS.h */,
+				C82E7AFA1F0F8983008CD7D8 /* MeTimeStat.cpp */,
+				C82E7AFB1F0F8983008CD7D8 /* MeTimeStat.h */,
+				C82E7AFC1F0F8983008CD7D8 /* MeUser.cpp */,
+				C82E7AFD1F0F8983008CD7D8 /* MeUser.h */,
+				C82E7B131F0F898F008CD7D8 /* MeUser.mm */,
 			);
 			path = MeCloud;
+			sourceTree = "<group>";
+		};
+		C82E79F21F0BA397008CD7D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C82E79F61F0BA397008CD7D8 /* MobileCross.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,7 +154,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C82E79C21F0BA2A8008CD7D8 /* MeCloud.h in Headers */,
+				C82E7B091F0F8983008CD7D8 /* MeQuery.h in Headers */,
+				C82E7AEB1F0F8974008CD7D8 /* Me.h in Headers */,
+				C82E7B0B1F0F8983008CD7D8 /* MeSMS.h in Headers */,
+				C82E7B071F0F8983008CD7D8 /* MeObject.h in Headers */,
+				C82E7B0D1F0F8983008CD7D8 /* MeTimeStat.h in Headers */,
+				C82E7B141F0F898F008CD7D8 /* MeIOSCallback.h in Headers */,
+				C82E7B011F0F8983008CD7D8 /* MeCloud.h in Headers */,
+				C82E7B051F0F8983008CD7D8 /* MeFile.h in Headers */,
+				C82E7B031F0F8983008CD7D8 /* MeDevice.h in Headers */,
+				C82E7AFF1F0F8983008CD7D8 /* MeCallback.h in Headers */,
+				C82E7B0F1F0F8983008CD7D8 /* MeUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +183,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C82E79F81F0BA3A4008CD7D8 /* PBXTargetDependency */,
 			);
 			name = MeCloud;
 			productName = MeCloud;
@@ -109,12 +215,28 @@
 			mainGroup = C82E79B31F0BA2A7008CD7D8;
 			productRefGroup = C82E79BE1F0BA2A8008CD7D8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C82E79F21F0BA397008CD7D8 /* Products */;
+					ProjectRef = C82E79F11F0BA397008CD7D8 /* MobileCross.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C82E79BC1F0BA2A8008CD7D8 /* MeCloud */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C82E79F61F0BA397008CD7D8 /* MobileCross.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MobileCross.framework;
+			remoteRef = C82E79F51F0BA397008CD7D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C82E79BB1F0BA2A8008CD7D8 /* Resources */ = {
@@ -131,10 +253,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82E7B081F0F8983008CD7D8 /* MeQuery.cpp in Sources */,
+				C82E7B0E1F0F8983008CD7D8 /* MeUser.cpp in Sources */,
+				C82E7B021F0F8983008CD7D8 /* MeDevice.cpp in Sources */,
+				C82E7B161F0F898F008CD7D8 /* MeObject.mm in Sources */,
+				C82E7B0A1F0F8983008CD7D8 /* MeSMS.cpp in Sources */,
+				C82E7B151F0F898F008CD7D8 /* MeIOSCallback.mm in Sources */,
+				C82E7B041F0F8983008CD7D8 /* MeFile.cpp in Sources */,
+				C82E7B0C1F0F8983008CD7D8 /* MeTimeStat.cpp in Sources */,
+				C82E7B061F0F8983008CD7D8 /* MeObject.cpp in Sources */,
+				C82E7AFE1F0F8983008CD7D8 /* MeCallback.cpp in Sources */,
+				C82E7B171F0F898F008CD7D8 /* MeUser.mm in Sources */,
+				C82E7B001F0F8983008CD7D8 /* MeCloud.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C82E79F81F0BA3A4008CD7D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MobileCross;
+			targetProxy = C82E79F71F0BA3A4008CD7D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C82E79C31F0BA2A8008CD7D8 /* Debug */ = {
@@ -159,6 +301,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/output";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -169,6 +312,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					__IOS__,
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -210,6 +354,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/output";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -217,6 +362,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = __IOS__;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -237,10 +383,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/output";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MobileCross/ios/output/MobileCross.framework/Headers";
 				INFOPLIST_FILE = MeCloud/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -254,10 +402,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/output";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../MobileCross/ios/output/MobileCross.framework/Headers";
 				INFOPLIST_FILE = MeCloud/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -286,6 +436,7 @@
 				C82E79C71F0BA2A8008CD7D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

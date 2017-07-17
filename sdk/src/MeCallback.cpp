@@ -17,11 +17,8 @@ void MeCallback::done(int http_code, status_t st, char* text){
 //    if (http_code==CURLE_OPERATION_TIMEDOUT || http_code== CURLE_COULDNT_RESOLVE_HOST) {
 //        return;
 //    }
-    // 连接错误
-    if (st==BS_CONNERR || st== BS_SENDERR) {
-        return;
-    }
     
+    // 连接错误, VisioninSDK应该在外部判断st=BS_CONNERR、BS_SENDERR
     if (http_code!=HTTP_OK || st!=BS_SUCCESS)
     {
         MeException e;
@@ -77,26 +74,3 @@ void MeCallback::done(int http_code, status_t st, char* text){
     }
 }
 
-#pragma --mark "函数回调"
-static void* delete_callback(void* arg);
-
-MeFuncCallback::MeFuncCallback(MeCallback_func callback, const char* classname, MeObject* obj):
-MeCallback(classname, obj){
-    m_callback = callback;
-    m_dynamic = true;
-}
-
-void MeFuncCallback::done(MeObject* obj, MeException* err, uint32_t size){
-    if (m_callback!=NULL) {
-        m_callback(obj, err, size);
-        if (m_dynamic) {
-            ThreadPool::shareInstance()->add(delete_callback, this);
-        }
-    }
-}
-
-static void* delete_callback(void* arg){
-    MeFuncCallback* call = (MeFuncCallback*)arg;
-    delete call;
-    return NULL;
-}

@@ -47,15 +47,23 @@ class UserHandler(BaseHandler):
 		if user['username']==None or user['password']==None:
 			self.write(ERR_PARA.message)
 			return
-		print user
 		try:
 			user.signup()
-			print user
 			self.write(json.dumps(user, cls=MeEncoder))
 		except Exception,e:
 			#TODO: 暂时只有重复
 			self.write(ERR_USER_TAKEN.message)
 
+	def login(self):
+		user = MeUser(self.jsonBody)
+		if user['username']==None or user['password']==None:
+			self.write(ERR_PARA.message)
+			return
+		if user.login(user['username'], user['password']):
+			self.write(json.dumps(user, cls=MeEncoder))
+		else:
+			self.write(ERR_USERPWD_MISMATCH.message)
+			
 	### 登录接口
 	def login(self):
 		user = MeUser(self.jsonBody)

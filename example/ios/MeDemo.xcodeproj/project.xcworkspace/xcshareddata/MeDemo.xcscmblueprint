@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DD1E77CF077BCFCB26663868A50C93F486EB4A26",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DD1E77CF077BCFCB26663868A50C93F486EB4A26" : 9223372036854775807,
+    "E98F2DF54E96F0B92CBC434D62C91759AAEB241C" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E3F1B30A-C876-4E60-945A-7C3937E6B674",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DD1E77CF077BCFCB26663868A50C93F486EB4A26" : "MeCloud\/",
+    "E98F2DF54E96F0B92CBC434D62C91759AAEB241C" : "MeCloud\/MobileCross\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MeDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example\/ios\/MeDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:rexbu\/MeCloud.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DD1E77CF077BCFCB26663868A50C93F486EB4A26"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rexbu\/MobileCross",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E98F2DF54E96F0B92CBC434D62C91759AAEB241C"
+    }
+  ]
+}

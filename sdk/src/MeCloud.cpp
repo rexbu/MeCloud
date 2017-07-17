@@ -13,9 +13,9 @@ MeCloud* MeCloud::m_instance = NULL;
 const char* MeCloud::m_version = "1.0";
 
 #if DEBUG
-char MeCloud::m_base_url[URL_SIZE] = "";
+char MeCloud::m_base_url[URL_SIZE] = "http://192.168.20.134:8000/";
 #else
-char MeCloud::m_base_url[URL_SIZE] = "";
+char MeCloud::m_base_url[URL_SIZE] = "http://192.168.20.134:8000/";
 #endif
 
 void MeCloud::setBaseUrl(const char* url){
@@ -30,6 +30,10 @@ void MeCloud::initialize(const char* appId, const char* appKey){
 }
 
 MeCloud* MeCloud::shareInstance(){
+    if (m_instance==NULL) {
+        m_instance = new MeCloud(NULL, NULL);
+    }
+    
 	return m_instance;
 }
 

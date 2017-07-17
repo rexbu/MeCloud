@@ -6,6 +6,7 @@
  * history:
  */
 
+#include "McBasic.h"
 #include "MeObject.h"
 #include "MeIOSCallback.h"
 
@@ -14,9 +15,9 @@ void MeObject::save(MeCallbackBlock block){
     MeBlockCallback* callback = (MeBlockCallback*)cache->get();
     if (callback==NULL) {
         callback = new MeBlockCallback(m_classname, this);
-        cache.add(callback);
+        cache->add(callback);
     }
-    cache->setBlock(block);
+    callback->setBlock(block);
     
     MeObject::save(callback);
 }

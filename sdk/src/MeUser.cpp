@@ -33,6 +33,9 @@ void MeUser::init(){
     
     // 初始化callback
     m_object = this;
+#ifdef __IOS__
+    m_callback = NULL;
+#endif
     MeCallback::m_classname = MeObject::m_classname;
 }
 
@@ -47,6 +50,7 @@ void MeUser::logout(){
 }
 
 #pragma --mark "注册"
+/*
 // 验证码注册
 void MeUser::signin(const char* username, const char* password, const char* authcode, MeCallback_func callback){
     char url[1024];
@@ -76,6 +80,7 @@ void MeUser::done(MeObject* obj, MeException* err, uint32_t size){
     
     m_callback(obj, err, size);
 }
+*/
 
 MeUser* MeUser::currentUser(){
     if (m_current_user == NULL) {
@@ -89,4 +94,13 @@ MeUser* MeUser::currentUser(){
     }
     
     return m_current_user;
+}
+
+void MeUser::saveLocalCache(){
+    char path[1024];
+    FileManager::remove(SharedPreferences::path("__CurrentUser", path, sizeof(path)) );
+    Crypt crypt;
+    const char* str = toString();
+    int64_t crysize = crypt.encrypt((byte*)str, (uint32_t)strlen(str));
+    FileManager::write(path, crypt.bytes(), crysize);
 }

@@ -11,13 +11,13 @@ import tornado.web
 import threading
 import json
 from BaseHandler import *
-from model.MeObject import *
-from model.MeQuery import *
-from model.MeError import *
-from helper.DbHelper import *
-from helper.ClassHelper import *
-from helper.Util import *
-from lib import *
+from mecloud.model.MeObject import *
+from mecloud.model.MeQuery import *
+from mecloud.model.MeError import *
+from mecloud.helper.DbHelper import *
+from mecloud.helper.ClassHelper import *
+from mecloud.helper.Util import *
+from mecloud.lib import *
 from ConfigParser import *
 import time, os, sched
 

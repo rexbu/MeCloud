@@ -1,0 +1,4 @@
+#Wed Mar 22 13:13:35 CST 2017
+base.0=/Users/chengwangyong/AndroidStudioProjects/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/chengwangyong/AndroidStudioProjects/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

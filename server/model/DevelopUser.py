@@ -9,9 +9,9 @@
 
 from MeObject import *
 from MeUser import *
-from helper.DbHelper import *
-from helper.ClassHelper import *
-from helper.Util import *
+from mecloud.helper.DbHelper import *
+from mecloud.helper.ClassHelper import *
+from mecloud.helper.Util import *
 import json
 from datetime import *
 import copy

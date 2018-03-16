@@ -3,16 +3,20 @@
 [global]
 # 版本号
 version	= 1.0
-# 线上、测试模式
-mode = test
 # 工程名
 project = honey
+
+# 线上、测试模式
+mode = online
 
 # 工程类型，0：单工程方案；1：多工程baas系统
 project_type = 0
 db = honey
 
-[online]
+# 需要和lib/config.py一致
+PORT = 8000
+
+[mongodb]
 
 # mongodb数据库配置
 MONGO_ADDR1	=	dds-2ze8a84bc24526141.mongodb.rds.aliyuncs.com:3717
@@ -21,32 +25,44 @@ REPLICAT_SET=	mgset-1076461
 USERNAME	=	root
 PASSWORD	=	2egRPV4LaDtoNUE18ZSwB7
 
-DOMAIN = file.visualogies.com
+[redis]
+# redis config
+REDIS_HOST=r-2ze80f953f17d1a4.redis.rds.aliyuncs.com
+REDIS_PORT=6379
+REDIS_PASSWORD=2egRPV4LaDtoNUE18ZSwB7
+REDIS_MAX_CONNECTIONS=10
+REDIS_DBID=0
+REDIS_SUB_CHANNEL=push_channel
 
-# OSS库名
-BUCKET = vsfile
+[oss]
+#OSS相关
+OSS_ACCESS_KEY_ID = LTAIssMeSYsRM3Jk
+OSS_ACCESS_KEY_SECRET = UBh8kh8Xz2DcvgHdeQvlDMm9ocWUmg
+OSS_BUCKET_NAME = heimitest
+OSS_ENDPOINT = oss-cn-beijing.aliyuncs.com
+OSS_STS_ROLE_ARN = acs:ram::1250094474097995:role/heimi-test
+OSS_ROLE_SESSION_NAME = oss-biliankeji
+OSS_REGION_ID =cn-beijing
 
-# 需要和lib/config.py一致
-PORT = 8000
+[sms]
+#SMS相关
+SMS_REGION = cn-hangzhou
+SMS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
+SMS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
+SMS_TEMPLATE_CODE = SMS_86875087
+SMS_SIGN_NAME = 阿里云短信测试专用
 
-[test]
-
-USER_UPPER_LIMIT = 10
-DOMAIN = oss-cn-beijing.aliyuncs.com
-BUCKET = vsdevelop
-#BUCKET = vsfile
-
-PORT = 8000
 
 [handlers]
 
-/1.0/classes/(\w+)/(\w+) = api.ClassHandler.ClassHandler
-/1.0/classes/(\w+) = api.ClassHandler.ClassHandler
-/1.0/user/(\w+) = api.UserHandler.UserHandler
-/1.0/file/(.+) = api.FileHandler.FileHandler
-/1.0/file = api.FileHandler.FileHandler
-/sms/(.+) = api.SMSHandler.SMSHandler
-/wx/(\w+) = api.WxHandler.WxHandler
+/1.0/class/(\w+)/(\w+) = mecloud.api.ClassHandler.ClassHandler
+/1.0/class/(\w+) = mecloud.api.ClassHandler.ClassHandler
+/1.0/user/(\w+) = mecloud.api.UserHandler.UserHandler
+/1.0/user/ = mecloud.api.UserHandler.UserHandler
+/1.0/file/ = mecloud.api.FileHandler.FileHandler
+/1.0/file/(\w+) = mecloud.api.FileHandler.FileHandler
+/sms/(.+) = mecloud.api.SMSHandler.SMSHandler
+/wx/(\w+) = mecloud.api.WxHandler.WxHandler
 
 [wx]
 # 当前实例是否作为access_token实例
@@ -57,3 +73,7 @@ WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
 
 # 微信条状登录url
 WX_REDIRECT = xxx
+
+
+
+

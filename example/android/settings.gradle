@@ -1,1 +1,1 @@
-include ':app', ':mecloud'
+include ':app', ':mecloudandroid'

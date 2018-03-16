@@ -7,30 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF13BB6B1F67A2EE008C3C27 /* MeCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = BF13BB691F67A2ED008C3C27 /* MeCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF13BB6C1F67A2EE008C3C27 /* MeCrypt.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF13BB6A1F67A2ED008C3C27 /* MeCrypt.mm */; };
+		BF13BBA81F67A31F008C3C27 /* MeIOSFile.h in Headers */ = {isa = PBXBuildFile; fileRef = BF13BBA61F67A31F008C3C27 /* MeIOSFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF13BBA91F67A31F008C3C27 /* MeIOSFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF13BBA71F67A31F008C3C27 /* MeIOSFile.mm */; };
+		BF13BBAE1F6A2C40008C3C27 /* MeIOSHttpFileCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF13BBAC1F6A2C3F008C3C27 /* MeIOSHttpFileCallback.mm */; };
+		BF13BBAF1F6A2C40008C3C27 /* MeIOSHttpFileCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = BF13BBAD1F6A2C40008C3C27 /* MeIOSHttpFileCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF2D61241F6EB75400CAD31F /* MeJoinQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF2D61221F6EB75300CAD31F /* MeJoinQuery.cpp */; };
+		BF2D61251F6EB75400CAD31F /* MeJoinQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = BF2D61231F6EB75300CAD31F /* MeJoinQuery.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		BF2D61281F6EB7B400CAD31F /* MeIOSHttpDataCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = BF2D61261F6EB7B300CAD31F /* MeIOSHttpDataCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF2D61291F6EB7B400CAD31F /* MeIOSHttpDataCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF2D61271F6EB7B400CAD31F /* MeIOSHttpDataCallback.mm */; };
+		BF2D61301F6F85D000CAD31F /* MeIOSJoinQuery.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF2D612E1F6F85D000CAD31F /* MeIOSJoinQuery.mm */; };
+		BF2D61311F6F85D000CAD31F /* MeIOSJoinQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = BF2D612F1F6F85D000CAD31F /* MeIOSJoinQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF36C0A91F35651000AE19A7 /* MeDownloadFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF36C0A31F35651000AE19A7 /* MeDownloadFile.mm */; };
+		BF36C0AA1F35651000AE19A7 /* MeUploadFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF36C0A41F35651000AE19A7 /* MeUploadFile.mm */; };
+		BF36C0AB1F35651000AE19A7 /* MeDownloadFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF36C0A51F35651000AE19A7 /* MeDownloadFile.cpp */; };
+		BF36C0AC1F35651000AE19A7 /* MeDownloadFile.h in Headers */ = {isa = PBXBuildFile; fileRef = BF36C0A61F35651000AE19A7 /* MeDownloadFile.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		BF36C0AD1F35651000AE19A7 /* MeUploadFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF36C0A71F35651000AE19A7 /* MeUploadFile.cpp */; };
+		BF36C0AE1F35651000AE19A7 /* MeUploadFile.h in Headers */ = {isa = PBXBuildFile; fileRef = BF36C0A81F35651000AE19A7 /* MeUploadFile.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		BF5FED381F25A58C00F248C5 /* MeHttpFileCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5FED361F25A58C00F248C5 /* MeHttpFileCallback.cpp */; };
+		BF5FED391F25A58C00F248C5 /* MeHttpFileCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = BF5FED371F25A58C00F248C5 /* MeHttpFileCallback.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		BF91A6C91F5E733D001C9777 /* MeHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = BF91A6C81F5E720A001C9777 /* MeHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC4C1F3C22B1001E2304 /* MeIOSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC4A1F3C22B1001E2304 /* MeIOSObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC4D1F3C22B1001E2304 /* MeIOSObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC4B1F3C22B1001E2304 /* MeIOSObject.mm */; };
+		BF92AC501F3C2581001E2304 /* MeIOSJSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC4E1F3C2581001E2304 /* MeIOSJSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC511F3C2581001E2304 /* MeIOSJSONObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC4F1F3C2581001E2304 /* MeIOSJSONObject.mm */; };
+		BF92AC541F3C2642001E2304 /* MeIOSACL.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC521F3C2642001E2304 /* MeIOSACL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC551F3C2642001E2304 /* MeIOSACL.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC531F3C2642001E2304 /* MeIOSACL.mm */; };
+		BF92AC601F3C5CA6001E2304 /* MeIOSException.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC5E1F3C5CA6001E2304 /* MeIOSException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC611F3C5CA6001E2304 /* MeIOSException.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC5F1F3C5CA6001E2304 /* MeIOSException.mm */; };
+		BF92AC641F3C65DE001E2304 /* MeIOSNetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC621F3C65DE001E2304 /* MeIOSNetManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC651F3C65DE001E2304 /* MeIOSNetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC631F3C65DE001E2304 /* MeIOSNetManager.mm */; };
+		BF92AC681F3D4840001E2304 /* MeIOSRole.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC661F3D4840001E2304 /* MeIOSRole.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC691F3D4840001E2304 /* MeIOSRole.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC671F3D4840001E2304 /* MeIOSRole.mm */; };
+		BF92AC781F3D5A41001E2304 /* MeIOSUser.h in Headers */ = {isa = PBXBuildFile; fileRef = BF92AC761F3D5A41001E2304 /* MeIOSUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF92AC791F3D5A41001E2304 /* MeIOSUser.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF92AC771F3D5A41001E2304 /* MeIOSUser.mm */; };
+		BF9A8A7E1F3D88720004C257 /* MeIOSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = BF9A8A7C1F3D88720004C257 /* MeIOSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF9A8A7F1F3D88720004C257 /* MeIOSQuery.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF9A8A7D1F3D88720004C257 /* MeIOSQuery.mm */; };
 		C82E79F91F0BA3A8008CD7D8 /* MobileCross.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82E79F61F0BA397008CD7D8 /* MobileCross.framework */; };
-		C82E7AEB1F0F8974008CD7D8 /* Me.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AEA1F0F8974008CD7D8 /* Me.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7AEB1F0F8974008CD7D8 /* Me.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AEA1F0F8974008CD7D8 /* Me.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7AFE1F0F8983008CD7D8 /* MeCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AEC1F0F8983008CD7D8 /* MeCallback.cpp */; };
-		C82E7AFF1F0F8983008CD7D8 /* MeCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AED1F0F8983008CD7D8 /* MeCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7AFF1F0F8983008CD7D8 /* MeCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AED1F0F8983008CD7D8 /* MeCallback.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B001F0F8983008CD7D8 /* MeCloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AEE1F0F8983008CD7D8 /* MeCloud.cpp */; };
-		C82E7B011F0F8983008CD7D8 /* MeCloud.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AEF1F0F8983008CD7D8 /* MeCloud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B011F0F8983008CD7D8 /* MeCloud.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AEF1F0F8983008CD7D8 /* MeCloud.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B021F0F8983008CD7D8 /* MeDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF01F0F8983008CD7D8 /* MeDevice.cpp */; };
-		C82E7B031F0F8983008CD7D8 /* MeDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF11F0F8983008CD7D8 /* MeDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B031F0F8983008CD7D8 /* MeDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF11F0F8983008CD7D8 /* MeDevice.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B041F0F8983008CD7D8 /* MeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF21F0F8983008CD7D8 /* MeFile.cpp */; };
-		C82E7B051F0F8983008CD7D8 /* MeFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF31F0F8983008CD7D8 /* MeFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B051F0F8983008CD7D8 /* MeFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF31F0F8983008CD7D8 /* MeFile.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B061F0F8983008CD7D8 /* MeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF41F0F8983008CD7D8 /* MeObject.cpp */; };
-		C82E7B071F0F8983008CD7D8 /* MeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF51F0F8983008CD7D8 /* MeObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B071F0F8983008CD7D8 /* MeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF51F0F8983008CD7D8 /* MeObject.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B081F0F8983008CD7D8 /* MeQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF61F0F8983008CD7D8 /* MeQuery.cpp */; };
-		C82E7B091F0F8983008CD7D8 /* MeQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF71F0F8983008CD7D8 /* MeQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B091F0F8983008CD7D8 /* MeQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF71F0F8983008CD7D8 /* MeQuery.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B0A1F0F8983008CD7D8 /* MeSMS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AF81F0F8983008CD7D8 /* MeSMS.cpp */; };
-		C82E7B0B1F0F8983008CD7D8 /* MeSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF91F0F8983008CD7D8 /* MeSMS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B0B1F0F8983008CD7D8 /* MeSMS.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AF91F0F8983008CD7D8 /* MeSMS.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B0C1F0F8983008CD7D8 /* MeTimeStat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AFA1F0F8983008CD7D8 /* MeTimeStat.cpp */; };
-		C82E7B0D1F0F8983008CD7D8 /* MeTimeStat.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AFB1F0F8983008CD7D8 /* MeTimeStat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B0D1F0F8983008CD7D8 /* MeTimeStat.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AFB1F0F8983008CD7D8 /* MeTimeStat.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B0E1F0F8983008CD7D8 /* MeUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C82E7AFC1F0F8983008CD7D8 /* MeUser.cpp */; };
-		C82E7B0F1F0F8983008CD7D8 /* MeUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AFD1F0F8983008CD7D8 /* MeUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C82E7B141F0F898F008CD7D8 /* MeIOSCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82E7B0F1F0F8983008CD7D8 /* MeUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7AFD1F0F8983008CD7D8 /* MeUser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C82E7B141F0F898F008CD7D8 /* MeIOSCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C82E7B151F0F898F008CD7D8 /* MeIOSCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */; };
 		C82E7B161F0F898F008CD7D8 /* MeObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E7B121F0F898E008CD7D8 /* MeObject.mm */; };
 		C82E7B171F0F898F008CD7D8 /* MeUser.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E7B131F0F898F008CD7D8 /* MeUser.mm */; };
+		C8E067501F1E165D006B146A /* MeACL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E0674C1F1E165D006B146A /* MeACL.cpp */; };
+		C8E067511F1E165D006B146A /* MeACL.h in Headers */ = {isa = PBXBuildFile; fileRef = C8E0674D1F1E165D006B146A /* MeACL.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C8E067521F1E165D006B146A /* MeRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E0674E1F1E165D006B146A /* MeRole.cpp */; };
+		C8E067531F1E165D006B146A /* MeRole.h in Headers */ = {isa = PBXBuildFile; fileRef = C8E0674F1F1E165D006B146A /* MeRole.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CD0661341F21E3B400098365 /* MeQuery.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD0661331F21E3B400098365 /* MeQuery.mm */; };
+		CD0661361F21E3C900098365 /* MeError.h in Headers */ = {isa = PBXBuildFile; fileRef = CD0661351F21E3C900098365 /* MeError.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +94,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF13BB691F67A2ED008C3C27 /* MeCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeCrypt.h; path = ../../src/ios/MeCrypt.h; sourceTree = "<group>"; };
+		BF13BB6A1F67A2ED008C3C27 /* MeCrypt.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeCrypt.mm; path = ../../src/ios/MeCrypt.mm; sourceTree = "<group>"; };
+		BF13BBA61F67A31F008C3C27 /* MeIOSFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MeIOSFile.h; path = ../../src/ios/MeIOSFile.h; sourceTree = "<group>"; };
+		BF13BBA71F67A31F008C3C27 /* MeIOSFile.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSFile.mm; path = ../../src/ios/MeIOSFile.mm; sourceTree = "<group>"; };
+		BF13BBAC1F6A2C3F008C3C27 /* MeIOSHttpFileCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSHttpFileCallback.mm; path = ../../src/ios/MeIOSHttpFileCallback.mm; sourceTree = "<group>"; };
+		BF13BBAD1F6A2C40008C3C27 /* MeIOSHttpFileCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSHttpFileCallback.h; path = ../../src/ios/MeIOSHttpFileCallback.h; sourceTree = "<group>"; };
+		BF2D61221F6EB75300CAD31F /* MeJoinQuery.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MeJoinQuery.cpp; path = ../../src/MeJoinQuery.cpp; sourceTree = "<group>"; };
+		BF2D61231F6EB75300CAD31F /* MeJoinQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MeJoinQuery.h; path = ../../src/MeJoinQuery.h; sourceTree = "<group>"; };
+		BF2D61261F6EB7B300CAD31F /* MeIOSHttpDataCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSHttpDataCallback.h; path = ../../src/ios/MeIOSHttpDataCallback.h; sourceTree = "<group>"; };
+		BF2D61271F6EB7B400CAD31F /* MeIOSHttpDataCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSHttpDataCallback.mm; path = ../../src/ios/MeIOSHttpDataCallback.mm; sourceTree = "<group>"; };
+		BF2D612E1F6F85D000CAD31F /* MeIOSJoinQuery.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSJoinQuery.mm; path = ../../src/ios/MeIOSJoinQuery.mm; sourceTree = "<group>"; };
+		BF2D612F1F6F85D000CAD31F /* MeIOSJoinQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSJoinQuery.h; path = ../../src/ios/MeIOSJoinQuery.h; sourceTree = "<group>"; };
+		BF36C0A31F35651000AE19A7 /* MeDownloadFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeDownloadFile.mm; path = ../../src/ios/MeDownloadFile.mm; sourceTree = "<group>"; };
+		BF36C0A41F35651000AE19A7 /* MeUploadFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeUploadFile.mm; path = ../../src/ios/MeUploadFile.mm; sourceTree = "<group>"; };
+		BF36C0A51F35651000AE19A7 /* MeDownloadFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeDownloadFile.cpp; path = ../../src/MeDownloadFile.cpp; sourceTree = "<group>"; };
+		BF36C0A61F35651000AE19A7 /* MeDownloadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeDownloadFile.h; path = ../../src/MeDownloadFile.h; sourceTree = "<group>"; };
+		BF36C0A71F35651000AE19A7 /* MeUploadFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeUploadFile.cpp; path = ../../src/MeUploadFile.cpp; sourceTree = "<group>"; };
+		BF36C0A81F35651000AE19A7 /* MeUploadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeUploadFile.h; path = ../../src/MeUploadFile.h; sourceTree = "<group>"; };
+		BF5FED361F25A58C00F248C5 /* MeHttpFileCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeHttpFileCallback.cpp; path = ../../src/MeHttpFileCallback.cpp; sourceTree = "<group>"; };
+		BF5FED371F25A58C00F248C5 /* MeHttpFileCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeHttpFileCallback.h; path = ../../src/MeHttpFileCallback.h; sourceTree = "<group>"; };
+		BF91A6C81F5E720A001C9777 /* MeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MeHeader.h; path = ../../src/ios/MeHeader.h; sourceTree = "<group>"; };
+		BF92AC4A1F3C22B1001E2304 /* MeIOSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSObject.h; path = ../../src/ios/MeIOSObject.h; sourceTree = "<group>"; };
+		BF92AC4B1F3C22B1001E2304 /* MeIOSObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSObject.mm; path = ../../src/ios/MeIOSObject.mm; sourceTree = "<group>"; };
+		BF92AC4E1F3C2581001E2304 /* MeIOSJSONObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSJSONObject.h; path = ../../src/ios/MeIOSJSONObject.h; sourceTree = "<group>"; };
+		BF92AC4F1F3C2581001E2304 /* MeIOSJSONObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSJSONObject.mm; path = ../../src/ios/MeIOSJSONObject.mm; sourceTree = "<group>"; };
+		BF92AC521F3C2642001E2304 /* MeIOSACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSACL.h; path = ../../src/ios/MeIOSACL.h; sourceTree = "<group>"; };
+		BF92AC531F3C2642001E2304 /* MeIOSACL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSACL.mm; path = ../../src/ios/MeIOSACL.mm; sourceTree = "<group>"; };
+		BF92AC5E1F3C5CA6001E2304 /* MeIOSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSException.h; path = ../../src/ios/MeIOSException.h; sourceTree = "<group>"; };
+		BF92AC5F1F3C5CA6001E2304 /* MeIOSException.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSException.mm; path = ../../src/ios/MeIOSException.mm; sourceTree = "<group>"; };
+		BF92AC621F3C65DE001E2304 /* MeIOSNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSNetManager.h; path = ../../src/ios/MeIOSNetManager.h; sourceTree = "<group>"; };
+		BF92AC631F3C65DE001E2304 /* MeIOSNetManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSNetManager.mm; path = ../../src/ios/MeIOSNetManager.mm; sourceTree = "<group>"; };
+		BF92AC661F3D4840001E2304 /* MeIOSRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSRole.h; path = ../../src/ios/MeIOSRole.h; sourceTree = "<group>"; };
+		BF92AC671F3D4840001E2304 /* MeIOSRole.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSRole.mm; path = ../../src/ios/MeIOSRole.mm; sourceTree = "<group>"; };
+		BF92AC761F3D5A41001E2304 /* MeIOSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSUser.h; path = ../../src/ios/MeIOSUser.h; sourceTree = "<group>"; };
+		BF92AC771F3D5A41001E2304 /* MeIOSUser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSUser.mm; path = ../../src/ios/MeIOSUser.mm; sourceTree = "<group>"; };
+		BF9A8A7C1F3D88720004C257 /* MeIOSQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeIOSQuery.h; path = ../../src/ios/MeIOSQuery.h; sourceTree = "<group>"; };
+		BF9A8A7D1F3D88720004C257 /* MeIOSQuery.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSQuery.mm; path = ../../src/ios/MeIOSQuery.mm; sourceTree = "<group>"; };
 		C82E79BD1F0BA2A8008CD7D8 /* MeCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C82E79C11F0BA2A8008CD7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C82E79F11F0BA397008CD7D8 /* MobileCross.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileCross.xcodeproj; path = ../../MobileCross/ios/MobileCross.xcodeproj; sourceTree = "<group>"; };
@@ -77,6 +157,12 @@
 		C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeIOSCallback.mm; path = ../../src/ios/MeIOSCallback.mm; sourceTree = "<group>"; };
 		C82E7B121F0F898E008CD7D8 /* MeObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeObject.mm; path = ../../src/ios/MeObject.mm; sourceTree = "<group>"; };
 		C82E7B131F0F898F008CD7D8 /* MeUser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeUser.mm; path = ../../src/ios/MeUser.mm; sourceTree = "<group>"; };
+		C8E0674C1F1E165D006B146A /* MeACL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeACL.cpp; path = ../../src/MeACL.cpp; sourceTree = "<group>"; };
+		C8E0674D1F1E165D006B146A /* MeACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeACL.h; path = ../../src/MeACL.h; sourceTree = "<group>"; };
+		C8E0674E1F1E165D006B146A /* MeRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MeRole.cpp; path = ../../src/MeRole.cpp; sourceTree = "<group>"; };
+		C8E0674F1F1E165D006B146A /* MeRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeRole.h; path = ../../src/MeRole.h; sourceTree = "<group>"; };
+		CD0661331F21E3B400098365 /* MeQuery.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeQuery.mm; path = ../../src/ios/MeQuery.mm; sourceTree = "<group>"; };
+		CD0661351F21E3C900098365 /* MeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeError.h; path = ../../src/MeError.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +177,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF92AC431F3C21DE001E2304 /* iOSInterface */ = {
+			isa = PBXGroup;
+			children = (
+				BF91A6C81F5E720A001C9777 /* MeHeader.h */,
+				BF92AC4E1F3C2581001E2304 /* MeIOSJSONObject.h */,
+				BF92AC4F1F3C2581001E2304 /* MeIOSJSONObject.mm */,
+				BF92AC4A1F3C22B1001E2304 /* MeIOSObject.h */,
+				BF92AC4B1F3C22B1001E2304 /* MeIOSObject.mm */,
+				BF92AC521F3C2642001E2304 /* MeIOSACL.h */,
+				BF92AC531F3C2642001E2304 /* MeIOSACL.mm */,
+				BF92AC5E1F3C5CA6001E2304 /* MeIOSException.h */,
+				BF92AC5F1F3C5CA6001E2304 /* MeIOSException.mm */,
+				BF92AC661F3D4840001E2304 /* MeIOSRole.h */,
+				BF92AC671F3D4840001E2304 /* MeIOSRole.mm */,
+				BF92AC761F3D5A41001E2304 /* MeIOSUser.h */,
+				BF92AC771F3D5A41001E2304 /* MeIOSUser.mm */,
+				BF9A8A7C1F3D88720004C257 /* MeIOSQuery.h */,
+				BF9A8A7D1F3D88720004C257 /* MeIOSQuery.mm */,
+				BF2D612F1F6F85D000CAD31F /* MeIOSJoinQuery.h */,
+				BF2D612E1F6F85D000CAD31F /* MeIOSJoinQuery.mm */,
+				BF13BB691F67A2ED008C3C27 /* MeCrypt.h */,
+				BF13BB6A1F67A2ED008C3C27 /* MeCrypt.mm */,
+				BF13BBA61F67A31F008C3C27 /* MeIOSFile.h */,
+				BF13BBA71F67A31F008C3C27 /* MeIOSFile.mm */,
+				BF2D61261F6EB7B300CAD31F /* MeIOSHttpDataCallback.h */,
+				BF2D61271F6EB7B400CAD31F /* MeIOSHttpDataCallback.mm */,
+				BF13BBAD1F6A2C40008C3C27 /* MeIOSHttpFileCallback.h */,
+				BF13BBAC1F6A2C3F008C3C27 /* MeIOSHttpFileCallback.mm */,
+				BF92AC621F3C65DE001E2304 /* MeIOSNetManager.h */,
+				BF92AC631F3C65DE001E2304 /* MeIOSNetManager.mm */,
+			);
+			name = iOSInterface;
+			sourceTree = "<group>";
+		};
 		C82E79B31F0BA2A7008CD7D8 = {
 			isa = PBXGroup;
 			children = (
@@ -111,30 +231,47 @@
 		C82E79BF1F0BA2A8008CD7D8 /* MeCloud */ = {
 			isa = PBXGroup;
 			children = (
+				BF92AC431F3C21DE001E2304 /* iOSInterface */,
+				CD0661351F21E3C900098365 /* MeError.h */,
+				C8E0674C1F1E165D006B146A /* MeACL.cpp */,
+				C8E0674D1F1E165D006B146A /* MeACL.h */,
+				C8E0674E1F1E165D006B146A /* MeRole.cpp */,
+				C8E0674F1F1E165D006B146A /* MeRole.h */,
 				C82E79C11F0BA2A8008CD7D8 /* Info.plist */,
 				C82E7AEA1F0F8974008CD7D8 /* Me.h */,
 				C82E7AEC1F0F8983008CD7D8 /* MeCallback.cpp */,
 				C82E7AED1F0F8983008CD7D8 /* MeCallback.h */,
+				C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */,
+				C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */,
 				C82E7AEE1F0F8983008CD7D8 /* MeCloud.cpp */,
 				C82E7AEF1F0F8983008CD7D8 /* MeCloud.h */,
 				C82E7AF01F0F8983008CD7D8 /* MeDevice.cpp */,
 				C82E7AF11F0F8983008CD7D8 /* MeDevice.h */,
+				BF5FED361F25A58C00F248C5 /* MeHttpFileCallback.cpp */,
+				BF5FED371F25A58C00F248C5 /* MeHttpFileCallback.h */,
+				BF36C0A31F35651000AE19A7 /* MeDownloadFile.mm */,
+				BF36C0A51F35651000AE19A7 /* MeDownloadFile.cpp */,
+				BF36C0A61F35651000AE19A7 /* MeDownloadFile.h */,
+				BF36C0A41F35651000AE19A7 /* MeUploadFile.mm */,
+				BF36C0A71F35651000AE19A7 /* MeUploadFile.cpp */,
+				BF36C0A81F35651000AE19A7 /* MeUploadFile.h */,
 				C82E7AF21F0F8983008CD7D8 /* MeFile.cpp */,
 				C82E7AF31F0F8983008CD7D8 /* MeFile.h */,
-				C82E7B101F0F898E008CD7D8 /* MeIOSCallback.h */,
-				C82E7B111F0F898E008CD7D8 /* MeIOSCallback.mm */,
+				C82E7B121F0F898E008CD7D8 /* MeObject.mm */,
 				C82E7AF41F0F8983008CD7D8 /* MeObject.cpp */,
 				C82E7AF51F0F8983008CD7D8 /* MeObject.h */,
-				C82E7B121F0F898E008CD7D8 /* MeObject.mm */,
+				CD0661331F21E3B400098365 /* MeQuery.mm */,
 				C82E7AF61F0F8983008CD7D8 /* MeQuery.cpp */,
 				C82E7AF71F0F8983008CD7D8 /* MeQuery.h */,
+				BF2D61221F6EB75300CAD31F /* MeJoinQuery.cpp */,
+				BF2D61231F6EB75300CAD31F /* MeJoinQuery.h */,
 				C82E7AF81F0F8983008CD7D8 /* MeSMS.cpp */,
 				C82E7AF91F0F8983008CD7D8 /* MeSMS.h */,
 				C82E7AFA1F0F8983008CD7D8 /* MeTimeStat.cpp */,
 				C82E7AFB1F0F8983008CD7D8 /* MeTimeStat.h */,
+				C82E7B131F0F898F008CD7D8 /* MeUser.mm */,
 				C82E7AFC1F0F8983008CD7D8 /* MeUser.cpp */,
 				C82E7AFD1F0F8983008CD7D8 /* MeUser.h */,
-				C82E7B131F0F898F008CD7D8 /* MeUser.mm */,
 			);
 			path = MeCloud;
 			sourceTree = "<group>";
@@ -154,16 +291,37 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF92AC4C1F3C22B1001E2304 /* MeIOSObject.h in Headers */,
+				BF92AC541F3C2642001E2304 /* MeIOSACL.h in Headers */,
+				BF92AC501F3C2581001E2304 /* MeIOSJSONObject.h in Headers */,
+				BF92AC601F3C5CA6001E2304 /* MeIOSException.h in Headers */,
+				BF92AC641F3C65DE001E2304 /* MeIOSNetManager.h in Headers */,
+				BF92AC681F3D4840001E2304 /* MeIOSRole.h in Headers */,
+				BF92AC781F3D5A41001E2304 /* MeIOSUser.h in Headers */,
+				BF9A8A7E1F3D88720004C257 /* MeIOSQuery.h in Headers */,
+				BF13BBA81F67A31F008C3C27 /* MeIOSFile.h in Headers */,
+				BF13BB6B1F67A2EE008C3C27 /* MeCrypt.h in Headers */,
+				BF2D61311F6F85D000CAD31F /* MeIOSJoinQuery.h in Headers */,
+				BF2D61281F6EB7B400CAD31F /* MeIOSHttpDataCallback.h in Headers */,
+				BF91A6C91F5E733D001C9777 /* MeHeader.h in Headers */,
+				BF13BBAF1F6A2C40008C3C27 /* MeIOSHttpFileCallback.h in Headers */,
+				C82E7B141F0F898F008CD7D8 /* MeIOSCallback.h in Headers */,
+				BF2D61251F6EB75400CAD31F /* MeJoinQuery.h in Headers */,
 				C82E7B091F0F8983008CD7D8 /* MeQuery.h in Headers */,
 				C82E7AEB1F0F8974008CD7D8 /* Me.h in Headers */,
 				C82E7B0B1F0F8983008CD7D8 /* MeSMS.h in Headers */,
 				C82E7B071F0F8983008CD7D8 /* MeObject.h in Headers */,
 				C82E7B0D1F0F8983008CD7D8 /* MeTimeStat.h in Headers */,
-				C82E7B141F0F898F008CD7D8 /* MeIOSCallback.h in Headers */,
 				C82E7B011F0F8983008CD7D8 /* MeCloud.h in Headers */,
 				C82E7B051F0F8983008CD7D8 /* MeFile.h in Headers */,
 				C82E7B031F0F8983008CD7D8 /* MeDevice.h in Headers */,
+				C8E067511F1E165D006B146A /* MeACL.h in Headers */,
+				C8E067531F1E165D006B146A /* MeRole.h in Headers */,
+				BF5FED391F25A58C00F248C5 /* MeHttpFileCallback.h in Headers */,
+				CD0661361F21E3C900098365 /* MeError.h in Headers */,
 				C82E7AFF1F0F8983008CD7D8 /* MeCallback.h in Headers */,
+				BF36C0AE1F35651000AE19A7 /* MeUploadFile.h in Headers */,
+				BF36C0AC1F35651000AE19A7 /* MeDownloadFile.h in Headers */,
 				C82E7B0F1F0F8983008CD7D8 /* MeUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +359,7 @@
 				TargetAttributes = {
 					C82E79BC1F0BA2A8008CD7D8 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -254,17 +413,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				C82E7B081F0F8983008CD7D8 /* MeQuery.cpp in Sources */,
+				CD0661341F21E3B400098365 /* MeQuery.mm in Sources */,
+				BF92AC551F3C2642001E2304 /* MeIOSACL.mm in Sources */,
 				C82E7B0E1F0F8983008CD7D8 /* MeUser.cpp in Sources */,
+				C8E067501F1E165D006B146A /* MeACL.cpp in Sources */,
 				C82E7B021F0F8983008CD7D8 /* MeDevice.cpp in Sources */,
+				BF2D61241F6EB75400CAD31F /* MeJoinQuery.cpp in Sources */,
+				BF36C0A91F35651000AE19A7 /* MeDownloadFile.mm in Sources */,
+				BF13BBAE1F6A2C40008C3C27 /* MeIOSHttpFileCallback.mm in Sources */,
 				C82E7B161F0F898F008CD7D8 /* MeObject.mm in Sources */,
 				C82E7B0A1F0F8983008CD7D8 /* MeSMS.cpp in Sources */,
 				C82E7B151F0F898F008CD7D8 /* MeIOSCallback.mm in Sources */,
+				BF92AC4D1F3C22B1001E2304 /* MeIOSObject.mm in Sources */,
 				C82E7B041F0F8983008CD7D8 /* MeFile.cpp in Sources */,
 				C82E7B0C1F0F8983008CD7D8 /* MeTimeStat.cpp in Sources */,
+				BF13BBA91F67A31F008C3C27 /* MeIOSFile.mm in Sources */,
 				C82E7B061F0F8983008CD7D8 /* MeObject.cpp in Sources */,
+				BF92AC651F3C65DE001E2304 /* MeIOSNetManager.mm in Sources */,
+				BF9A8A7F1F3D88720004C257 /* MeIOSQuery.mm in Sources */,
+				BF36C0AD1F35651000AE19A7 /* MeUploadFile.cpp in Sources */,
+				BF92AC511F3C2581001E2304 /* MeIOSJSONObject.mm in Sources */,
+				BF92AC691F3D4840001E2304 /* MeIOSRole.mm in Sources */,
+				BF2D61291F6EB7B400CAD31F /* MeIOSHttpDataCallback.mm in Sources */,
+				BF36C0AB1F35651000AE19A7 /* MeDownloadFile.cpp in Sources */,
 				C82E7AFE1F0F8983008CD7D8 /* MeCallback.cpp in Sources */,
+				BF13BB6C1F67A2EE008C3C27 /* MeCrypt.mm in Sources */,
+				BF5FED381F25A58C00F248C5 /* MeHttpFileCallback.cpp in Sources */,
 				C82E7B171F0F898F008CD7D8 /* MeUser.mm in Sources */,
 				C82E7B001F0F8983008CD7D8 /* MeCloud.cpp in Sources */,
+				BF92AC791F3D5A41001E2304 /* MeIOSUser.mm in Sources */,
+				BF2D61301F6F85D000CAD31F /* MeIOSJoinQuery.mm in Sources */,
+				C8E067521F1E165D006B146A /* MeRole.cpp in Sources */,
+				BF92AC611F3C5CA6001E2304 /* MeIOSException.mm in Sources */,
+				BF36C0AA1F35651000AE19A7 /* MeUploadFile.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +563,7 @@
 		C82E79C61F0BA2A8008CD7D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/output";
 				DEFINES_MODULE = YES;
@@ -395,12 +577,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rex.MeCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		C82E79C71F0BA2A8008CD7D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/output";
 				DEFINES_MODULE = YES;
@@ -414,6 +599,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rex.MeCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -10,6 +10,9 @@
 
 @interface ViewController : UIViewController
 
+#define MeScreenSize [[UIScreen mainScreen] bounds].size
+#define MeScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define MeScreenHeight [[UIScreen mainScreen] bounds].size.height
 
 @end
 

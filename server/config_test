@@ -1,0 +1,86 @@
+# global表示全局配置，online: 线上配置，test：测试环境配置
+
+[global]
+# 版本号
+version	= 1.0
+# 线上、测试模式
+mode = test
+# 工程名
+project = honey
+
+# 工程类型，0：单工程方案；1：多工程baas系统
+project_type = 0
+db = honeyTest
+
+PORT = 8000
+
+PUSHURL = http://t01.me-yun.com:8000/1.0/thirdpush/push
+
+DELETE_CLASS = ['Test','Followee','Follower','Blacklist']
+
+ACCESS_NO_CLASS = ["User","LoginRecords","Violations","SensitiveWord","ShareCopywrite","ProjectClass","AutoMessage"]
+
+mongodbIndex = [{"className":"UserInfo","column":"user","index":1,"unique":1}]
+
+
+[mongodb]
+# mongodb数据库配置
+MONGO_ADDR1	=	dds-2ze898a8f674d1742.mongodb.rds.aliyuncs.com:3717
+MONGO_ADDR2	=	dds-2ze898a8f674d1741.mongodb.rds.aliyuncs.com:3717
+REPLICAT_SET=	mgset-4375909
+USERNAME	=	root
+PASSWORD	=	2egRPV4LaDtoNUE18ZSwB7
+
+
+[redis]
+# redis config
+REDIS_HOST=r-2ze80f953f17d1a4.redis.rds.aliyuncs.com
+REDIS_PORT=6379
+REDIS_PASSWORD=2egRPV4LaDtoNUE18ZSwB7
+REDIS_MAX_CONNECTIONS=10
+REDIS_DBID=0
+REDIS_SUB_CHANNEL=push_channel
+
+[oss]
+#OSS相关
+OSS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
+OSS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
+OSS_BUCKET_NAME = heimitest
+PLATFORM = oss
+OSS_ENDPOINT = oss-cn-beijing.aliyuncs.com
+OSS_STS_ROLE_ARN = acs:ram::1250094474097995:role/heimi-test
+OSS_ROLE_SESSION_NAME = oss-biliankeji
+OSS_REGION_ID =cn-beijing
+
+[sms]
+#SMS相关
+SMS_REGION = cn-hangzhou
+SMS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
+SMS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
+SMS_TEMPLATE_CODE = SMS_86875087
+SMS_SIGN_NAME = 阿里云短信测试专用
+
+
+[handlers]
+
+/1.0/class/(\w+)/(\w+) = mecloud.api.ClassHandler.ClassHandler
+/1.0/class/(\w+) = mecloud.api.ClassHandler.ClassHandler
+/1.0/user/(\w+) = mecloud.api.UserHandler.UserHandler
+/1.0/user/ = mecloud.api.UserHandler.UserHandler
+/1.0/file/ = mecloud.api.FileHandler.FileHandler
+/1.0/file/(\w+) = mecloud.api.FileHandler.FileHandler
+/sms/(.+) = mecloud.api.SMSHandler.SMSHandler
+/wx/(\w+) = mecloud.api.WxHandler.WxHandler
+
+[wx]
+# 当前实例是否作为access_token实例
+WX_ACCESSTOKEN_SERVER = 0
+
+WX_APPID = wx1fe011436b82b249
+WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
+
+# 微信条状登录url
+WX_REDIRECT = xxx
+
+
+

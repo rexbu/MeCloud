@@ -11,13 +11,7 @@
 #include "MeIOSCallback.h"
 
 void MeObject::save(MeCallbackBlock block){
-    ReferenceCache* cache = ReferenceCache::shareInstance();
-    MeBlockCallback* callback = (MeBlockCallback*)cache->get();
-    if (callback==NULL) {
-        callback = new MeBlockCallback(m_classname, this);
-        cache->add(callback);
-    }
+    MeBlockCallback* callback = new MeBlockCallback(m_classname, this);
     callback->setBlock(block);
-    
     MeObject::save(callback);
 }

@@ -1,0 +1,4 @@
+#Mon Jul 17 18:24:48 CST 2017
+base.0=/Users/ragnar/android/blink/project/MeCloud/sdk/android/app/build/intermediates/transforms/dexMerger/debug/0
+renamed.0=classes.dex
+file.0=/Users/ragnar/android/blink/project/MeCloud/sdk/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex

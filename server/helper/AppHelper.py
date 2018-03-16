@@ -1,10 +1,5 @@
 #-*- coding: utf-8 -*- 
-import pymongo
-import json
-from bson import ObjectId
-from bson import json_util
-from ClassHelper import *
-from DbHelper import *
+from ClassHelper import ClassHelper
 
 class AppHelper(dict):
 	@staticmethod

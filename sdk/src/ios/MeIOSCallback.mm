@@ -17,8 +17,9 @@ MeCallback(classname, obj){
 }
 
 void MeBlockCallback::done(MeObject* obj, MeException* err, uint32_t size){
-    dispatch_async(dispatch_get_main_queue(), ^(){
+    dispatch_sync(dispatch_get_main_queue(), ^(){
         m_block(obj, err, size);
+        delete this;
     });
 }
 

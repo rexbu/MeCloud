@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1BE7EF1F8B1EEC0045142C /* 6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF1BE7EE1F8B1EEB0045142C /* 6.jpeg */; };
+		BF46F1FA1F29D59B0029E037 /* Screenshot_1500695711.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF46F1F91F29D59B0029E037 /* Screenshot_1500695711.jpg */; };
+		BFD3B0E91F31A28A0065A667 /* UIView+MeViewSizeExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD3B0E81F31A28A0065A667 /* UIView+MeViewSizeExtension.m */; };
 		C82E79D61F0BA314008CD7D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C82E79D51F0BA314008CD7D8 /* main.m */; };
 		C82E79D91F0BA314008CD7D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C82E79D81F0BA314008CD7D8 /* AppDelegate.m */; };
 		C82E79DC1F0BA314008CD7D8 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C82E79DB1F0BA314008CD7D8 /* ViewController.mm */; };
@@ -52,6 +55,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF1BE7EE1F8B1EEB0045142C /* 6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpeg; sourceTree = "<group>"; };
+		BF46F1F91F29D59B0029E037 /* Screenshot_1500695711.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screenshot_1500695711.jpg; sourceTree = "<group>"; };
+		BF9CB28E1FA2FE4F00D34348 /* MeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeDemo.entitlements; sourceTree = "<group>"; };
+		BFD3B0E71F31A28A0065A667 /* UIView+MeViewSizeExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MeViewSizeExtension.h"; sourceTree = "<group>"; };
+		BFD3B0E81F31A28A0065A667 /* UIView+MeViewSizeExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MeViewSizeExtension.m"; sourceTree = "<group>"; };
 		C82E79D11F0BA314008CD7D8 /* MeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C82E79D51F0BA314008CD7D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C82E79D71F0BA314008CD7D8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -100,10 +108,15 @@
 		C82E79D31F0BA314008CD7D8 /* MeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BF9CB28E1FA2FE4F00D34348 /* MeDemo.entitlements */,
+				BF1BE7EE1F8B1EEB0045142C /* 6.jpeg */,
 				C82E79D71F0BA314008CD7D8 /* AppDelegate.h */,
 				C82E79D81F0BA314008CD7D8 /* AppDelegate.m */,
 				C82E79DA1F0BA314008CD7D8 /* ViewController.h */,
 				C82E79DB1F0BA314008CD7D8 /* ViewController.mm */,
+				BFD3B0E71F31A28A0065A667 /* UIView+MeViewSizeExtension.h */,
+				BFD3B0E81F31A28A0065A667 /* UIView+MeViewSizeExtension.m */,
+				BF46F1F91F29D59B0029E037 /* Screenshot_1500695711.jpg */,
 				C82E79DD1F0BA314008CD7D8 /* Main.storyboard */,
 				C82E79E01F0BA314008CD7D8 /* Assets.xcassets */,
 				C82E79E21F0BA314008CD7D8 /* LaunchScreen.storyboard */,
@@ -170,8 +183,13 @@
 				TargetAttributes = {
 					C82E79D01F0BA314008CD7D8 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = TWA5QS8JFT;
+						DevelopmentTeam = WR3YC4QDYV;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -214,6 +232,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1BE7EF1F8B1EEC0045142C /* 6.jpeg in Resources */,
+				BF46F1FA1F29D59B0029E037 /* Screenshot_1500695711.jpg in Resources */,
 				C82E79E41F0BA314008CD7D8 /* LaunchScreen.storyboard in Resources */,
 				C82E79E11F0BA314008CD7D8 /* Assets.xcassets in Resources */,
 				C82E79DF1F0BA314008CD7D8 /* Main.storyboard in Resources */,
@@ -227,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD3B0E91F31A28A0065A667 /* UIView+MeViewSizeExtension.m in Sources */,
 				C82E79DC1F0BA314008CD7D8 /* ViewController.mm in Sources */,
 				C82E79D91F0BA314008CD7D8 /* AppDelegate.m in Sources */,
 				C82E79D61F0BA314008CD7D8 /* main.m in Sources */,
@@ -357,7 +378,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TWA5QS8JFT;
+				CODE_SIGN_ENTITLEMENTS = MeDemo/MeDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = WR3YC4QDYV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -367,8 +390,9 @@
 					"$(PROJECT_DIR)/../../MobileCross/ios/output/MobileCross.framework/Headers",
 				);
 				INFOPLIST_FILE = MeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rex.MeDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.VisionCore.MeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -377,7 +401,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TWA5QS8JFT;
+				CODE_SIGN_ENTITLEMENTS = MeDemo/MeDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = WR3YC4QDYV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -387,8 +413,9 @@
 					"$(PROJECT_DIR)/../../MobileCross/ios/output/MobileCross.framework/Headers",
 				);
 				INFOPLIST_FILE = MeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rex.MeDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.VisionCore.MeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -6,6 +6,7 @@ git clone https://github.com/facebook/tornado.git tornado
 cd tornado
 #python setup.py build
 sudo python setup.py install
+cd ../
 
 #install pymongo
 git clone git://github.com/mongodb/mongo-python-driver.git pymongo
@@ -25,9 +26,14 @@ tar -xvzf xmltodict-0.10.1.tar.gz
 cd xmltodict-0.10.1
 sudo python setup.py install
 
+#jieba
+pip install jieba
+pip install isodate
+pip install rsa
+
 #install pil
 apt-get install libjpeg8 libjpeg-dev libpng12-dev libpng++-dev libfreetype6-dev zlib1g-dev python-pip msttcorefonts
-pip install pillow oss2
+pip install pillow oss2 aliyun-python-sdk-sts
 #ubuntu /usr/local/lib/python2.7/dist-packages/PIL/ImageFont.py第128行改为：
 # self.font = core.getfont('/usr/share/fonts/truetype/msttcorefonts/'+font, size, index, encoding)
 # mac /Library/Python/2.7/site-packages/PIL/ImageFont.py 第128行改为：
@@ -45,3 +51,7 @@ pip install pillow oss2
 #cd Imaging-1.1.7
 #python setup.py build_ext -i
 #sudo python setup.py install
+
+
+
+#阿里云短信sdk依赖安装，在server下有一个目录aliyun-sms，里面有两个包，在两个包下面分别执行python setup install就可以了

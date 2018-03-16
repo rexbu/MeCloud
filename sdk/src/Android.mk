@@ -8,21 +8,19 @@ SRCFILES = $(wildcard $(LOCAL_PATH)/*.cpp $(LOCAL_PATH)/*/*.cpp)
 SRCS = $(patsubst $(LOCAL_PATH)/%, ./%,$(SRCFILES)) 
 
 LOCAL_C_INCLUDES =	\
-	$(LOCAL_PATH)/../../mc	\
-	$(LOCAL_PATH)/../../mc/basic	\
-	$(LOCAL_PATH)/../../mc/bs 		\
-	$(LOCAL_PATH)/../../mc/me		\
-	$(LOCAL_PATH)/../../third/sszip	\
-	$(LOCAL_PATH)/../../third/cjson	\
-	$(LOCAL_PATH)/../../third/oepnssl 			\
-	$(LOCAL_PATH)/../../third/openssl/include 	\
-	$(LOCAL_PATH)/../../third/curl				\
-	$(LOCAL_PATH)/../../third/curl/include 		\
-	$(LOCAL_PATH)/../../third/curl/include/curl \
+  $(LOCAL_PATH)/../android/jni/mc/3rdparty/hmacsha 	\
+	$(LOCAL_PATH)/../android/jni/mc/3rdparty/libzip		\
+	$(LOCAL_PATH)/../android/jni/mc/3rdparty/cJSON		\
+	$(LOCAL_PATH)/../android/jni/mc/3rdparty/libzippp 	\
+	$(LOCAL_PATH)/../android/jni/mc/bs 			\
+	$(LOCAL_PATH)/../android/jni/mc/basic
 	
 LOCAL_SRC_FILES += \
 	$(SRCS)
 
-LOCAL_MODULE := me
+LOCAL_SHARED_LIBRARIES := libMobileCross libnative
 
-include $(BUILD_STATIC_LIBRARY)
+LOCAL_LDLIBS    := -ldl -llog
+LOCAL_MODULE    := MeCloud
+
+include $(BUILD_SHARED_LIBRARY)

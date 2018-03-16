@@ -9,10 +9,10 @@
 
 from bson import json_util
 from BaseHandler import *
-from model.MeError import *
-from helper.DbHelper import *
-from helper.ClassHelper import *
-from helper.Util import *
+from mecloud.model.MeError import *
+from mecloud.helper.DbHelper import *
+from mecloud.helper.ClassHelper import *
+from mecloud.helper.Util import *
 import json
 from datetime import *
 

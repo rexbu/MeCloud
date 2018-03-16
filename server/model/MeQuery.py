@@ -7,12 +7,13 @@
  * history:
 '''
 
-from helper.ClassHelper import *
+from mecloud.helper.ClassHelper import *
 from MeObject import *
 
 class MeQuery(ClassHelper):
     def __init__(self, className):
         ClassHelper.__init__(self, className)
+
     ### 通过id获取对象
     def get(self, oid):
         o = ClassHelper.get(self, oid)
@@ -28,9 +29,15 @@ class MeQuery(ClassHelper):
         return None
 	
 	### 查询
-    def find(self, query, keys=None, sort=None, skip=0, limit=0):
-        objs = []
-        os = ClassHelper.find(self, query, keys, sort, skip, limit)
-        for o in os:
-            objs.append(MeObject(self.className, o))
-        return objs
+    def find(self, query, keys=None, sort=None, limit=0):
+        ClassHelper.find(self, query, keys, sort, limit)
+        return self
+    
+    """
+    查询迭代器
+    """
+    def __iter__(self):
+        return self
+    def next(self):
+        return MeObject(self.className, ClassHelper.next(self))
+    __next__ = next

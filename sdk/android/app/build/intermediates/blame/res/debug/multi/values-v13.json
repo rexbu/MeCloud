@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/ragnar/android/blink/project/MeCloud/sdk/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 58,
+                    "endOffset": 109
+                },
+                "from": {
+                    "file": "/Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/res/values-v13/values-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 58,
+                        "endOffset": 109
+                    }
+                }
+            }
+        ]
+    }
+]

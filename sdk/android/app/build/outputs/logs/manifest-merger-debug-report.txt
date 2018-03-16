@@ -1,0 +1,138 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+MERGED from [:mecloud] /Users/ragnar/android/blink/project/MeCloud/sdk/android/mecloud/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/7092d67db80fea58b51487307f4bfcad/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:17:1-31:12
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:2:11-42
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:3:11-69
+application
+ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:5:3-19:17
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/7092d67db80fea58b51487307f4bfcad/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/7092d67db80fea58b51487307f4bfcad/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:29:5-20
+	android:supportsRtl
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:10:5-31
+	android:label
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:8:5-37
+	android:roundIcon
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:9:5-50
+	android:icon
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:7:5-39
+	android:allowBackup
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:6:5-31
+	android:theme
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:11:5-36
+activity#com.blinnnk.clouddemo.MainActivity
+ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:12:5-18:16
+	android:name
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:12:15-43
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:13:7-17:23
+action#android.intent.action.MAIN
+ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:14:9-60
+	android:name
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:14:17-58
+category#android.intent.category.LAUNCHER
+ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:16:9-68
+	android:name
+		ADDED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml:16:19-66
+uses-sdk
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+MERGED from [:mecloud] /Users/ragnar/android/blink/project/MeCloud/sdk/android/mecloud/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:mecloud] /Users/ragnar/android/blink/project/MeCloud/sdk/android/mecloud/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/7092d67db80fea58b51487307f4bfcad/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/7092d67db80fea58b51487307f4bfcad/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:21:5-23:58
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/ragnar/android/blink/project/MeCloud/sdk/android/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/ea4f9a44a56990350c18ea2043fb8d28/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/8fedf317c58afa8742fa0ea646b788cb/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/a5e0ee39b6bc97926c245cdd5f79962f/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/007fb3d94fa78c0a39e46598bdd600ba/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/86d0e43d965e9580e0b105ff9e1af14f/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/12665852aef033d411b7120331453830/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/4a92089a2a109843abcc1e7f617d1e8d/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7fbf17f3a4230cdb6eb91944589279aa/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] /Users/ragnar/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/decd7c3f2a80af351703ee18fc89dd4b/AndroidManifest.xml:26:9-47

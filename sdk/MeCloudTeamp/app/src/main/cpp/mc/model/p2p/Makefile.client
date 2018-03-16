@@ -1,0 +1,44 @@
+# Makefile
+# bushaofeng. 2011.8.27
+# ver=1.0.0
+
+BS_PATH = ./../../bs
+BASIC_PATH = ./../../basic
+MODEL_INCLUDE = ./../include
+MODEL_LIB = ./../lib
+
+include $(BS_PATH)/$(sys).mk
+
+INCLDIR		= $(BS_PATH) $(BASIC_PATH) /usr/local/include $(MODEL_INCLUDE)
+INCLUDE		= $(addprefix -I, $(INCLDIR))
+LIBDIR		= $(BS_PATH) $(BASIC_PATH) /usr/local/lib $(MODEL_LIB)
+LIBPATH		= $(addprefix -L, $(LIBDIR))
+LIBNAME		= utp db hiredis bs pthread m
+LIBRARY		= $(addprefix -l, $(LIBNAME))
+
+FPIC            =       -fPIC
+WARN_LEVL       =       -Wall
+FDEBUG          =       -g
+SHARED			=		-shared
+
+EXTRA_OPT       =       $(FDEBUG)
+EXTRA_OPT       +=      $(WARN_LEVL)
+EXTRA_OPT       +=      $(FPIC)
+EXTRA_OPT		+=		$(SHARED)
+
+OBJDIR = ./
+SRCS = $(wildcard ./*.cpp)
+OBJS = $(patsubst %.cpp,$(OBJDIR)/%.o,$(SRCS)) 
+
+TARGET=libp2p
+$(TARGET):$(OBJS)
+	    echo $(OBJS)
+		ar -r libp2p.a $(OBJS)
+		cp -p *.h ../include/
+		cp -p *.a ../lib/
+
+$(OBJS):%.o: %.cpp
+	$(PP) -c $(LDFLAGS) $(EXTRA_OPT) $(INCLUDE) $^ -o $@
+
+clean:
+	rm -f *.a */*.o *.o

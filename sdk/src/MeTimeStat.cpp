@@ -45,7 +45,6 @@ void MeTimeStat::stop(){
     }
     
     clear();
-    m_objectid = NULL;
 }
 
 void MeTimeStat::done(MeObject* obj, MeException* err, uint32_t size){
@@ -59,6 +58,5 @@ void MeTimeStat::done(MeObject* obj, MeException* err, uint32_t size){
     // 如果已经stop，则本次请求为最后一次，需要清空
     if (m_start<=0) {
         clear();
-        m_objectid = NULL;
     }
 }

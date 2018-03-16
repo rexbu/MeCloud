@@ -3,6 +3,7 @@ import pymongo
 import json
 from bson import ObjectId
 from bson import json_util
+from lib import *
 
 # 基类
 class Db:
@@ -113,8 +114,109 @@ class MongoDb(Db):
 
 ## MySql封装
 class MySqlDb(Db):
-	def __init__(self, dbName):
-		Db.__init__(self, dbName)
+    def __init__(self, dbName=None):
+        Db.__init__(self, dbName)
+        Db.conn.select_db(self.dbName())
+        self.db = Db.conn
+        self.cursor = Db.conn.cursor()
+
+    @staticmethod
+    def connect(addr, port = None, user=None, password=None):
+        if not port:
+            port = 3306
+        Db.conn = pymysql.connect(host=addr, port=port, user=user,
+                                  password=password, charset='utf8mb4',
+                                  cursorclass=pymysql.cursors.DictCursor)
+
+    """
+        查询一条
+    """
+    def find_one(self, collection, query, keys="*"):
+        try:
+            sql = "select {0} from {1}".format(keys,collection)
+            if not query:
+                sql += " where {0}".format(self.dict2str(query,","))
+            self.cursor.execute(sql)
+            result = self.cursor.fetchone()
+            print result
+        except Exception,e:
+            print e
+            log.err("find_one err:%s", e)
+    def find(self, collection, query, keys="*", sort=None, limit=8, skip=0):
+        try:
+            sql = "select {0} from {1}".format(keys, collection)
+            if not query:
+                sql += " where {0} limit {1},{2}".format(self.dict2str(query,","), skip, limit)
+            self.cursor.execute(sql)
+            result = self.cursor.fetchmany(limit)
+            print result
+        except Exception,e:
+
+            log.err("find err:%s",e)
+
+    def updateOne(self, collection, query, obj):
+        try:
+            if not obj.has_key("update_date"):
+                obj["update_date"] = "now()"
+            sql = "update {0} set {1} where {2}".format(collection, self.dict2str(obj,","), self.dict2str(query,","))
+            result = self.cursor.execute(sql)
+            self.db.commit()
+            print result
+        except Exception,e:
+            log.err("updateOne err:%s",e)
+
+    def insertOne(self, collection, obj):
+        try:
+            if not obj.has_key('create_date'):
+                obj["create_date"] = "now()"
+                obj["update_date"] = obj["create_date"]
+            sql = "insert into {0} set {1}".format(collection,self.dict2str(obj,","))
+            result = self.cursor.execute(sql)
+            self.db.commit()
+            print result
+        except Exception,e:
+            self.db.rollback()
+            log.err("insert err:%s",e)
+
+    def safe(self,s):
+        return pymysql.escape_string(s)
+    """
+        将json串的key和value转化为字符串
+    """
+    def dict2str(self, dictin, joinString):
+        '''
+            将字典变成，key='value',key='value' 的形式
+            '''
+        tmplist = []
+        for k, v in dictin.items():
+            if v == "now()":  # 当前时间
+                tmp = "%s=%s" % (str(k), str(v))
+            elif type(v) is str:
+                tmp = "%s='%s'" % (str(k), str(v))
+            else:
+                tmp = "%s=%s" % (str(k), str(v))
+            tmplist.append(' ' + tmp + ' ')
+        return joinString.join(tmplist)
+    # """
+    #     将json串的key和value分别转化为字符串
+    # """
+    # def dictToString(self,obj,joinString):
+    #     return joinString.join(obj.keys()),joinString.join([self.convert(x) for x in obj.values()])
+
+    """
+    转化为字符串，字符串添加单引号
+    """
+    # def convert(self,value):
+    #     if value == "now()":#当前时间
+    #         return value
+    #     if type(value) is str:
+    #         return "'" + value + "'"
+    #     else:
+    #         return str(value)
+
+    def close(self):
+        self.cursor.close()
+        Db.conn.close()
 
 ## SqlServer封装
 class SqlServerDb(Db):

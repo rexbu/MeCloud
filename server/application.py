@@ -153,25 +153,28 @@ class Application(tornado.web.Application):
 
     def initOSS(self):
         # oss相关初始化
-        MeFileConfig.access_key_id = self.config.get('oss', 'OSS_ACCESS_KEY_ID')
-        MeFileConfig.access_key_secret = self.config.get('oss', 'OSS_ACCESS_KEY_SECRET')
-        MeFileConfig.bucket_name = self.config.get('oss', 'OSS_BUCKET_NAME')
-        MeFileConfig.platform = self.config.get('oss', 'PLATFORM')
-        MeFileConfig.endpoint = self.config.get('oss', 'OSS_ENDPOINT')
-        MeFileConfig.sts_role_arn = self.config.get('oss', 'OSS_STS_ROLE_ARN')
-        MeFileConfig.role_session_name = self.config.get('oss', 'OSS_ROLE_SESSION_NAME')
-        MeFileConfig.region_id = self.config.get('oss', 'OSS_REGION_ID')
-        MeFileConfig.auth = oss2.Auth(MeFileConfig.access_key_id, MeFileConfig.access_key_secret)
-        MeFileConfig.bucket = oss2.Bucket(MeFileConfig.auth, "http://" + MeFileConfig.endpoint,
-                                          MeFileConfig.bucket_name)
+        if self.config.has_section('oss'):
+            MeFileConfig.access_key_id = self.config.get('oss', 'OSS_ACCESS_KEY_ID')
+            MeFileConfig.access_key_secret = self.config.get('oss', 'OSS_ACCESS_KEY_SECRET')
+            MeFileConfig.bucket_name = self.config.get('oss', 'OSS_BUCKET_NAME')
+            MeFileConfig.platform = self.config.get('oss', 'PLATFORM')
+            MeFileConfig.endpoint = self.config.get('oss', 'OSS_ENDPOINT')
+            MeFileConfig.sts_role_arn = self.config.get('oss', 'OSS_STS_ROLE_ARN')
+            MeFileConfig.role_session_name = self.config.get('oss', 'OSS_ROLE_SESSION_NAME')
+            MeFileConfig.region_id = self.config.get('oss', 'OSS_REGION_ID')
+            MeFileConfig.bucketUrl = 'http://' + MeFileConfig.bucket_name + '.' + MeFileConfig.endpoint
+            MeFileConfig.auth = oss2.Auth(MeFileConfig.access_key_id, MeFileConfig.access_key_secret)
+            MeFileConfig.bucket = oss2.Bucket(MeFileConfig.auth, "http://" + MeFileConfig.endpoint,
+                                              MeFileConfig.bucket_name)
 
     def initSMS(self):
         # sms相关
-        SmsCodeConfig.region = self.config.get('sms', 'SMS_REGION')
-        SmsCodeConfig.access_key_id = self.config.get('sms', 'SMS_ACCESS_KEY_ID')
-        SmsCodeConfig.access_key_secret = self.config.get('sms', 'SMS_ACCESS_KEY_SECRET')
-        SmsCodeConfig.template_code = self.config.get('sms', 'SMS_TEMPLATE_CODE')
-        SmsCodeConfig.sign_name = self.config.get('sms', 'SMS_SIGN_NAME')
+        if self.config.has_section('sms'):
+            SmsCodeConfig.region = self.config.get('sms', 'SMS_REGION')
+            SmsCodeConfig.access_key_id = self.config.get('sms', 'SMS_ACCESS_KEY_ID')
+            SmsCodeConfig.access_key_secret = self.config.get('sms', 'SMS_ACCESS_KEY_SECRET')
+            SmsCodeConfig.template_code = self.config.get('sms', 'SMS_TEMPLATE_CODE')
+            SmsCodeConfig.sign_name = self.config.get('sms', 'SMS_SIGN_NAME')
 
     def initRedis(self):
         # set redis config and create redis pool
@@ -186,34 +189,14 @@ class Application(tornado.web.Application):
             Db.name = db
         # mongodb及oss配置
         # mongodb及oss配置
-        if self.config.has_option('mongodb', 'MONGO_ADDR1'):
-            addr = [self.config.get('mongodb', 'MONGO_ADDR1'), self.config.get('mongodb', 'MONGO_ADDR2')]
-            MeFileConfig.bucketUrl = 'http://' + MeFileConfig.endpoint
-            MeFileConfig.bucket = oss2.Bucket(MeFileConfig.auth, 'http://' + MeFileConfig.endpoint,
-                                              MeFileConfig.bucket_name, is_cname=True)
-        else:
+        if self.config.has_section('mongodb'):
             addr = self.config.get('mongodb', 'MONGO_ADDR')
-            MeFileConfig.bucketUrl = 'http://' + MeFileConfig.bucket_name + '.' + MeFileConfig.endpoint
-            MeFileConfig.bucket = oss2.Bucket(MeFileConfig.auth, 'http://' + MeFileConfig.endpoint,
-                                              MeFileConfig.bucket_name)
-        if self.config.has_option('mongodb', 'REPLICAT_SET'):
-            replicaSet = self.config.get('mongodb', 'REPLICAT_SET')
-        else:
-            replicaSet = None
-        if self.config.has_option('mongodb', 'MONGO_PORT'):
-            port = int(self.config.get('mongodb', 'MONGO_PORT'))
-        else:
-            port = None
-        if self.config.has_option('mongodb', 'USERNAME'):
-            user = self.config.get('mongodb', 'USERNAME')
-            password = self.config.get('mongodb', 'PASSWORD')
-        else:
-            user = None
-            password = None
-        MongoDb.connect(addr=addr, port=port, replica_set=replicaSet, user=user, password=password)
+            MongoDb.connect(addr=addr)
 
 
     def initWx(self):
+        if not self.config.has_section('wx'):
+            return
         ##>> 微信相关
         try:
             self.wx_redirect = self.config.get('wx', 'WX_REDIRECT')

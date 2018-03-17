@@ -195,8 +195,8 @@ class MeObject(dict):
         obj = classHelper.get(oid)
         # if obj == None:
         #     return False
-        self.copySelf(obj, child)
-        self.dirty.clear()
+        # self.copySelf(obj, child)
+        # self.dirty.clear()
         return obj
 
     ### 如果某个成员是MeObject类型，获取

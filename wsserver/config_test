@@ -1,0 +1,200 @@
+# global表示全局配置，online: 线上配置，test：测试环境配置
+
+[global]
+# 版本号
+version	= 1.0
+# 线上、测试模式
+mode = test
+# 工程名
+project = honey
+
+# 工程类型，0：单工程方案；1：多工程baas系统
+project_type = 0
+#db = honeyTest
+db = honeyUnofficial
+
+PORT = 8000
+PUSHURL = http://n01.me-yun.com:8000/1.0/thirdpush/push
+
+DELETE_CLASS = ['Test','Followee','Follower','Blacklist']
+ACCESS_NO_CLASS = ["User","LoginRecords","Violations","SensitiveWord","ShareCopywrite","ProjectClass","AutoMessage"]
+
+WSSERVER = http://n01.me-yun.com:8000
+
+mongodbIndex = [{"className":"ActiveDevice","index":{"device":1},"unique":1},
+ {"className":"User","index":{"device":1},"unique":1},
+ {"className":"User","index":{"mobile":1}},
+ {"className":"ProjectClass","index":{"classname":1}},
+ {"className":"UserInfo","index":{"user":1},"unique":1},
+ {"className":"BackupUser","index":{"assigner":1}},
+ {"className":"BackupUser","index":{"updateAt":1}},
+ {"className":"BackupUser","index":{"avatar":1}},
+ {"className":"Location","index":{"user":1}},
+ {"className":"Location","index":{"location":"2d"}},
+ {"className":"Followee","index":{"user":1}},
+ {"className":"Followee","index":{"followee":1}},
+ {"className":"Followee","index":{"backupFollowee":1}},
+ {"className":"Followee","index":{"user":1,"backupFollowee":1,"followee":1},"unique":1},
+ {"className":"Media","index":{"md5":1}},
+ {"className":"Media","index":{"uploader":1}},
+ {"className":"Media","index":{"backupUser":1}},
+ {"className":"Media","index":{"albumName":1}},
+ {"className":"Media","index":{"device":1}},
+ {"className":"Media","index":{"faces":1}},
+ {"className":"File","index":{"user":1}},
+ {"className":"Face","index":{"media":1}},
+ {"className":"Face","index":{"uploader":1}},
+ {"className":"Face","index":{"backupUser":1}},
+ {"className":"Face","index":{"possible.0.user":1}},
+ {"className":"Face","index":{"possible.0.score":1}},
+ {"className":"Face","index":{"possible.0.backupUser":1}},
+ {"className":"Face","index":{"assign.user":1}},
+ {"className":"Face","index":{"assign.status":1}},
+ {"className":"Face","index":{"assign.backupUser":1}},
+ {"className":"Face","index":{"assign.assigner":1}},
+ {"className":"SignFace","index":{"user":1}},
+ {"className":"Object","index":{"uploader":1}},
+ {"className":"Comment","index":{"media":1}},
+ {"className":"Comment","index":{"from":1}},
+ {"className":"Comment","index":{"to":1}},
+ {"className":"Comment","index":{"owner":1}},
+ {"className":"Message","index":{"from":1}},
+ {"className":"Message","index":{"to":1}},
+ {"className":"ViewRecord","index":{"user":1}},
+ {"className":"Wallet","index":{"user":1},"unique":1},
+ {"className":"RechargeFlow","index":{"user":1}},
+ {"className":"CoinSetting","index":{"name":1}},
+ {"className":"ChargeFlow","index":{"user":1}},
+ {"className":"ChargeFlow","index":{"goods":1}},
+ {"className":"WithdrawFlow","index":{"user":1}},
+ {"className":"Goods","index":{"goods":1}},
+ {"className":"Role","index":{"user":1}},
+ {"className":"UserSetting","index":{"user":1}},
+ {"className":"UserRemark","index":{"user":1}},
+ {"className":"UserRemark","index":{"remarker":1}},
+ {"className":"UserRemark","index":{"backupRemarker":1}},
+ {"className":"UserRemark","index":{"user":1,"remarker":1,"backupRemarker":1},"unique":1},
+ {"className":"Violations","index":{"party":1}},
+ {"className":"Violations","index":{"media":1}},
+ {"className":"Blacklist","index":{"user":1}},
+ {"className":"Blacklist","index":{"blacker":1}},
+ {"className":"Blacklist","index":{"user":1,"blacker":1},"unique":1},
+ {"className":"RefuseClaim","index":{"face":1}},
+ {"className":"RefuseClaim","index":{"uploader":1}},
+ {"className":"RefuseClaim","index":{"backupUploader":1}},
+ {"className":"RefuseClaim","index":{"backupUser":1}},
+ {"className":"RefuseClaim","index":{"user":1}},
+ {"className":"StatCount","index":{"name":1},"unique":1},
+ {"className":"IncomeFlow","index":{"user":1}},
+ {"className":"InBox","index":{"user":1}},
+ {"className":"InBox","index":{"updateAt":1}},
+ {"className":"InBox","index":{"user":1,"actionId":1,"type":1},"unique":1},
+ {"className":"SearchMedia","index":{"uploader":1,"md5":1},"unique":1},
+ {"className":"FaceRecommend","index":{"user":1}},
+ {"className":"FaceRecommend","index":{"backupUser":1}},
+ {"className":"FaceRecommend","index":{"user":1,"read":1}},
+ {"className":"FaceRecommend","index":{"backupUser":1,"read":1}},
+ {"className":"FaceRecommend","index":{"faceId":1,"user":1,"backupUser":1},"unique":1},
+ {"className":"SearchRecord","index":{"user":1}},
+ {"className":"SearchRecord","index":{"updateAt":1}},
+ {"className":"SearchRecord","index":{"user":1,"media":1,"faceIndex":1}},
+ {"className":"Recommend","index":{"user":1}},
+ {"className":"Recommend","index":{"score":1}},
+ {"className":"UserRelation","index":{"user":1}},
+ {"className":"UserRelation","index":{"score":1}},
+ {"className":"UserRelation","index":{"relationUser":1}},
+ {"className":"FaceMarkRecord","index":{"user":1}},
+ {"className":"FaceMarkRecord","index":{"face":1}},
+ {"className":"FaceMarkRecord","index":{"user":1,"face":1},"unique":1},
+ {"className":"MediaSearchRecord","index":{"user":1}},
+ {"className":"MediaSearchRecord","index":{"updateAt":1}},
+ {"className":"MediaSearchRecord","index":{"user":1,"media":1,"face":1}},
+ {"className":"MediaSearchRecord","index":{"user":1,"face":1}},
+ {"className":"UserRecommend","index":{"user":1}},
+ {"className":"UserRecommend","index":{"score":1}},
+ {"className":"UserRecommend","index":{"recommender":1}},
+ {"className":"UserRecommend","index":{"user":1,"recommender":1}}
+ ]
+
+
+[mongodb]
+# mongodb数据库配置
+MONGO_ADDR1	=	dds-2ze898a8f674d1742.mongodb.rds.aliyuncs.com:3717
+MONGO_ADDR2	=	dds-2ze898a8f674d1741.mongodb.rds.aliyuncs.com:3717
+REPLICAT_SET=	mgset-4375909
+USERNAME	=	root
+PASSWORD	=	2egRPV4LaDtoNUE18ZSwB7
+
+
+[redis]
+# redis config
+REDIS_HOST=r-2ze80f953f17d1a4.redis.rds.aliyuncs.com
+REDIS_PORT=6379
+REDIS_PASSWORD=2egRPV4LaDtoNUE18ZSwB7
+REDIS_MAX_CONNECTIONS=10
+REDIS_DBID=0
+REDIS_SUB_CHANNEL=push_channel
+
+[es]
+# elasticsearch config
+ES_HOST=t02.me-yun.com
+ES_PORT=9200
+
+[oss]
+#OSS相关
+OSS_ACCESS_KEY_ID = LTAIssMeSYsRM3Jk
+OSS_ACCESS_KEY_SECRET = UBh8kh8Xz2DcvgHdeQvlDMm9ocWUmg
+OSS_BUCKET_NAME = heimitest
+PLATFORM = oss
+OSS_ENDPOINT = oss-cn-beijing.aliyuncs.com
+OSS_STS_ROLE_ARN = acs:ram::1250094474097995:role/heimi-test
+OSS_ROLE_SESSION_NAME = oss-biliankeji
+OSS_REGION_ID =cn-beijing
+
+[sms]
+#SMS相关
+SMS_REGION = cn-hangzhou
+SMS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
+SMS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
+SMS_TEMPLATE_CODE = SMS_86875087
+SMS_SIGN_NAME = 阿里云短信测试专用
+
+
+[handlers]
+
+/1.0/push/(\w+) = handler.PushHandler.PushHandler
+/1.0/comment/(\w+) = handler.CommentHandler.CommentHandler
+/1.0/search/(\w+) = handler.SearchHandler.SearchHandler
+/1.0/thirdpush/(\w+) = handler.ThirdPushHandler.ThirdPushHandler
+/1.0/userpush/(\w+) = handler.UserPushHandler.UserPushHandler
+#/1.0/thirdpay/(\w+) = handler.PayHandler.PayHandler
+#/1.0/pay/(\w+) = handler.PayHandler.PayHandler
+/1.0/wxcallback = handler.WxCallbackHandler.WxCallbackHandler
+/1.0/alicallback = handler.AlipayCallbackHandler.AlipayCallbackHandler
+/1.0/count/(\w+) = handler.CountHandler.CountHandler
+/1.0/config/(\w+) = handler.ConfigHandler.ConfigHandler
+/1.0/income/(\w+) = handler.IncomeHandler.IncomeHandler
+/1.0/album/(\w+) = handler.AlbumHandler.AlbumHandler
+/ws = handler.WsHandler.WsHandler
+/1.0/logout = handler.LogoutHandler.LogoutHandler
+/follow/(\w+) = handler.FollowerHandler.FollowerHandler
+/profile/(\w+)/(\w+) = handler.UserProfile.UserProfile
+/profile/(\w+)/(\w+)/(\w+) = handler.UserProfile.UserProfile
+/1.0/invitecode/(\w+) = handler.InviteCodeHandler.InviteCodeHandler
+/1.0/share/(\w+) = handler.ShareHandler.ShareHandler
+/1.0/sharerecord/(\w+) = handler.ShareRecordHandler.ShareRecordHandler
+/1.0/agreement/(\w+) = handler.AgreeHandler.AgreeHandler
+/migrate/qrcode = handler.DeviceMigrateHandler.DeviceMigrateHandler
+/1.0/qrcode/(\w+) = handler.QRCodeHandler.QRCodeHandler
+
+[wx]
+# 当前实例是否作为access_token实例
+WX_ACCESSTOKEN_SERVER = 0
+
+WX_APPID = wx1fe011436b82b249
+WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
+
+# 微信条状登录url
+WX_REDIRECT = xxx
+
+

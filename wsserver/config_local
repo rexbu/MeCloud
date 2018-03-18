@@ -1,0 +1,101 @@
+# global表示全局配置，online: 线上配置，test：测试环境配置
+
+[global]
+# 版本号
+version	= 1.0
+# 线上、测试模式
+mode = test
+# 工程名
+project = honey
+
+# 工程类型，0：单工程方案；1：多工程baas系统
+project_type = 0
+#db = honeyTest
+db = honeyUnofficial
+
+PORT = 8000
+PUSHURL = http://localhost:8000/1.0/thirdpush/push
+
+DELETE_CLASS = ['Test','Followee','Follower','Blacklist']
+ACCESS_NO_CLASS = ["User","LoginRecords","Violations","SensitiveWord","ShareCopywrite","ProjectClass","AutoMessage"]
+
+
+mongodbIndex = [{"className":"UserInfo","column":"user","index":1,"unique":1}]
+
+
+[mongodb]
+# mongodb数据库配置
+MONGO_ADDR	=	n01.me-yun.com
+MONGO_PORT	= 	3717
+USERNAME	=	root
+PASSWORD	=	2egRPV4LaDtoNUE18ZSwB7
+
+
+[redis]
+# redis config
+REDIS_HOST=115.159.147.172
+REDIS_PORT=6379
+REDIS_PASSWORD=a5d3923d-40a5-453a-8071-23ac5b6e2703:wee8uchienoneV6e
+REDIS_MAX_CONNECTIONS=10
+REDIS_DBID=0
+REDIS_SUB_CHANNEL=push_channel
+
+[es]
+# elasticsearch config
+ES_HOST=t02.me-yun.com
+ES_PORT=9200
+
+[oss]
+#OSS相关
+OSS_ACCESS_KEY_ID = LTAIssMeSYsRM3Jk
+OSS_ACCESS_KEY_SECRET = UBh8kh8Xz2DcvgHdeQvlDMm9ocWUmg
+OSS_BUCKET_NAME = heimitest
+PLATFORM = oss
+OSS_ENDPOINT = oss-cn-beijing.aliyuncs.com
+OSS_STS_ROLE_ARN = acs:ram::1250094474097995:role/heimi-test
+OSS_ROLE_SESSION_NAME = oss-biliankeji
+OSS_REGION_ID =cn-beijing
+
+[sms]
+#SMS相关
+SMS_REGION = cn-hangzhou
+SMS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
+SMS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
+SMS_TEMPLATE_CODE = SMS_86875087
+SMS_SIGN_NAME = 阿里云短信测试专用
+
+
+[handlers]
+
+/1.0/push/(\w+) = handler.PushHandler.PushHandler
+/1.0/comment/(\w+) = handler.CommentHandler.CommentHandler
+/1.0/search/(\w+) = handler.SearchHandler.SearchHandler
+/1.0/thirdpush/(\w+) = handler.ThirdPushHandler.ThirdPushHandler
+/1.0/userpush/(\w+) = handler.UserPushHandler.UserPushHandler
+/1.0/thirdpay/(\w+) = handler.PayHandler.PayHandler
+/1.0/pay/(\w+) = handler.PayHandler.PayHandler
+/1.0/wxcallback = handler.WxCallbackHandler.WxCallbackHandler
+/1.0/alicallback = handler.AlipayCallbackHandler.AlipayCallbackHandler
+/1.0/count/(\w+) = handler.CountHandler.CountHandler
+/1.0/config/(\w+) = handler.ConfigHandler.ConfigHandler
+/1.0/income/(\w+) = handler.IncomeHandler.IncomeHandler
+/1.0/album/(\w+) = handler.AlbumHandler.AlbumHandler
+/ws = handler.WsHandler.WsHandler
+/1.0/logout = handler.LogoutHandler.LogoutHandler
+/follow/(\w+) = handler.FollowerHandler.FollowerHandler
+/profile/(\w+)/(\w+) = handler.UserProfile.UserProfile
+/profile/(\w+)/(\w+)/(\w+) = handler.UserProfile.UserProfile
+/1.0/invitecode/(\w+) = handler.InviteCodeHandler.InviteCodeHandler
+/1.0/qrcode/(\w+) = handler.QRCodeHandler.QRCodeHandler
+
+[wx]
+# 当前实例是否作为access_token实例
+WX_ACCESSTOKEN_SERVER = 0
+
+WX_APPID = wx1fe011436b82b249
+WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
+
+# 微信条状登录url
+WX_REDIRECT = xxx
+
+

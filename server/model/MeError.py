@@ -42,6 +42,8 @@ ERR_BLACK_PERMISSION = MeException(230, '用户被拉黑', 'Black user')
 ERR_BLACKED_PERMISSION = MeException(231, '已拉黑该用户', 'Blacked user')
 ERR_BEBLACKED_PERMISSION = MeException(232, '该用户设置了关注权限，你还不能关注ta哦', 'No permission to follow him')
 
+ERR_DUPLICATE_MEDIA_ASSIGN = MeException(250, '这张照片已经贡献过了呀', 'Duplicate assign error')
+ERR_DUPLICATE_FACE_ASSIGN = MeException(380, '这张脸已经贡献给别人了呀，换一个吧', 'Duplicate assign face error')
 # 未经授权的访问，没有提供 App id，或者 App id 和 App key 校验失败，请检查配置。
 ERR_UNAUTHORIZED = MeException(401, '未经授权的访问', 'Unauthorized')
 # 注册用户受限，应用超过最大用户数

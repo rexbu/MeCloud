@@ -11,9 +11,9 @@ from bson import ObjectId
 from bson import json_util
 from datetime import datetime
 from urllib import unquote
-from mecloud.model.MeObject import *
-from mecloud.model.MeError import *
-from mecloud.lib import *
+from model.MeObject import *
+from model.MeError import *
+from lib import *
 from Util import *
 
 # 基类
@@ -84,7 +84,7 @@ class Db:
 ## MongoDb封装
 class MongoDb(Db):
     @staticmethod
-    def connect(addr, port = 27017, replica_set=None, user=None, password=None):
+    def connect(addr, port = None, replica_set=None, user=None, password=None):
         if isinstance(addr, str) or isinstance(addr, unicode):
             if not port:
                 Db.conn = pymongo.MongoClient(addr)
@@ -232,10 +232,6 @@ class MongoDb(Db):
             obj["_sid"] = MongoDb.toId(obj['_id'])
             obj['_id'] = ObjectId(obj['_id'])
 
-        if 'updateAt' not in obj:
-            obj['updateAt'] = datetime.now()
-            if 'createAt' not in obj:
-                obj['createAt'] = obj['updateAt']
         try:
             obj['_id'] =  MongoDb.toId(self.db[collection].insert(MongoDb.toBson(obj)))
             if '_sid' not in obj:
@@ -335,26 +331,13 @@ class MongoDb(Db):
             # 如果upsert为True， 则返回新创建数据的id
             if upsert:
                 doc = self.find_one(collection, query)
-                obj={}
-                if '_sid' not in doc:
-                    obj["_sid"]=str(doc['_id'])
                 if 'createAt' not in doc:
-                    obj['createAt']=doc['updateAt']
-                if obj:
-                    doc = self.updateOneOnly(collection,{"_id":doc['_id']}, {'$set': obj})
+                    doc = self.updateOneOnly(collection,{"_id":doc['_id']}, {'$set': {'createAt': doc['updateAt'], "_sid": str(doc['_id'])}})
                 if doc:
                     return {'_id': doc['_id']}
             log.err('update[%s: %s] not found:%s', collection, json.dumps(query), json.dumps(obj))
             raise copy.deepcopy(ERR_NOTFOUND)
-        else:
-            obj = {}
-            if '_sid' not in doc:
-                obj["_sid"] = str( doc['_id'] )
-            if 'updateAt' not in doc:
-                obj['updateAt'] = datetime.now()
-                obj['createAt'] = obj['updateAt']
-            if obj:
-                doc = self.updateOneOnly( collection, {"_id": doc['_id']}, {'$set': obj}, upsert=False)
+
         if '__transaction' in doc:
             del(doc['__transaction'])
         return MongoDb.toJson(doc)
@@ -403,7 +386,7 @@ class MongoDb(Db):
     ### ObjectId转换为字符串
     @staticmethod
     def toId(oid):
-        if type(oid) == unicode  or type(oid) == dict or type(oid) == str:
+        if type(oid) == unicode  or type(oid) == dict:
             return oid
         id = eval(json_util.dumps(oid))
         return id['$oid']
@@ -471,7 +454,7 @@ class MongoDb(Db):
                     except:
                         item[key] = datetime.strptime(value.split('.')[0], "%Y-%m-%d %H:%M:%S")
             obj['createAt'] = item
-        if obj.has_key("shotTime") and obj['shotTime']:
+        if obj.has_key("shotTime"):
             obj['shotTime'] = datetime.strptime(obj['shotTime'].split('.')[0], "%Y-%m-%d %H:%M:%S")
         return obj
 

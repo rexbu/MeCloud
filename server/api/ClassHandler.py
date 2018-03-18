@@ -12,6 +12,7 @@ import tornado.web
 from mecloud.api.BaseHandler import BaseHandler, BaseConfig
 from bson import ObjectId
 from mecloud.helper.ClassHelper import ClassHelper
+from mecloud.helper.RedisHelper import RedisDb
 from mecloud.helper.SensitiveHelper import SensitiveHelper
 from mecloud.helper.Util import MeEncoder
 from mecloud.lib import log
@@ -300,6 +301,8 @@ class ClassHandler(BaseHandler):
                 # 默认返回整个对象
                 data = self.filter_field(data)
                 self.write(json.dumps(data, cls=MeEncoder))
+                if className == 'FaceRecommend':
+                    self.readallCheck(className, objectId)
         except Exception, e:
             log.err("ClassHandler-->put error, %s", e)
             self.write(ERR_DB_OPERATION.message)
@@ -357,7 +360,32 @@ class ClassHandler(BaseHandler):
         if item:
             return item
 
+    def readallCheck(self, className, objid):
 
+        recommendHelper = ClassHelper(className)
+        item = recommendHelper.get(objid)
+        if item:
+            sid = None
+            isBackupUser = False
+            user = item['user']
+            if item.has_key('backupUser'):
                 # 感兴趣
+                sid = RedisDb.hget( "recommendILatestOid", user)
+                if not sid:
+                    return
+                isBackupUser = True
+            else:
                 # 相似的
+                sid = RedisDb.hget( "recommendSLatestOid", user)
+                if not sid:
+                    return
+            unreadquery = {'_sid': {"$lte": sid}, 'user': user, "read": {"$exists": False}, "backupUser": {"$exists": isBackupUser}}
+            unread_count = recommendHelper.query_count( unreadquery )
+            if unread_count and unread_count > 0:
+                return
 
+            import time
+            if isBackupUser:
+                RedisDb.zadd( 'recommendIReadAll', time.time(), user)
+            else:
+                RedisDb.zadd( 'recommendSReadAll', time.time(), user)

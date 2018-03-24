@@ -11,9 +11,9 @@ from bson import ObjectId
 from bson import json_util
 from datetime import datetime
 from urllib import unquote
-from model.MeObject import *
-from model.MeError import *
-from lib import *
+from mecloud.model.MeObject import *
+from mecloud.model.MeError import *
+from mecloud.lib import *
 from Util import *
 
 # 基类

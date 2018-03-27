@@ -386,7 +386,7 @@ class MongoDb(Db):
     ### ObjectId转换为字符串
     @staticmethod
     def toId(oid):
-        if type(oid) == unicode  or type(oid) == dict:
+        if isinstance(oid, (str, unicode)):
             return oid
         id = eval(json_util.dumps(oid))
         return id['$oid']

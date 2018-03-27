@@ -156,8 +156,10 @@ class ClassHelper:
         @ action: 目标动作，如{'$inc':{'count':1}}
     """
     def create(self, obj, transaction=None):
-        obj['updateAt'] = datetime.now()
-        obj['createAt'] = obj['updateAt']
+        if not obj.has_key('updateAt'):
+            obj['updateAt'] = datetime.now()
+        if not obj.has_key('createAt'):
+            obj['createAt'] = datetime.now()
         obj = self.db.insert(self.coll, obj, transaction)
         return obj
     

@@ -63,40 +63,19 @@ class Application(tornado.web.Application):
         log.info("version:%s project:%s", self.version, self.project)
         self.initWx()
 
-        self.handlers = [('/1.0/class/(\\w+)/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
-                         ('/1.0/class/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
-                         ('/1.0/query/(\\w+)', 'mecloud.api.QueryCountHandler.QueryCountHandler'),
-                         ('/1.0/query/', 'mecloud.api.QueryCountHandler.QueryCountHandler'),
-                         ('/1.0/user/(\\w+)', 'mecloud.api.UserHandler.UserHandler'),
-                         ('/1.0/user/', 'mecloud.api.UserHandler.UserHandler'),
-                         ('/1.0/file/', 'mecloud.api.FileHandler.FileHandler'),
-                         ('/1.0/file/(\\w+)', 'mecloud.api.FileHandler.FileHandler'),
-                         ('/1.0/upload/(\\w+)', 'mecloud.api.CmsFileUploadHandler.CmsFileUploadHandler'),
-                         ('/1.0/file/download/(\\w+)', 'mecloud.api.FileDownloadHandler.FileDownloadHandler'),
-                         ('/sms/(.+)', 'mecloud.api.SMSHandler.SMSHandler'),
-                         ('/captcha/(.+)', 'mecloud.api.CaptchaHandler.CaptchaHandler'),
-                         ('/wx/(\\w+)', 'mecloud.api.WxHandler.WxHandler'),
-                         ('/1.0/follow/(\\w+)/(\\w+)/(\\d+)', 'mecloud.api.FollowerHandler.FollowerHandler'),
-                         ('/1.0/follow/(\\w+)', 'mecloud.api.FollowerHandler.FollowerHandler'),
-                         ('/statcount/query', 'mecloud.api.StatCountHandler.StatCountHandler'),
-                         ('/1.0/black/(\\w+)/(\\w+)/(\\d+)', 'mecloud.api.BlacklistHandler.BlacklistHandler'),
-                         ('/1.0/thirdpay/(\w+)', 'mecloud.api.PayHandler.PayHandler'),
-                         ('/1.0/pay/(\w+)', 'mecloud.api.PayHandler.PayHandler'),
-                         ('/1.0/wxpaycallback', 'mecloud.api.WxCallbackHandler.WxCallbackHandler'),
-                         ('/1.0/alipaycallback', 'mecloud.api.AlipayCallbackHandler.AlipayCallbackHandler'),
-                         ('/1.0/manager/(\w+)', 'mecloud.api.CmsInviteCodeHandler.CmsInviteCodeHandler')
-                         ]
-
+        # handler 路径
+        self.handlers = self.initHandlers()
         urls = self.config.options('handlers')
         for url in urls:
             handle = (url, self.config.get('handlers', url))
             self.handlers.append(handle)
 
+        # 模板路径
         if self.config.has_option('global', 'TEMPLATE_PATH'):
             template_path = self.config.get('global', 'TEMPLATE_PATH')
         else:
             template_path = os.path.join(os.getcwd(), "views")
-
+        # 静态文件路径
         if self.config.has_option('global', 'STATIC_PATH'):
             static_path = self.config.get('global', 'STATIC_PATH')
         else:
@@ -150,6 +129,31 @@ class Application(tornado.web.Application):
         server.listen(self.port)
         log.info("server start on port:%s", self.port)
         tornado.ioloop.IOLoop.instance().start()
+
+    def initHandlers(self):
+        return [('/1.0/class/(\\w+)/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
+                         ('/1.0/class/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
+                         ('/1.0/query/(\\w+)', 'mecloud.api.QueryCountHandler.QueryCountHandler'),
+                         ('/1.0/query/', 'mecloud.api.QueryCountHandler.QueryCountHandler'),
+                         ('/1.0/user/(\\w+)', 'mecloud.api.UserHandler.UserHandler'),
+                         ('/1.0/user/', 'mecloud.api.UserHandler.UserHandler'),
+                         ('/1.0/file/', 'mecloud.api.FileHandler.FileHandler'),
+                         ('/1.0/file/(\\w+)', 'mecloud.api.FileHandler.FileHandler'),
+                         ('/1.0/upload/(\\w+)', 'mecloud.api.CmsFileUploadHandler.CmsFileUploadHandler'),
+                         ('/1.0/file/download/(\\w+)', 'mecloud.api.FileDownloadHandler.FileDownloadHandler'),
+                         ('/sms/(.+)', 'mecloud.api.SMSHandler.SMSHandler'),
+                         ('/captcha/(.+)', 'mecloud.api.CaptchaHandler.CaptchaHandler'),
+                         ('/wx/(\\w+)', 'mecloud.api.WxHandler.WxHandler'),
+                         ('/1.0/follow/(\\w+)/(\\w+)/(\\d+)', 'mecloud.api.FollowerHandler.FollowerHandler'),
+                         ('/1.0/follow/(\\w+)', 'mecloud.api.FollowerHandler.FollowerHandler'),
+                         ('/statcount/query', 'mecloud.api.StatCountHandler.StatCountHandler'),
+                         ('/1.0/black/(\\w+)/(\\w+)/(\\d+)', 'mecloud.api.BlacklistHandler.BlacklistHandler'),
+                         ('/1.0/thirdpay/(\w+)', 'mecloud.api.PayHandler.PayHandler'),
+                         ('/1.0/pay/(\w+)', 'mecloud.api.PayHandler.PayHandler'),
+                         ('/1.0/wxpaycallback', 'mecloud.api.WxCallbackHandler.WxCallbackHandler'),
+                         ('/1.0/alipaycallback', 'mecloud.api.AlipayCallbackHandler.AlipayCallbackHandler'),
+                         ('/1.0/manager/(\w+)', 'mecloud.api.CmsInviteCodeHandler.CmsInviteCodeHandler')
+                         ]
 
     def initOSS(self):
         if self.config.has_section('oss'):

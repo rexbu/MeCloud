@@ -41,11 +41,12 @@ class BaseHandler(tornado.web.RequestHandler):
         method = self.request.method
         userid = self.get_current_user()
         log.info("method---------:%s", method)
-        print 'header:', self.request.headers
-        if BaseConfig.mode == "online":
+        if self.application.mode == "online":
             self.needCrypto = True
+            log.info("crypto mode")
         else:
             self.needCrypto = False
+            log.info("text mode")
 
         try:
             # print 'X-MeCloud-Debug:', self.request.headers["X-MeCloud-Debug"]

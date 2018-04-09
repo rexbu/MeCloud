@@ -82,9 +82,9 @@ class Application(tornado.web.Application):
             static_path = os.path.join(os.getcwd(), "static")
 
         if self.config.has_option('global', 'mode'):
-            BaseConfig.mode = self.config.get('global', 'mode')
+            self.mode = self.config.get('global', 'mode')
         else:
-            BaseConfig.mode = "online"
+            self.mode = "online"
 
         if self.config.has_option('global', 'DELETE_CLASS'):
             BaseConfig.deleteClass = self.config.get('global', 'DELETE_CLASS')

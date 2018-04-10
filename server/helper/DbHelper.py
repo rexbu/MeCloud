@@ -335,7 +335,7 @@ class MongoDb(Db):
                     doc = self.updateOneOnly(collection,{"_id":doc['_id']}, {'$set': {'createAt': doc['updateAt'], "_sid": str(doc['_id'])}})
                 if doc:
                     return {'_id': doc['_id']}
-            log.err('update[%s: %s] not found:%s', collection, json.dumps(query), json.dumps(obj))
+            log.err('update[%s: %s] not found', collection, json.dumps(query))
             raise copy.deepcopy(ERR_NOTFOUND)
 
         if '__transaction' in doc:

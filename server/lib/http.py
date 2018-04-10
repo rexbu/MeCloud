@@ -7,8 +7,6 @@ def post(url, headers, data):
 	for header in headers:
 		req.add_header(header, headers[header])
 	if data!=None:
-		print url
-		print data
 		return urllib2.urlopen(req, data).read()
 	else:
 		return urllib2.urlopen(req).read()

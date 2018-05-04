@@ -33,7 +33,7 @@ pip install rsa
 
 #install pil
 apt-get install libjpeg8 libjpeg-dev libpng12-dev libpng++-dev libfreetype6-dev zlib1g-dev python-pip msttcorefonts
-pip install pillow oss2 aliyun-python-sdk-sts
+pip install pillow oss2 aliyun-python-sdk-sts pymysql redis
 #ubuntu /usr/local/lib/python2.7/dist-packages/PIL/ImageFont.py第128行改为：
 # self.font = core.getfont('/usr/share/fonts/truetype/msttcorefonts/'+font, size, index, encoding)
 # mac /Library/Python/2.7/site-packages/PIL/ImageFont.py 第128行改为：

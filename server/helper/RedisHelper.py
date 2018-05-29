@@ -1,4 +1,4 @@
-import redis
+import redis, traceback
 from mecloud.lib import log
 
 

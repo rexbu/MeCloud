@@ -124,6 +124,12 @@ class ClassHelper:
     def next(self):
         return self.db.next(self.cursor)
     __next__ = next
+    """
+    关闭游标
+    """
+    def close(self):
+        if self.cursor:
+            self.cursor.close()
 
     ### 数量
     def query_count(self, query):
@@ -204,8 +210,8 @@ class ClassHelper:
     """
     批量更新
     """
-    def updateMany(self, collection, query, obj):
-        return self.db.update(self.coll, query, obj)
+    def updateMany(self, query, obj):
+        return self.db.update_many(self.coll, query, obj)
 
     """
     删除数据

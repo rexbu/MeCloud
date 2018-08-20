@@ -22,7 +22,7 @@ class BaseConfig:
     wsserver = None
 
 class BaseHandler(tornado.web.RequestHandler):
-    needCrypto = True
+    needCrypto = False
 
     # aclList = ["read", "create", "write", "delete"]
 

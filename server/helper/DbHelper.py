@@ -19,7 +19,7 @@ from Util import *
 # 基类
 class Db:
     # 数据库连接
-    conn = None;
+    conn = None
     # 数据库名字
     name = None
     # 事务

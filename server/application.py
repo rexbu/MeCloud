@@ -103,7 +103,7 @@ class Application(tornado.web.Application):
         log.info("template [%s] static [%s]", settings['template_path'], settings['static_path'])
 
         tornado.web.Application.__init__(self, self.handlers, **settings)
-        
+
         if Db.conn:
             # arthur
             projectClassHelper = ClassHelper("ProjectClass")
@@ -196,27 +196,9 @@ class Application(tornado.web.Application):
             Db.name = db
         # mongodb及oss配置
         # mongodb及oss配置
-        if self.config.has_option('mongodb', 'MONGO_ADDR1'):
-            addr = [self.config.get('mongodb', 'MONGO_ADDR1'), self.config.get('mongodb', 'MONGO_ADDR2')]
-        else:
+        if self.config.has_option('mongodb', 'MONGO_ADDR'):
             addr = self.config.get('mongodb', 'MONGO_ADDR')
-            
-        if self.config.has_option('mongodb', 'REPLICAT_SET'):
-            replicaSet = self.config.get('mongodb', 'REPLICAT_SET')
-        else:
-            replicaSet = None
-        if self.config.has_option('mongodb', 'MONGO_PORT'):
-            port = int(self.config.get('mongodb', 'MONGO_PORT'))
-        else:
-            port = None
-        if self.config.has_option('mongodb', 'USERNAME'):
-            user = self.config.get('mongodb', 'USERNAME')
-            password = self.config.get('mongodb', 'PASSWORD')
-        else:
-            user = None
-            password = None
-        MongoDb.connect(addr=addr, port=port, replica_set=replicaSet, user=user, password=password)
-
+            MongoDb.connect(addr=addr)
 
     def initWx(self):
         ##>> 微信相关

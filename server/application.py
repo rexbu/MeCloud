@@ -103,26 +103,27 @@ class Application(tornado.web.Application):
         log.info("template [%s] static [%s]", settings['template_path'], settings['static_path'])
 
         tornado.web.Application.__init__(self, self.handlers, **settings)
+        
+        if Db.conn:
+            # arthur
+            projectClassHelper = ClassHelper("ProjectClass")
+            items = projectClassHelper.find({})
+            for item in items:
+                BaseConfig.projectClass[item['classname']] = item
 
-        # arthur
-        projectClassHelper = ClassHelper("ProjectClass")
-        items = projectClassHelper.find({})
-        for item in items:
-            BaseConfig.projectClass[item['classname']] = item
+            adminClassHelper = ClassHelper("Role")
+            items = adminClassHelper.find({"role": "admin"})
+            for item in items:
+                BaseConfig.adminUser[item['user']] = item["role"]
 
-        adminClassHelper = ClassHelper("Role")
-        items = adminClassHelper.find({"role": "admin"})
-        for item in items:
-            BaseConfig.adminUser[item['user']] = item["role"]
+            if self.config.has_option('global', 'ACCESS_NO_CLASS'):  # 对外不可通过class接口读取的Class
+                BaseConfig.accessNoClass = eval(self.config.get('global', 'ACCESS_NO_CLASS'))
 
-        if self.config.has_option('global', 'ACCESS_NO_CLASS'):  # 对外不可通过class接口读取的Class
-            BaseConfig.accessNoClass = eval(self.config.get('global', 'ACCESS_NO_CLASS'))
+            if self.config.has_option('global', 'PUSHURL'):  # 对外不可通过class接口读取的Class
+                BaseConfig.pushUrl = self.config.get('global', 'PUSHURL')
+                log.info("Push url:%s", BaseConfig.pushUrl)
 
-        if self.config.has_option('global', 'PUSHURL'):  # 对外不可通过class接口读取的Class
-            BaseConfig.pushUrl = self.config.get('global', 'PUSHURL')
-            log.info("Push url:%s", BaseConfig.pushUrl)
-
-        self.initMongodbIndex()
+            self.initMongodbIndex()
 
     def start(self):
         server = tornado.httpserver.HTTPServer(self, xheaders=True)

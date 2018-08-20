@@ -12,7 +12,7 @@ import tornado.httpserver
 
 from mecloud.helper.ClassHelper import ClassHelper
 from mecloud.helper.DbHelper import Db, MongoDb
-from mecloud.helper.RedisHelper import RedisDBConfig
+from mecloud.helper.RedisHelper import *
 from mecloud.lib import log, wx
 from mecloud.model.MeFile import MeFileConfig
 from mecloud.api.BaseHandler import BaseConfig
@@ -183,8 +183,10 @@ class Application(tornado.web.Application):
     def initRedis(self):
         # set redis config and create redis pool
         if self.config.has_section('redis'):
-            RedisDBConfig.HOST = self.config.get('redis', 'REDIS_HOST')
-            RedisDBConfig.PASSWORD = self.config.get('redis', 'REDIS_PASSWORD')
+            host = self.config.get('redis', 'HOST')
+            pwd = self.config.get('redis', 'PASSWORD')
+            port = self.config.get('redis', 'PORT')
+            RedisDb.init(host, pwd, int(port))
 
     def initDb(self):
         # 定义全局数据库

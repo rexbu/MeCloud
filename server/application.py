@@ -84,7 +84,7 @@ class Application(tornado.web.Application):
         if self.config.has_option('global', 'mode'):
             self.mode = self.config.get('global', 'mode')
         else:
-            self.mode = "online"
+            self.mode = "develop"
 
         if self.config.has_option('global', 'DELETE_CLASS'):
             BaseConfig.deleteClass = self.config.get('global', 'DELETE_CLASS')

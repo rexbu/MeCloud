@@ -29,6 +29,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):
         tornado.web.RequestHandler.__init__(self, *args, **kwargs)
         self.project = self.application.project
+        self.cache = RedisDb(0)
 
     def get_current_user(self):
         userid = self.get_secure_cookie("u")
@@ -141,7 +142,7 @@ class BaseHandler(tornado.web.RequestHandler):
         new_cookie = str(self._new_cookie.get('u')).split('=')[1].split(';')[0].replace('"', '')
         self.set_user_cookie_record(new_cookie, userid)
         USER_COOKIE_TIME_OUT = 3600 * 24 * 30
-        RedisDb.setex(new_cookie, userid, USER_COOKIE_TIME_OUT)
+        self.cache.setex(new_cookie, userid, USER_COOKIE_TIME_OUT)
 
     def set_default_headers(self):
         self.set_header("Access-Control-Allow-Origin", "*")
@@ -150,11 +151,11 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def set_user_cookie_record(self, cookie, userid):
         USER_COOKIE_TIME_OUT = 3600 * 24 * 30
-        RedisDb.setex(userid, cookie, USER_COOKIE_TIME_OUT)
-        return RedisDb.setex(cookie, userid, USER_COOKIE_TIME_OUT)
+        self.cache.setex(userid, cookie, USER_COOKIE_TIME_OUT)
+        return self.cache.setex(cookie, userid, USER_COOKIE_TIME_OUT)
 
     def get_userid_from_cookie(self, cookie):
-        return RedisDb.get(cookie)
+        return self.cache.get(cookie)
 
     def write(self, msg):
         if type(msg) is types.DictType:

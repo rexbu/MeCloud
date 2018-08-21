@@ -188,6 +188,7 @@ class Application(tornado.web.Application):
             pwd = self.config.get('redis', 'PASSWORD')
             port = self.config.get('redis', 'PORT')
             RedisDb.init(host, pwd, int(port))
+            log.info('redis[%s:%s:%s] init success', host, port, pwd)
 
     def initDb(self):
         # 定义全局数据库
@@ -196,9 +197,10 @@ class Application(tornado.web.Application):
             Db.name = db
         # mongodb及oss配置
         # mongodb及oss配置
-        if self.config.has_option('mongodb', 'MONGO_ADDR'):
-            addr = self.config.get('mongodb', 'MONGO_ADDR')
+        if self.config.has_option('mongodb', 'ADDR'):
+            addr = self.config.get('mongodb', 'ADDR')
             MongoDb.connect(addr=addr)
+            log.info('mongodb[%s] init success', addr)
 
     def initWx(self):
         ##>> 微信相关
@@ -232,8 +234,8 @@ class Application(tornado.web.Application):
             except Exception, e:
                 log.err("Error:%s, error:%s", classname, str(e))
 
-        if self.config.has_option('global', 'mongodbIndex'):
-            objs = self.config.get('global', 'mongodbIndex')
+        if self.config.has_option('mongodb', 'INDEX'):
+            objs = self.config.get('mongodb', 'INDEX')
             objs = json.loads(objs)
             for obj in objs:
                 try:

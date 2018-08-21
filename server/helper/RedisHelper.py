@@ -14,12 +14,15 @@ class RedisDb:
     host = 'localhost'
     password = None
     port = 6379
+    pool = None
 
     @staticmethod
     def init(host, pwd=None, port=6379):
         RedisDb.host = host
         RedisDb.password = pwd
         RedisDb.port = port
+        
+        #pool = redis.ConnectionPool(host=host, password=pwd, port=port)
 
     @staticmethod
     def destroy():
@@ -28,7 +31,13 @@ class RedisDb:
 
     def __init__(self, dbid=0):
         if not RedisDb.client.has_key(dbid):
-                RedisDb.client[dbid] = redis.Redis(host=RedisDb.host, password=RedisDb.password, port=RedisDb.port, db=dbid)
+            '''
+            if RedisDb.pool:
+                RedisDb.client[dbid] = redis.Redis(connection_pool=pool, db=dbid)
+            else:
+            '''
+            RedisDb.client[dbid] = redis.Redis(host=RedisDb.host, password=RedisDb.password, port=RedisDb.port, db=dbid)
+
         self.db = RedisDb.client[dbid]
     
     def set(self, key, value):

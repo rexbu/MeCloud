@@ -101,8 +101,12 @@ class MongoDb(Db):
         self.db = Db.conn[self.dbName()]
 
     ### 查找第一个
-    def find_one(self, collection, query, keys=None):
-        doc = self.db[collection].find_one(MongoDb.toBson(query), keys);
+    def find_one(self, collection, query, keys=None, sort=None):
+        if sort==None:
+            doc = self.db[collection].find_one(MongoDb.toBson(query), sort=('_id', -1))
+        else:
+            doc = self.db[collection].find_one(MongoDb.toBson(query), sort = self.sortToTuple(sort))
+        
         if not doc:
             return None
         if '__transaction' in doc:

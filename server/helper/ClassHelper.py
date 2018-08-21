@@ -35,8 +35,8 @@ class ClassHelper:
                 CacheHelper.setCacheByOid(self.coll, oid, json.dumps(obj, cls=MeEncoder))
             return obj
     ### 查询第一个对象
-    def find_one(self, query, keys=None):
-        return self.db.find_one(self.coll, query, keys)
+    def find_one(self, query, keys=None, sort=None):
+        return self.db.find_one(self.coll, query, keys, sort)
 
     ### 查询第一个对象如果没找到则创建一个对象并返回
     def findCreate(self, query, obj=None, keys=None):

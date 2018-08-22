@@ -38,10 +38,8 @@ class BaseHandler(tornado.web.RequestHandler):
         return userid
 
     def prepare(self):
-        log.info("url------------:%s", self.request.path)
         method = self.request.method
         userid = self.get_current_user()
-        log.info("method---------:%s", method)
         if self.application.mode == "online":
             self.needCrypto = True
             log.info("crypto mode")
@@ -55,7 +53,8 @@ class BaseHandler(tornado.web.RequestHandler):
                 self.needCrypto = False
         except Exception, e:
             pass
-        print 'userid:', userid
+
+        log.info("url:%s\tmethod:%s\tuserid:%s", self.request.path, method, userid)
         if userid:
             if userid in BaseConfig.adminUser:
                 self.needCrypto = False
@@ -89,7 +88,6 @@ class BaseHandler(tornado.web.RequestHandler):
                 return
             # if method.upper() in ['POST']:
             #     self.check_field()
-            print 'self.needCrypto:', self.needCrypto
             try:
                 if self.needCrypto and self.request.arguments:
                     arguments = {}

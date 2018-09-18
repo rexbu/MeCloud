@@ -3,7 +3,9 @@ from datetime import *
 import sys
 
 def nowstr():
-	return datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f%Z')
+	#return datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f%Z')
+	t = datetime.strftime(datetime.now(), '%m-%d %H:%M:%S.%f')
+	return t+("[%d]" % os.getpid())
 
 def debug(format, *args, **kwargs):
 	prefix = '[debug]'+nowstr()+': '

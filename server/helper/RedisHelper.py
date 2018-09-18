@@ -7,7 +7,7 @@
  * history:
 '''
 import redis, traceback
-import mecloud.lib.log
+from mecloud.lib import *
 
 class RedisDb:
     client = {}

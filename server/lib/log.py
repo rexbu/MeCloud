@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*- 
 from datetime import *
-import sys
+import sys,os
 
 def nowstr():
 	#return datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S.%f%Z')

@@ -86,6 +86,10 @@ class Application(tornado.web.Application):
         else:
             self.mode = "develop"
 
+        self.debug = False
+        if self.mode == 'develop' or self.mode == 'debug':
+            self.debug = True
+
         if self.config.has_option('global', 'DELETE_CLASS'):
             BaseConfig.deleteClass = self.config.get('global', 'DELETE_CLASS')
 
@@ -95,7 +99,7 @@ class Application(tornado.web.Application):
         settings = dict(
             cookie_secret="kr9ci0i0z$hti7YBnG7=gY6xvP&2ishfCqAAbW!sO3h0Opsd",
             # "xsrf_cookies": True,
-            debug=True,
+            debug=self.debug,
             template_path=template_path,
             static_path=static_path,
             autoreload=True,

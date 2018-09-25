@@ -87,7 +87,7 @@ class Application(tornado.web.Application):
             self.mode = "develop"
 
         self.debug = False
-        if self.mode == 'develop' or self.mode == 'debug':
+        if self.config.has_option('global', 'debug'):
             self.debug = True
 
         if self.config.has_option('global', 'DELETE_CLASS'):

@@ -22,8 +22,6 @@ class BaseConfig:
     wsserver = None
 
 class BaseHandler(tornado.web.RequestHandler):
-    needCrypto = False
-
     # aclList = ["read", "create", "write", "delete"]
 
     def __init__(self, *args, **kwargs):
@@ -40,24 +38,24 @@ class BaseHandler(tornado.web.RequestHandler):
     def prepare(self):
         method = self.request.method
         userid = self.get_current_user()
-        if self.application.mode == "online":
-            self.needCrypto = True
+        if self.application.crypto:
+            self.crypto = True
             log.info("crypto mode")
         else:
-            self.needCrypto = False
+            self.crypto = False
             log.info("text mode")
 
         try:
             # print 'X-MeCloud-Debug:', self.request.headers["X-MeCloud-Debug"]
             if int(self.request.headers["X-MeCloud-Debug"]) == 1:
-                self.needCrypto = False
+                self.crypto = False
         except Exception, e:
             pass
 
         log.info("url:%s\tmethod:%s\tuserid:%s", self.request.path, method, userid)
         if userid:
             if userid in BaseConfig.adminUser:
-                self.needCrypto = False
+                self.crypto = False
             userQuery = MeQuery("User")
             self.user = userQuery.get(userid)
             # 如果数据库中找不到用户，则清空cookie
@@ -77,7 +75,7 @@ class BaseHandler(tornado.web.RequestHandler):
         # 检查包体
         if method.upper() in ['POST', 'PUT']:
             try:
-                if self.needCrypto:
+                if self.crypto:
                     self.request.body = crypto.decrypt(self.request.body)
                 if self.request.body:
                     self.jsonBody = json.loads(self.request.body)
@@ -89,7 +87,7 @@ class BaseHandler(tornado.web.RequestHandler):
             # if method.upper() in ['POST']:
             #     self.check_field()
             try:
-                if self.needCrypto and self.request.arguments:
+                if self.crypto and self.request.arguments:
                     arguments = {}
                     for paramStr in self.request.arguments:
                         pass
@@ -107,7 +105,7 @@ class BaseHandler(tornado.web.RequestHandler):
                 return
         else:
             try:
-                if self.needCrypto and self.request.arguments:
+                if self.crypto and self.request.arguments:
                     arguments = {}
                     for paramStr in self.request.arguments:
                         pass

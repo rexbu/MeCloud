@@ -61,6 +61,9 @@ class Application(tornado.web.Application):
         if env=='offline':
             return
         log.info("version:%s project:%s", self.version, self.project)
+        self.crypto = False
+        if self.config.get('global', 'crypto') != '0':
+            self.crypto = True
         self.initWx()
 
         # handler 路径

@@ -52,26 +52,32 @@ class Application(tornado.web.Application):
         self.project = self.config.get('global', 'project')
         if not self.port:
             self.port = self.config.get('global', 'PORT')
-
-        self.initOSS()
-        self.initSMS()
-        self.initRedis()
-        self.initDb()
+        # 定义全局数据库
+        db = self.config.get('global', 'db')
+        if db:
+            Db.name = db
+            
+        if self.config.has_section('oss'):
+            self.initOSS()
+        if self.config.has_section('sms'):
+            self.initSMS()
+        if self.config.has_section('redis'):
+            self.initRedis()
+        if self.config.has_section('mongodb'):
+            self.initDb()
+        if self.config.has_section('wx'):
+            self.initWx()
 
         if env=='offline':
             return
+
         log.info("version:%s project:%s", self.version, self.project)
         self.crypto = False
         if self.config.get('global', 'crypto') != '0':
             self.crypto = True
-        self.initWx()
 
         # handler 路径
         self.handlers = self.initHandlers()
-        urls = self.config.options('handlers')
-        for url in urls:
-            handle = (url, self.config.get('handlers', url))
-            self.handlers.append(handle)
 
         # 模板路径
         if self.config.has_option('global', 'TEMPLATE_PATH'):
@@ -84,20 +90,9 @@ class Application(tornado.web.Application):
         else:
             static_path = os.path.join(os.getcwd(), "static")
 
-        if self.config.has_option('global', 'mode'):
-            self.mode = self.config.get('global', 'mode')
-        else:
-            self.mode = "develop"
-
         self.debug = False
         if self.config.has_option('global', 'debug'):
             self.debug = True
-
-        if self.config.has_option('global', 'DELETE_CLASS'):
-            BaseConfig.deleteClass = self.config.get('global', 'DELETE_CLASS')
-
-        if self.config.has_option('global', 'WSSERVER'):
-            BaseConfig.wsserver = self.config.get('global', 'WSSERVER')
 
         settings = dict(
             cookie_secret="kr9ci0i0z$hti7YBnG7=gY6xvP&2ishfCqAAbW!sO3h0Opsd",
@@ -108,9 +103,12 @@ class Application(tornado.web.Application):
             autoreload=True,
         )
         log.info("template [%s] static [%s]", settings['template_path'], settings['static_path'])
-
+        '''
+        for h in self.handlers:
+            log.info("handlers: %s\t%s", h[0], h[1])
+        '''
         tornado.web.Application.__init__(self, self.handlers, **settings)
-
+        '''
         if Db.conn:
             # arthur
             projectClassHelper = ClassHelper("ProjectClass")
@@ -131,7 +129,12 @@ class Application(tornado.web.Application):
                 log.info("Push url:%s", BaseConfig.pushUrl)
 
             self.initMongodbIndex()
+            if self.config.has_option('global', 'DELETE_CLASS'):
+                BaseConfig.deleteClass = self.config.get('global', 'DELETE_CLASS')
 
+            if self.config.has_option('global', 'WSSERVER'):
+                BaseConfig.wsserver = self.config.get('global', 'WSSERVER')
+        '''
     def start(self):
         server = tornado.httpserver.HTTPServer(self, xheaders=True)
         server.listen(self.port)
@@ -139,7 +142,7 @@ class Application(tornado.web.Application):
         tornado.ioloop.IOLoop.instance().start()
 
     def initHandlers(self):
-        return [('/1.0/class/(\\w+)/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
+        handlers = [('/1.0/class/(\\w+)/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
                          ('/1.0/class/(\\w+)', 'mecloud.api.ClassHandler.ClassHandler'),
                          ('/1.0/query/(\\w+)', 'mecloud.api.QueryCountHandler.QueryCountHandler'),
                          ('/1.0/query/', 'mecloud.api.QueryCountHandler.QueryCountHandler'),
@@ -162,47 +165,45 @@ class Application(tornado.web.Application):
                          ('/1.0/alipaycallback', 'mecloud.api.AlipayCallbackHandler.AlipayCallbackHandler'),
                          ('/1.0/manager/(\w+)', 'mecloud.api.CmsInviteCodeHandler.CmsInviteCodeHandler')
                          ]
+        if self.config.has_section('handlers'):
+            urls = self.config.options('handlers')
+            for url in urls:
+                handle = (url, self.config.get('handlers', url))
+                handlers.append(handle)
+        return handlers
 
     def initOSS(self):
-        if self.config.has_section('oss'):
-            # oss相关初始化
-            MeFileConfig.access_key_id = self.config.get('oss', 'OSS_ACCESS_KEY_ID')
-            MeFileConfig.access_key_secret = self.config.get('oss', 'OSS_ACCESS_KEY_SECRET')
-            MeFileConfig.bucket_name = self.config.get('oss', 'OSS_BUCKET_NAME')
-            MeFileConfig.platform = self.config.get('oss', 'PLATFORM')
-            MeFileConfig.endpoint = self.config.get('oss', 'OSS_ENDPOINT')
-            MeFileConfig.sts_role_arn = self.config.get('oss', 'OSS_STS_ROLE_ARN')
-            MeFileConfig.role_session_name = self.config.get('oss', 'OSS_ROLE_SESSION_NAME')
-            MeFileConfig.region_id = self.config.get('oss', 'OSS_REGION_ID')
-            MeFileConfig.auth = oss2.Auth(MeFileConfig.access_key_id, MeFileConfig.access_key_secret)
-            MeFileConfig.bucketUrl = 'http://' + MeFileConfig.bucket_name + '.' + MeFileConfig.endpoint
-            MeFileConfig.bucket = oss2.Bucket(MeFileConfig.auth, "http://" + MeFileConfig.endpoint,
-                                              MeFileConfig.bucket_name)
+        # oss相关初始化
+        MeFileConfig.access_key_id = self.config.get('oss', 'OSS_ACCESS_KEY_ID')
+        MeFileConfig.access_key_secret = self.config.get('oss', 'OSS_ACCESS_KEY_SECRET')
+        MeFileConfig.bucket_name = self.config.get('oss', 'OSS_BUCKET_NAME')
+        #MeFileConfig.platform = self.config.get('oss', 'PLATFORM')
+        MeFileConfig.endpoint = self.config.get('oss', 'OSS_ENDPOINT')
+        MeFileConfig.sts_role_arn = self.config.get('oss', 'OSS_STS_ROLE_ARN')
+        MeFileConfig.role_session_name = self.config.get('oss', 'OSS_ROLE_SESSION_NAME')
+        MeFileConfig.region_id = self.config.get('oss', 'OSS_REGION_ID')
+        MeFileConfig.auth = oss2.Auth(MeFileConfig.access_key_id, MeFileConfig.access_key_secret)
+        MeFileConfig.bucketUrl = 'http://' + MeFileConfig.bucket_name + '.' + MeFileConfig.endpoint
+        MeFileConfig.bucket = oss2.Bucket(MeFileConfig.auth, "http://" + MeFileConfig.endpoint,
+                                            MeFileConfig.bucket_name)
 
     def initSMS(self):
-        if self.config.has_section('oss'):
-            # sms相关
-            SmsCodeConfig.region = self.config.get('sms', 'SMS_REGION')
-            SmsCodeConfig.access_key_id = self.config.get('sms', 'SMS_ACCESS_KEY_ID')
-            SmsCodeConfig.access_key_secret = self.config.get('sms', 'SMS_ACCESS_KEY_SECRET')
-            SmsCodeConfig.template_code = self.config.get('sms', 'SMS_TEMPLATE_CODE')
-            SmsCodeConfig.sign_name = self.config.get('sms', 'SMS_SIGN_NAME')
+        # sms相关
+        SmsCodeConfig.region = self.config.get('sms', 'SMS_REGION')
+        SmsCodeConfig.access_key_id = self.config.get('sms', 'SMS_ACCESS_KEY_ID')
+        SmsCodeConfig.access_key_secret = self.config.get('sms', 'SMS_ACCESS_KEY_SECRET')
+        SmsCodeConfig.template_code = self.config.get('sms', 'SMS_TEMPLATE_CODE')
+        SmsCodeConfig.sign_name = self.config.get('sms', 'SMS_SIGN_NAME')
 
     def initRedis(self):
         # set redis config and create redis pool
-        if self.config.has_section('redis'):
-            host = self.config.get('redis', 'HOST')
-            pwd = self.config.get('redis', 'PASSWORD')
-            port = self.config.get('redis', 'PORT')
-            RedisDb.init(host, pwd, int(port))
-            log.info('redis[%s:%s:%s] init success', host, port, pwd)
+        host = self.config.get('redis', 'HOST')
+        pwd = self.config.get('redis', 'PASSWORD')
+        port = self.config.get('redis', 'PORT')
+        RedisDb.init(host, pwd, int(port))
+        log.info('redis[%s:%s:%s] init success', host, port, pwd)
 
     def initDb(self):
-        # 定义全局数据库
-        db = self.config.get('global', 'db')
-        if db:
-            Db.name = db
-        # mongodb及oss配置
         # mongodb及oss配置
         if self.config.has_option('mongodb', 'ADDR'):
             addr = self.config.get('mongodb', 'ADDR')
@@ -222,7 +223,7 @@ class Application(tornado.web.Application):
         global jsapi_ticket
         try:
             access_server = self.config.get('wx', 'WX_ACCESSTOKEN_SERVER')
-            if access_server:
+            if access_server and access_server!='0' and access_server!='False':
                 access_token = wx.accessTokenFromWx()
                 jsapi_ticket = wx.jsapiTicketFromWx()
         except Exception, e:

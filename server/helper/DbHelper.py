@@ -39,7 +39,7 @@ class Db:
         else:
             return Db.name
 
-    def find_one(self, collection, query):
+    def findOne(self, collection, query):
         pass
 
     def find(self, collection, query):
@@ -101,9 +101,9 @@ class MongoDb(Db):
         self.db = Db.conn[self.dbName()]
 
     ### 查找第一个
-    def find_one(self, collection, query, keys=None, sort=None):
+    def findOne(self, collection, query, keys=None, sort=None):
         if sort==None:
-            doc = self.db[collection].find_one(MongoDb.toBson(query), sort=('_id', -1))
+            doc = self.db[collection].find_one(MongoDb.toBson(query), sort=[('_id', pymongo.DESCENDING)])
         else:
             doc = self.db[collection].find_one(MongoDb.toBson(query), sort = self.sortToTuple(sort))
         
@@ -117,7 +117,7 @@ class MongoDb(Db):
     def find(self, collection, query, keys=None, sort=None, limit=8, skip=0):
         results = []
         if sort == None:
-            items = self.db[collection].find(MongoDb.toBson(query), keys).sort('_id', -1).skip(skip).limit(limit)
+            items = self.db[collection].find(MongoDb.toBson(query), keys).sort('_id', pymongo.DESCENDING).skip(skip).limit(limit)
         else:
             items = self.db[collection].find(MongoDb.toBson(query), keys).sort(self.sortToTuple(sort)).skip(0).limit(limit)
         for item in __items:
@@ -525,7 +525,7 @@ class MySqlDb(Db):
     """
         查询一条
     """
-    def find_one(self, collection, query, keys="*"):
+    def findOne(self, collection, query, keys="*"):
         try:
             sql = "select {0} from {1}".format(keys,collection)
             if not query:

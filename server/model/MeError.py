@@ -42,8 +42,6 @@ ERR_BLACK_PERMISSION = MeException(230, '用户被拉黑', 'Black user')
 ERR_BLACKED_PERMISSION = MeException(231, '已拉黑该用户', 'Blacked user')
 ERR_BEBLACKED_PERMISSION = MeException(232, '该用户设置了关注权限，你还不能关注ta哦', 'No permission to follow him')
 
-ERR_DUPLICATE_MEDIA_ASSIGN = MeException(250, '这张照片已经贡献过了呀', 'Duplicate assign error')
-ERR_DUPLICATE_FACE_ASSIGN = MeException(380, '这张脸已经贡献给别人了呀，换一个吧', 'Duplicate assign face error')
 # 未经授权的访问，没有提供 App id，或者 App id 和 App key 校验失败，请检查配置。
 ERR_UNAUTHORIZED = MeException(401, '未经授权的访问', 'Unauthorized')
 # 注册用户受限，应用超过最大用户数
@@ -54,7 +52,7 @@ ERR_CLASS_PERMISSION = MeException(403, '未获取的权限', 'Forbidden to xxx 
 ERR_PATH_PERMISSION = MeException(404, '请求路径错误', 'Path error')
 
 # 用戶cookie鉴权失败,非法访问
-ERR_LOGIN_AUTH_PERMISSION = MeException(405, '用戶token鉴权失败,非法访问', 'Error cookie')
+ERR_LOGIN_AUTH_PERMISSION = MeException(405, '用戶token鉴权失败,非法访问', 'Error token')
 
 # 验证码
 ERR_SMS_FREQUENT = MeException(601, '发送短信过于频繁。验证类短信限制一分钟一条，每天每个号码限制在	10条左右', "Can't send SMS too frequently")

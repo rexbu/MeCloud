@@ -16,7 +16,7 @@ class ClassHelper:
     is_online=False
     ### 构造函数，如果存在class映射，则使用映射class
     def __init__(self, className, appName=None):
-        self.className = className;
+        self.className = className
         self.db = MongoDb(appName)
         self.appName = self.db.dbName()
         self.coll = className
@@ -35,8 +35,8 @@ class ClassHelper:
                 CacheHelper.setCacheByOid(self.coll, oid, json.dumps(obj, cls=MeEncoder))
             return obj
     ### 查询第一个对象
-    def find_one(self, query, keys=None, sort=None):
-        return self.db.find_one(self.coll, query, keys, sort)
+    def findOne(self, query, keys=None, sort=None):
+        return self.db.findOne(self.coll, query, keys, sort)
 
     ### 查询第一个对象如果没找到则创建一个对象并返回
     def findCreate(self, query, obj=None, keys=None):

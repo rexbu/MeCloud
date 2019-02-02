@@ -1,5 +1,4 @@
 # global表示全局配置，online: 线上配置，test：测试环境配置
-
 [global]
 # 版本号
 version	= 1.0
@@ -8,7 +7,7 @@ project = honey
 
 # 线上、测试模式
 mode = online
-
+crypto = 1
 # 工程类型，0：单工程方案；1：多工程baas系统
 project_type = 0
 db = honey
@@ -47,9 +46,9 @@ OSS_REGION_ID =cn-beijing
 [sms]
 #SMS相关
 SMS_REGION = cn-hangzhou
-SMS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
-SMS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
-SMS_TEMPLATE_CODE = SMS_86875087
+SMS_ACCESS_KEY_ID = LTAIoZdNiRPMIt8n
+SMS_ACCESS_KEY_SECRET = NlXCw40kD7dEdce5aiCuBaR5HXsSJO
+SMS_TEMPLATE_CODE = SMS_157282483
 SMS_SIGN_NAME = 阿里云短信测试专用
 
 
@@ -73,7 +72,3 @@ WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
 
 # 微信条状登录url
 WX_REDIRECT = xxx
-
-
-
-

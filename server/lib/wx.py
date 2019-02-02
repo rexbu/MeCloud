@@ -114,3 +114,15 @@ def jsapiWxConfig(url):
 	wxconfig['url'] = url
 	wxconfig['signature'] = jsapiSignature(wxconfig['nonceStr'], wxconfig['timestamp'], wxconfig['url'])
 	return wxconfig
+
+# 小程序
+def code2Session(appid, appsecret, code):
+	url = 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code' % (appid, appsecret, code)
+	s = urllib.urlopen(url).read()
+	if not s:
+		return None
+	obj = json.loads(s)
+	if obj.has_key('errcode') and obj['errcode'] != 0:
+		log.err("code2Session Error: %s", s)
+		return None
+	return obj

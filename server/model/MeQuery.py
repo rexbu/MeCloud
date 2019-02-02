@@ -22,8 +22,8 @@ class MeQuery(ClassHelper):
         return None
         
 	### 查询第一个对象	
-    def find_one(self, query, keys=None):
-        o = ClassHelper.find_one(self, query, keys)
+    def findOne(self, query, keys=None):
+        o = ClassHelper.findOne(self, query, keys)
         if o!=None:
             return MeObject(self.className, o)
         return None

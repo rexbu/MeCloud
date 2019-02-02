@@ -157,7 +157,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if type(msg) is types.DictType:
             self.filter_field(msg)
             msg = json.dumps(msg, cls=MeEncoder)
-        if self.needCrypto:
+        if self.crypto:
             tornado.web.RequestHandler.write(self, crypto.encrypt(msg))
         else:
             tornado.web.RequestHandler.write(self, msg)

@@ -6,7 +6,7 @@
   * history:
  */
 
-var version = 0.1;
+var version = '1.0';
 
 var appId = null;
 var appKey = null;
@@ -30,23 +30,123 @@ var Me = new MeCloud();
 // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
 // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
 // 例子： 
-// (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
-// (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
+// (new Date()).format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
+// (new Date()).format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
 Date.prototype.format = function (fmt) { //author: meizz 
-    var o = {
-        "M+": this.getMonth() + 1, //月份 
-        "d+": this.getDate(), //日 
-        "h+": this.getHours(), //小时 
-        "m+": this.getMinutes(), //分 
-        "s+": this.getSeconds(), //秒 
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-        "S": this.getMilliseconds() //毫秒 
-    };
-    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
-    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-    return fmt;
+	var o = {
+		"M+": this.getMonth() + 1, //月份 
+		"d+": this.getDate(), //日 
+		"h+": this.getHours(), //小时 
+		"m+": this.getMinutes(), //分 
+		"s+": this.getSeconds(), //秒 
+		"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+		"S": this.getMilliseconds() //毫秒 
+	};
+	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	for (var k in o)
+	if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	return fmt;
 }
+
+// JSON.prototype.encrypt = function(obj){
+// 	var o = new Array()
+// 	$.each(obj, function(k, v){
+// 		o.push(encrypt(k)+'='+encrypt(v))
+// 	});
+// 	return o.join('&');
+// }
+
+// JSON.prototype.decrypt = function(){
+
+// }
+
+
+function str2UTF8(str){  
+	var bytes = new Array();   
+	var len,c;  
+	len = str.length;  
+	for(var i = 0; i < len; i++){  
+		c = str.charCodeAt(i);  
+		if(c >= 0x010000 && c <= 0x10FFFF){  
+			bytes.push(((c >> 18) & 0x07) | 0xF0);  
+			bytes.push(((c >> 12) & 0x3F) | 0x80);  
+			bytes.push(((c >> 6) & 0x3F) | 0x80);  
+			bytes.push((c & 0x3F) | 0x80);  
+		}else if(c >= 0x000800 && c <= 0x00FFFF){  
+			bytes.push(((c >> 12) & 0x0F) | 0xE0);  
+			bytes.push(((c >> 6) & 0x3F) | 0x80);  
+			bytes.push((c & 0x3F) | 0x80);  
+		}else if(c >= 0x000080 && c <= 0x0007FF){  
+			bytes.push(((c >> 6) & 0x1F) | 0xC0);  
+			bytes.push((c & 0x3F) | 0x80);  
+		}else{  
+			bytes.push(c & 0xFF);  
+		}  
+	}  
+	return bytes;  
+}  
+
+function byteToString(arr) {  
+	if(typeof arr === 'string') {  
+		return arr;  
+	}  
+	var str = '',  
+		_arr = arr;  
+	for(var i = 0; i < _arr.length; i++) {  
+		var one = _arr[i].toString(2),  
+			v = one.match(/^1+?(?=0)/);  
+		if(v && one.length == 8) {  
+			var bytesLength = v[0].length;  
+			var store = _arr[i].toString(2).slice(7 - bytesLength);  
+			for(var st = 1; st < bytesLength; st++) {  
+				store += _arr[st + i].toString(2).slice(2);  
+			}  
+			str += String.fromCharCode(parseInt(store, 2));  
+			i += bytesLength - 1;  
+		} else {  
+			str += String.fromCharCode(_arr[i]);  
+		}  
+	}  
+	return str;  
+}  
+
+function encrypt(input){
+    return input;
+	input = str2UTF8(input)
+	var output = "";
+	var inSize = input.length;
+	var bit = 0;
+	for(var i=0;i<inSize;i++){
+		bit++;
+		var c = input[i] + Math.floor(bit/5+bit%3);
+		output += c.toString(16);
+	}
+	return output;
+}
+
+function decrypt(input){
+    return input;
+	var output = new Array();
+	var inSize = input.length;
+	var bit = 0;
+	for(var i=0;i<inSize;i+=2){
+		bit++;
+		var c = parseInt(input[i]+input[i+1],16);
+		c -= Math.floor(bit/5+bit%3);
+		output.push(c)
+	}
+	return byteToString(output)
+}
+
+
+function JSONEncrypt(obj){
+	var o = new Array()
+	$.each(obj, function(k, v){
+		o.push(encrypt(k)+'='+encrypt(v))
+	});
+	return o.join('&');
+};
+
 function isEmpty(o){
 	if(typeof o == 'object'){
 		for(var k in o){
@@ -61,36 +161,21 @@ function isEmpty(o){
 	return false;
 }
 
-function BaseObject(className, o){
+function MeObject(className, o){
 	objectMap = {};
 	this.dirty = {};
 	this.objectId = null;
 	this.classname = className;
 
+	// 添加内容
 	this.put = function(k, v){
 		if (this.objectId!=null && !('$set' in this.dirty)) {
 			this.dirty['$set'] = {};
 		}
 		// 如果是BaseObject类型
 		if (typeof v=='object' && ('objectId' in v) && ('getMeObject' in v)) {
-			objectMap[k] = v;
-			var pointer = {};
-			pointer['_type'] = 'pointer';
-			pointer['_class'] = v.classname;
-			if (v.objectId!=null) {
-				pointer['_id'] = v.objectId;
-			}
-			// 本身只存pointer
-			this[k] = pointer;
+			//// TODO: 走/1.0/classes 
 
-			var p2 = pointer;
-			p2['_content'] = v.dirty;
-			if (this.objectId==null) {
-				this.dirty[k] = p2;
-			}
-			else{
-				this.dirty['$set'][k] = p2;
-			}
 		}
 		else{
 			this[k] = v;
@@ -130,6 +215,52 @@ function BaseObject(className, o){
 		return null;
 	}
 
+	this.save = function(){
+		var defer = $.Deferred();
+		// 有objectId走更新，无走新建
+		if(this.objectId){
+			var method = 'PUT';
+			var url = '/'+version+"/classV2/" + className+'/' + this.objectId;
+		}
+		else{
+			var method = 'POST';
+			var url = '/'+version+"/classV2/" + className;
+		}
+
+		$.ajax({
+			url: url,
+			type: method,
+			data: encrypt(JSON.stringify(this.dirty)),
+			processData: false,
+			dataType: 'json',
+			headers:{
+			    'X-MeCloud-Debug':1
+			},
+			beforeSend: function (xhr) {
+				// http头
+				if (appId != null){
+					xhr.setRequestHeader("X-MeCloud-AppId", appId);
+					xhr.setRequestHeader("X-MeCloud-AppKey", appKey);
+				}
+				xhr.setRequestHeader("X-MeCloud-Version", version);
+			},
+			success: function(data){
+			    defer.resolve(data);
+//				o.copySelf(decrypt(data));
+//				o.dirty = {};
+//				defer.resolve(o);
+			},
+			error: function(xhr, status, errorThrow){
+				defer.reject(status);
+			},
+		});
+
+		return defer;
+	}
+
+	this.setACL = function(acl){
+		put('acl', acl);
+	}
 	this.copySelf = function(obj){
 		if (! (typeof obj=='object')){
 			return false;
@@ -210,143 +341,44 @@ function BaseObject(className, o){
 	}
 }
 
-function MeDevObject(className, obj){
-	var o = new BaseObject(className, obj);
-	o.save = function(){
-		var defer = $.Deferred();
+function MeQuery(className){
+    this.limit = 20;
+    this.skip = 0;
 
-		if(this.objectId){
-			var method = 'PUT';
-			var url = "/dev/" + className+'/' + this.objectId;
-		}
-		else{
-			var method = 'POST';
-			var url = "/dev/" + className;
-		}
-		/*
-		for(var key in o.dirty){
-			o.dirty[key] = encodeURIComponent(o.dirty[key]);
-		}
-		*/
-		$.ajax({
-			url: url,
-			type: method,
-			data: JSON.stringify(o.dirty),
-			//processData: false,
-			dataType: 'json',
-			success: function(data){
-				o.copySelf(data);
-				o.dirty = {};
-				defer.resolve(o);
-			},
-			error: function(xhr, status, errorThrow){
-				defer.reject(status);
-			},
-		});
-		return defer;
-	}
-	o.delete = function(){
-		var defer = $.Deferred();
-
-		if(this.objectId){
-			var method = 'DELETE';
-			var url = "/dev/" + className+'/' + this.objectId;
-		}
-		else{
-			defer.reject({'errCode':-1, 'errMsg':'无objectId'});
-		}
-
-		$.ajax({
-			url: url,
-			type: method,
-			//processData: false,
-			//dataType: 'json',
-			success: function(data){
-				defer.resolve(data);
-			},
-			error: function(xhr, status, errorThrow){
-				defer.reject(status);
-			},
-		});
-		return defer;
-	}
-
-	return o;
-}
-
-function MeObject(className, obj){
-	var o = new BaseObject(className, obj);
-	o.save = function(){
-		var defer = $.Deferred();
-
-		if(this.objectId){
-			var method = 'PUT';
-			var url = '/'+version+"/classes/" + className+'/' + this.objectId;
-		}
-		else{
-			var method = 'POST';
-			var url = '/'+version+"/classes/" + className;
-		}
-
-		$.ajax({
-			url: url,
-			type: method,
-			data: JSON.stringify(o.dirty),
-			processData: false,
-			dataType: 'json',
-			beforeSend: function (xhr) {
-				if (appId!=null && appKey!=null) {
-					xhr.setRequestHeader("X-MeCloud-AppId", appId);
-					xhr.setRequestHeader("X-MeCloud-AppKey", appKey);
-				}
-			},
-			success: function(data){
-				o.copySelf(data);
-				o.dirty = {};
-				defer.resolve(o);
-			},
-			error: function(xhr, status, errorThrow){
-				defer.reject(status);
-			},
-		});
-
-		return defer;
-	}
-
-	return o;
-}
-
-function BaseQuery(className){
+	this.url = "/"+version+"/classV2/"+className;
 	this.where = {};
+	this.sort = {};
+	this.keys = {};
 
 	this.whereEqualTo = function(k, v){
 		this.where[k] = v;
 	}
-}
-
-function MeDevQuery(className){
-	var q = new BaseQuery(className);
-	var url = '/dev/'+className;
-
-	q.get = function(objectId){
+	this.sortEqualTo = function(k, v){
+		this.sort[k] = v;
+	}
+	this.keysEqualTo = function(k, v){
+		this.keys[k] = v;
+	}
+	this.aggregate= ''
+	this.aggregateEqualTo = function(k, v){
+		this.aggregate[k] = v;
+	}
+	this.get = function(objectId){
 		var defer = $.Deferred();
-
 		$.ajax({
-			url: url+'/'+objectId,
+			url: this.url+'?where={"_id":"' + objectId + '"}',
 			type: 'GET',
-			dataType: 'json',
-			beforeSend: function (xhr) {
-				if (appId!=null && appKey!=null) {
-					xhr.setRequestHeader("X-MeCloud-AppId", appId);
-					xhr.setRequestHeader("X-MeCloud-AppKey", appKey);
-				}
-			}
+			dataType: 'text',
+			headers:{
+			    'X-MeCloud-Debug':1
+			},
 			success: function(data){
+				data = JSON.parse(decrypt(data))
 				if ('errCode' in data) {
 					defer.reject(data);
 				}
 				else{
-					var obj = new MeDevObject(className, data);
+					var obj = new MeObject(className, data);
 					defer.resolve(obj);
 				}
 			},
@@ -356,21 +388,35 @@ function MeDevQuery(className){
 		});
 		return defer;
 	}
-	q.find = function(){
-		var defer = $.Deferred();
 
+	this.find = function(){
+	    var defer = $.Deferred();
+	    var thisUrl =  this.url+'?where='+JSON.stringify(this.where)+'&limit='+this.limit+'&skip='+this.skip;
+	    if(JSON.stringify(this.keys)!="{}"){
+	        var thisUrl =  thisUrl+'&keys='+JSON.stringify(this.keys);
+	    }
+	    if(JSON.stringify(this.sort)!="{}"){
+            var thisUrl =  thisUrl+'&sort='+ JSON.stringify(this.sort);
+	    }
+        if(this.aggregate != ''){
+             var thisUrl =  thisUrl+ '&aggregate='+this.aggregate
+        }
 		$.ajax({
-			url: url+'?where='+JSON.stringify(q.where),
+			 url:thisUrl,
 			type: 'GET',
-			dataType: 'json',
+			dataType: 'text',
+			headers:{
+			    'X-MeCloud-Debug':1
+			},
 			success: function(data){
+				data = JSON.parse(decrypt(data))
 				if ('errCode' in data) {
 					defer.reject(data);
 				}
 				else{
 					var list = [];
 					for(var i=0; i<data.length; i++){
-						var obj = new MeDevObject(className, data[i]);
+						var obj = new MeObject(className, data[i]);
 						list.push(obj)
 					}
 					defer.resolve(list);
@@ -382,18 +428,105 @@ function MeDevQuery(className){
 		});
 		return defer;
 	}
-	return q;
 }
 
-function MeQuery(className){
-	var q = new BaseQuery(className);
-	var url = '/'+version+'/classes/'+className;
+function MeUser(){
+	var o = new MeObject("User");
+	o.login = function(username, password){
+		data = {
+			'username':username,
+			'password':password
+		};
+		var defer = $.Deferred();
+		url = '/'+version+'/user/login';
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: encrypt(JSON.stringify(data)),
+			processData: false,
+			dataType: 'text',
+			headers:{
+			    'X-MeCloud-Debug':1
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("X-MeCloud-Version", '1.0');
+			},
+			success: function(data){
+				console.log(decrypt(data))
+				o.copySelf(JSON.parse(decrypt(data)));
+				o.dirty = {};
+				defer.resolve(o);
+				var Data = JSON.parse(data)
+				if('errCode' in Data){
+                   alert( Data.errMsg)
+				}
 
-	q.get = function(objectId){
-
+			},
+			error: function(xhr, status, errorThrow){
+				defer.reject(status);
+			},
+		});
+		return defer
 	}
-	q.find = function(){
+	return o;
+}
 
+function MeRole(){
+	var o = new MeObject("Role");
+	return o;
+}
+
+function QueryCount(){
+	this.url = "/"+version+"/query/"
+	this.whereEqualTo='';
+	this.count = function(){
+		var defer = $.Deferred();
+		$.ajax({
+		    url: this.url+'?where='+this.whereEqualTo,
+			type: 'GET',
+			dataType: 'text',
+			headers:{
+			    'X-MeCloud-Debug':1
+			},
+			success: function(data){
+				data = JSON.parse(decrypt(data))
+				if ('errCode' in data) {
+					defer.reject(data);
+				}
+				else{
+					defer.resolve(data);
+				}
+			},
+			error: function(xhr, status, errorThrow){
+				defer.reject(xhr);
+			}
+		});
+		return defer;
 	}
-	return q;
+}
+
+function MeACL(){
+
+}
+function followAjax(posturl,data,func,errorFunc){
+    $.ajax({
+        url: '/1.0/follow'+posturl,
+        type:'get',
+        dataType:'json',
+        data:data,
+        headers:{
+            'X-MeCloud-Debug':1
+        },
+        success:function(result){
+            try{
+                func(result);
+            } catch(e){
+//		                console.log(e);
+            }
+        },
+        complete:function(){
+        },
+        error: function (){
+        }
+    });
 }

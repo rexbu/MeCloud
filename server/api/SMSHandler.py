@@ -9,20 +9,11 @@ from mecloud.helper.DbHelper import *
 from mecloud.helper.ClassHelper import *
 from mecloud.helper.Util import *
 from mecloud.lib import *
-import json
-import hashlib
-import os
-import urllib
-import socket
-import time
-import random
-import re
-import binascii
-import sys
-from aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest
-from aliyunsdkdysmsapi.request.v20170525 import QuerySendDetailsRequest
+from mecloud.helper.SmsHelper import *
 from aliyunsdkcore.client import AcsClient
-import uuid
+
+import json, hashlib, os, urllib, socket, time, random, re, binascii, sys, uuid
+
 
 socket.setdefaulttimeout(10)
 
@@ -89,10 +80,10 @@ class SMSHandler(BaseHandler):
             return False
 
     def get(self, phone):
-        captcha = random.randint(100000, 999999);
+        captcha = random.randint(1000, 9999)
         smsResponse = json.loads(SmsCode.send_sms(phone, captcha))
         if smsResponse["Code"] == 'OK':
-            SMSHandler.captchaMap[phone] = (captcha, time.time());
+            SMSHandler.captchaMap[phone] = (captcha, time.time())
             self.write(ERR_SUCCESS.message)
         elif smsResponse["Code"] == 'isv.BUSINESS_LIMIT_CONTROL':
             self.write(ERR_SMS_FREQUENT.message)

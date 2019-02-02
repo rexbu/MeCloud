@@ -41,6 +41,7 @@ class WxHandler(BaseHandler):
         access_server = config.get('global', 'WX_ACCESSTOKEN_SERVER')
         if access_server and (not WxHandler.wx_thread):
             WxHandler.wx_thread = threading.Thread(target=accessTokenTask, args=(7000,))
+            WxHandler.wx_thread.daemon = True
             WxHandler.wx_thread.start()
 
     def get(self, action):
@@ -61,17 +62,17 @@ class WxHandler(BaseHandler):
             if not code and uid:
                 self.set_secure_cookie('u', uid)
                 self.write(ERR_SUCCESS.message)
-                return;
+                return
             elif code:
                 refer = unquote(self.get_argument('state'))
                 token = wx.accessTokenFromCode(code)
                 #user = WxHandler.getUserFromOpenid(token)
                 # 如果数据库中没有表示没有关注，则邀请关注
                 userQuery = MeQuery('User')
-                user = userQuery.find_one({'openid': token['openid']})
+                user = userQuery.findOne({'openid': token['openid']})
                 if not user:
                     self.render("error.html", user=None, wxconfig= self.wxconfig)
-                    return;
+                    return
                 self.set_secure_cookie('u', user['_id'])
                 self.redirect(refer)
             else:
@@ -79,12 +80,12 @@ class WxHandler(BaseHandler):
 
         elif action=='logout':
             self.clear_cookie("u")
-            self.write("退出成功");
+            self.write("退出成功")
             
     @staticmethod
     def getUserFromOpenid(token):
         userHelper = MeQuery('User')
-        user = userHelper.find_one({'openid': token['openid']})
+        user = userHelper.findOne({'openid': token['openid']})
         if not user:
             user_info = wx.getSnsUserInfo(token['access_token'], token['openid'])
             if user_info!=None:

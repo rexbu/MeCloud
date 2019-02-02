@@ -6,18 +6,21 @@ import xmltodict
 import time, hashlib
 import log
 
+appid = None
+appsecret = None
 access_token = None
 jsapi_ticket = None
+token_server = '127.0.0.1:8000'
 def accessToken():
-	global access_token;
+	global access_token
 	# 如果为空或者已经过期，则重新获取
 	if access_token==None or (access_token['expires_in']<=time.time()-access_token['createAt']-100):
-		access_token = urllib.urlopen('http://%s:%d/wx/access_token?auth=%s' % (config.token['ip'], config.token['port'], config.token['auth'])).read()
-	return access_token['access_token'];
+		access_token = urllib.urlopen('http://%s/wx/access_token?auth=%s' % (token_server, '')).read()
+	return access_token['access_token']
 def jsapiTicket():
 	global jsapi_ticket
 	if jsapi_ticket==None or (jsapi_ticket['expires_in']<=time.time()-jsapi_ticket['createAt']-100):
-		url = 'http://%s:%d/wx/jsapi_ticket?auth=%s' % (config.token['ip'], config.token['port'], config.token['auth'])
+		url = 'http://%s/wx/jsapi_ticket?auth=%s' % (token_server, '')
 		print url
 		jsapi_ticket = urllib.urlopen(url).read()
 	return jsapi_ticket
@@ -29,18 +32,18 @@ def getUserInfo(openid):
 	res = json.loads(urllib.urlopen(url).read())
 	if res.has_key('errcode'):
 		log.err("Wx get userinfo error: %s, token:%s", json.dumps(res), token)
-		return None;
+		return None
 	else:
-		return res;
+		return res
 # 获取用户，通过网页授权
 def getSnsUserInfo(token, openid):
 	url = 'https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN'%(token, openid);
 	res = json.loads(urllib.urlopen(url).read())
 	if res.has_key('errcode'):
 		log.err("Wx get userinfo error: %s", json.dumps(res))
-		return None;
+		return None
 	else:
-		return res;
+		return res
 def xmltojson(xml):
 	return xmltodict.parse(xml)['xml']
 
@@ -68,8 +71,8 @@ def replyText(f, t, c):
 	'''
 
 def accessTokenFromWx():
-	global access_token;
-	access_string = urllib.urlopen('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' % (config.wx['appId'], config.wx['appSecret'])).read()
+	global access_token, appid, appsecret
+	access_string = urllib.urlopen('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' % (appid, appsecret)).read()
 	access_token = json.loads(access_string)
 	if access_token.has_key("access_token"):
 		access_token['createAt'] = (int)(time.time())
@@ -80,7 +83,8 @@ def accessTokenFromWx():
 		return None
 
 def accessTokenFromCode(code):
-	access_string = urllib.urlopen('https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code' % (config.wx['appId'], config.wx['appSecret'], code)).read()
+	global appid, appsecret
+	access_string = urllib.urlopen('https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code' % (appid, appsecret, code)).read()
 	web_token = json.loads(access_string)
 	if web_token.has_key("access_token"):
 		log.info("sns access_token: %s", access_string)
@@ -108,7 +112,8 @@ def jsapiSignature(noncestr, timestamp, url):
 
 def jsapiWxConfig(url):
 	wxconfig = {}
-	wxconfig['appId'] = config.wx['appId']
+	global appid
+	wxconfig['appId'] = appid
 	wxconfig['timestamp'] = int(time.time())
 	wxconfig['nonceStr'] = 'Wm3WZYTPz0wzCcnW'
 	wxconfig['url'] = url

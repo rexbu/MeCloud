@@ -9,7 +9,7 @@ from mecloud.model.MeError import ERR_OBJECTID_MIS
 from mecloud.model.MeFile import MeFileConfig
 from mecloud.model.MeQuery import MeQuery
 import oss2
-from mecloud.model.SmsCode import SmsCodeConfig
+from mecloud.helper.SmsHelper import SmsCodeConfig
 
 
 class FileDownloadHandler(BaseHandler):

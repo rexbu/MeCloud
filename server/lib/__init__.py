@@ -1,1 +1,1 @@
-__all__=['log', 'config', 'wx', 'http', 'crypto']
+__all__=['log', 'wx', 'http', 'crypto']

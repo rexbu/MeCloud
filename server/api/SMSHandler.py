@@ -3,13 +3,8 @@ from bson import json_util
 from datetime import *
 from BaseHandler import *
 from CaptchaHandler import *
-from mecloud.model.MeError import *
-from mecloud.model.SmsCode import *
-from mecloud.helper.DbHelper import *
-from mecloud.helper.ClassHelper import *
-from mecloud.helper.Util import *
 from mecloud.lib import *
-from mecloud.helper.SmsHelper import *
+from mecloud.helper.SmsHelper import SmsCode
 from aliyunsdkcore.client import AcsClient
 
 import json, hashlib, os, urllib, socket, time, random, re, binascii, sys, uuid
@@ -75,13 +70,14 @@ class SMSHandler(BaseHandler):
     @staticmethod
     def verifySmsCode(phone, captcha):
         if SMSHandler.captchaMap.has_key(phone) and SMSHandler.captchaMap[phone][0] == int(captcha):
+            del(SMSHandler.captchaMap[phone])
             return True
         else:
             return False
 
     def get(self, phone):
         captcha = random.randint(1000, 9999)
-        smsResponse = json.loads(SmsCode.send_sms(phone, captcha))
+        smsResponse = json.loads(SmsCode.sendSms(phone, captcha))
         if smsResponse["Code"] == 'OK':
             SMSHandler.captchaMap[phone] = (captcha, time.time())
             self.write(ERR_SUCCESS.message)

@@ -318,7 +318,7 @@ class MongoDb(Db):
             log.err('Update transaction done error! transaction[%s:%s] source[%s] destination[%s]: %s', collection, action['_id'], old_obj['_id'], destination['_id'], str(e))
             raise e
 
-        return self.find_one(collection, {'_id': old_obj['_id']})
+        return self.findOne(collection, {'_id': old_obj['_id']})
 
     """
     @ upsert: 没有是否新建
@@ -334,7 +334,7 @@ class MongoDb(Db):
         if not doc:
             # 如果upsert为True， 则返回新创建数据的id
             if upsert:
-                doc = self.find_one(collection, query)
+                doc = self.findOne(collection, query)
                 if 'createAt' not in doc:
                     doc = self.updateOneOnly(collection,{"_id":doc['_id']}, {'$set': {'createAt': doc['updateAt'], "_sid": str(doc['_id'])}})
                 if doc:

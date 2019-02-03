@@ -17,7 +17,7 @@ from mecloud.lib import log, wx
 from mecloud.model.MeFile import MeFileConfig
 from mecloud.api.BaseHandler import BaseConfig
 import sys, getopt
-from mecloud.model.SmsCode import SmsCodeConfig
+from mecloud.helper.SmsHelper import SmsCodeConfig
 
 # 设置系统默认编码为utf8
 reload(sys)
@@ -56,7 +56,7 @@ class Application(tornado.web.Application):
         db = self.config.get('global', 'db')
         if db:
             Db.name = db
-            
+
         if self.config.has_section('oss'):
             self.initOSS()
         if self.config.has_section('sms'):

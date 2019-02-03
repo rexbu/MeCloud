@@ -20,59 +20,7 @@
 import sys, uuid
 from aliyunsdkcore.request import RpcRequest
 from aliyunsdkcore.client import AcsClient
-
-class SendSmsRequest(RpcRequest):
-
-	def __init__(self):
-		RpcRequest.__init__(self, 'Dysmsapi', '2017-05-25', 'SendSms')
-
-	def get_OutId(self):
-		return self.get_query_params().get('OutId')
-
-	def set_OutId(self,OutId):
-		self.add_query_param('OutId',OutId)
-
-	def get_SignName(self):
-		return self.get_query_params().get('SignName')
-
-	def set_SignName(self,SignName):
-		self.add_query_param('SignName',SignName)
-
-	def get_ResourceOwnerId(self):
-		return self.get_query_params().get('ResourceOwnerId')
-
-	def set_ResourceOwnerId(self,ResourceOwnerId):
-		self.add_query_param('ResourceOwnerId',ResourceOwnerId)
-
-	def get_OwnerId(self):
-		return self.get_query_params().get('OwnerId')
-
-	def set_OwnerId(self,OwnerId):
-		self.add_query_param('OwnerId',OwnerId)
-
-	def get_TemplateCode(self):
-		return self.get_query_params().get('TemplateCode')
-
-	def set_TemplateCode(self,TemplateCode):
-		self.add_query_param('TemplateCode',TemplateCode)
-
-	def get_PhoneNumbers(self):
-		return self.get_query_params().get('PhoneNumbers')
-
-	def set_PhoneNumbers(self,PhoneNumbers):
-		self.add_query_param('PhoneNumbers',PhoneNumbers)
-
-	def get_ResourceOwnerAccount(self):
-		return self.get_query_params().get('ResourceOwnerAccount')
-
-	def set_ResourceOwnerAccount(self,ResourceOwnerAccount):
-		self.add_query_param('ResourceOwnerAccount',ResourceOwnerAccount)
-
-	def get_TemplateParam(self):
-		return self.get_query_params().get('TemplateParam')
-
-	def set_TemplateParam(self,TemplateParam):
-		self.add_query_param('TemplateParam',TemplateParam)
+from aliyunsdkcore.request import CommonRequest
 
 class SmsCodeConfig():
     region = None
@@ -81,31 +29,25 @@ class SmsCodeConfig():
     template_code = None
     sign_name = None
 
-class SmsCode():
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+class SmsCode:
+	@staticmethod
+	def sendSms(phone, code):
+		client = AcsClient(SmsCodeConfig.access_key_id, SmsCodeConfig.access_key_secret, 'default')
 
-    @staticmethod
-    def send_sms(phone, code):
-        template_param = '{"code":"' + str(code) + '"}'
-        acs_client = AcsClient(SmsCodeConfig.access_key_id, SmsCodeConfig.access_key_secret, SmsCodeConfig.region)
-        smsRequest = SendSmsRequest()
-        # 申请的短信模板编码,必填
-        smsRequest.set_TemplateCode(SmsCodeConfig.template_code)
+		request = CommonRequest()
+		request.set_accept_format('json')
+		request.set_domain('dysmsapi.aliyuncs.com')
+		request.set_method('POST')
+		request.set_protocol_type('https') # https | http
+		request.set_version('2017-05-25')
+		request.set_action_name('SendSms')
 
-        # 短信模板变量参数
-        smsRequest.set_TemplateParam(template_param)
+		request.add_query_param('PhoneNumbers', str(phone))
+		request.add_query_param('SignName', SmsCodeConfig.sign_name)
+		request.add_query_param('TemplateCode', SmsCodeConfig.template_code)
+		request.add_query_param('TemplateParam', '{"code":"%s"}'%(str(code)))
 
-        # 设置业务请求流水号，必填。
-        smsRequest.set_OutId(uuid.uuid1())
-
-        # 短信签名
-        smsRequest.set_SignName(SmsCodeConfig.sign_name)
-
-        # 短信发送的号码列表，必填。
-        smsRequest.set_PhoneNumbers(phone)
-
-        # 调用短信发送接口，返回json
-        smsResponse = acs_client.do_action_with_exception(smsRequest)
-
-        return smsResponse
+		response = client.do_action(request)
+		# python2:  print(response) 
+		print(str(response))
+		return response

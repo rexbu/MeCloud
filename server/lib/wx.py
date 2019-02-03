@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 import urllib
-import config
 import json
 import xmltodict
 import time, hashlib

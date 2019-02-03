@@ -6,18 +6,9 @@
  * func : 
  * history:
 '''
-import json
-from mecloud.model.SmsCode import SmsCodeConfig
+import json, oss2, time, datetime, base64, hmac, urllib, urllib2, os
 from mecloud.model.MeObject import MeObject
-import oss2
-import time
-import datetime
-import base64
-import hmac
 from hashlib import sha1 as sha
-import urllib
-import urllib2
-import os
 from aliyunsdkcore import client
 from aliyunsdksts.request.v20150401 import AssumeRoleRequest
 

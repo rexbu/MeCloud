@@ -30,7 +30,7 @@ class ClassHelper:
         if obj:
             return json.loads(obj)
         else:
-            obj = self.db.find_one(self.coll, {"_id": oid}, keys)
+            obj = self.db.findOne(self.coll, {"_id": oid}, keys)
             if obj:
                 CacheHelper.setCacheByOid(self.coll, oid, json.dumps(obj, cls=MeEncoder))
             return obj
@@ -40,7 +40,7 @@ class ClassHelper:
 
     ### 查询第一个对象如果没找到则创建一个对象并返回
     def findCreate(self, query, obj=None, keys=None):
-        item =  self.db.find_one(self.coll, query, keys)
+        item =  self.db.findOne(self.coll, query, keys)
         if not item:
             return self.create(obj)
         else:

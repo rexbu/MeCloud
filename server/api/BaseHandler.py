@@ -246,6 +246,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     ## 验证是否需要登录,需要返回True
     def verify_cookie(self, classname):
+        '''TODO: 暂时不检查
         try:
             verfyInfo = BaseConfig.projectClass[classname]
         except Exception, ex:
@@ -259,6 +260,11 @@ class BaseHandler(tornado.web.RequestHandler):
                 return False
         else:
             return True
+        '''
+        if self.get_current_user():
+            return True
+        else:
+            return False
 
 
 ### 微信装饰器, state参数带跳转url

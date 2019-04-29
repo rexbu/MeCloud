@@ -33,6 +33,7 @@ class BaseHandler(tornado.web.RequestHandler):
         userid = self.get_secure_cookie("u")
         if userid is None:
             userid = self.get_userid_from_cookie(str(self.get_cookie("u")))
+        self.userid = userid
         return userid
 
     def prepare(self):
@@ -174,6 +175,8 @@ class BaseHandler(tornado.web.RequestHandler):
         return
 
     def check_field(self, classname, obj):  # 检查字段存在与否，字段范围，字段默认值，字段关联，记录权限等
+        ###TODO: 暂时不检查
+        return True
         try:
             checkInfo = BaseConfig.projectClass[classname]
         except Exception, ex:
@@ -243,6 +246,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     ## 验证是否需要登录,需要返回True
     def verify_cookie(self, classname):
+        '''TODO: 暂时不检查
         try:
             verfyInfo = BaseConfig.projectClass[classname]
         except Exception, ex:
@@ -256,6 +260,11 @@ class BaseHandler(tornado.web.RequestHandler):
                 return False
         else:
             return True
+        '''
+        if self.get_current_user():
+            return True
+        else:
+            return False
 
 
 ### 微信装饰器, state参数带跳转url

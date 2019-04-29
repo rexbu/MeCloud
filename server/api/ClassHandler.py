@@ -33,6 +33,7 @@ class ClassHandler(BaseHandler):
         admin = False
         if self.get_current_user() in BaseConfig.adminUser:
             admin = True
+        '''TODO: 权限校验
         if not admin:
             if className in BaseConfig.accessNoClass:
                 self.write(ERR_CLASS_PERMISSION.message)
@@ -41,6 +42,7 @@ class ClassHandler(BaseHandler):
                 # 不存在的class
                 self.write(ERR_PATH_PERMISSION.message)
                 return
+        '''
         verify = self.verify_cookie(className)
         if not verify:
             self.write(ERR_UNAUTHORIZED.message)

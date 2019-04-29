@@ -9,6 +9,7 @@
 
 from mecloud.helper.ClassHelper import *
 from MeObject import *
+from MeUser import *
 
 class MeQuery(ClassHelper):
     def __init__(self, className):
@@ -18,14 +19,20 @@ class MeQuery(ClassHelper):
     def get(self, oid):
         o = ClassHelper.get(self, oid)
         if o!=None:
-            return MeObject(self.className, o)
+            if self.className=='User':
+                return MeUser(o)
+            else:
+                return MeObject(self.className, o)
         return None
         
 	### 查询第一个对象	
     def findOne(self, query, keys=None):
         o = ClassHelper.findOne(self, query, keys)
         if o!=None:
-            return MeObject(self.className, o)
+            if self.className=='User':
+                return MeUser(o)
+            else:
+                return MeObject(self.className, o)
         return None
 	
 	### 查询

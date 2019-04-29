@@ -12,7 +12,7 @@ import tornado.web
 from mecloud.api.BaseHandler import BaseHandler, BaseConfig
 from bson import ObjectId
 from mecloud.helper.ClassHelper import ClassHelper
-from mecloud.helper.RedisHelper import RedisDb
+from mecloud.helper.Redis import Redis
 from mecloud.helper.SensitiveHelper import SensitiveHelper
 from mecloud.helper.Util import MeEncoder
 from mecloud.lib import log
@@ -370,13 +370,13 @@ class ClassHandler(BaseHandler):
             user = item['user']
             if item.has_key('backupUser'):
                 # 感兴趣
-                sid = RedisDb.hget( "recommendILatestOid", user)
+                sid = Redis.hget( "recommendILatestOid", user)
                 if not sid:
                     return
                 isBackupUser = True
             else:
                 # 相似的
-                sid = RedisDb.hget( "recommendSLatestOid", user)
+                sid = Redis.hget( "recommendSLatestOid", user)
                 if not sid:
                     return
             unreadquery = {'_sid': {"$lte": sid}, 'user': user, "read": {"$exists": False}, "backupUser": {"$exists": isBackupUser}}
@@ -386,6 +386,6 @@ class ClassHandler(BaseHandler):
 
             import time
             if isBackupUser:
-                RedisDb.zadd( 'recommendIReadAll', time.time(), user)
+                Redis.zadd( 'recommendIReadAll', time.time(), user)
             else:
-                RedisDb.zadd( 'recommendSReadAll', time.time(), user)
+                Redis.zadd( 'recommendSReadAll', time.time(), user)

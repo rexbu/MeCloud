@@ -12,7 +12,7 @@ import tornado.httpserver
 
 from mecloud.helper.ClassHelper import ClassHelper
 from mecloud.helper.DbHelper import Db, MongoDb
-from mecloud.helper.RedisHelper import *
+from mecloud.helper.Redis import *
 from mecloud.lib import log, wx
 from mecloud.model.MeFile import MeFileConfig
 from mecloud.api.BaseHandler import BaseConfig
@@ -200,7 +200,7 @@ class Application(tornado.web.Application):
         host = self.config.get('redis', 'HOST')
         pwd = self.config.get('redis', 'PASSWORD')
         port = self.config.get('redis', 'PORT')
-        RedisDb.init(host, pwd, int(port))
+        Redis.init(host, pwd, int(port))
         log.info('redis[%s:%s:%s] init success', host, port, pwd)
 
     def initDb(self):

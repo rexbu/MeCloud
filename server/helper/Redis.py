@@ -9,7 +9,7 @@
 import redis, traceback
 from mecloud.lib import *
 
-class RedisDb:
+class Redis:
     client = {}
     host = 'localhost'
     password = None
@@ -18,27 +18,37 @@ class RedisDb:
 
     @staticmethod
     def init(host, pwd=None, port=6379):
-        RedisDb.host = host
-        RedisDb.password = pwd
-        RedisDb.port = port
+        Redis.host = host
+        Redis.password = pwd
+        Redis.port = port
         
         #pool = redis.ConnectionPool(host=host, password=pwd, port=port)
+    @staticmethod
+    def conn(dbid):
+        if not Redis.client.has_key(dbid):
+            '''
+            if Redis.pool:
+                Redis.client[dbid] = redis.Redis(connection_pool=pool, db=dbid)
+            else:
+            '''
+            Redis.client[dbid] = redis.Redis(host=Redis.host, password=Redis.password, port=Redis.port, db=dbid)
+        return Redis.client[dbid]
 
     @staticmethod
     def destroy():
-        for c in RedisDb.client:
+        for c in Redis.client:
             c.close()
 
     def __init__(self, dbid=0):
-        if not RedisDb.client.has_key(dbid):
+        if not Redis.client.has_key(dbid):
             '''
-            if RedisDb.pool:
-                RedisDb.client[dbid] = redis.Redis(connection_pool=pool, db=dbid)
+            if Redis.pool:
+                Redis.client[dbid] = redis.Redis(connection_pool=pool, db=dbid)
             else:
             '''
-            RedisDb.client[dbid] = redis.Redis(host=RedisDb.host, password=RedisDb.password, port=RedisDb.port, db=dbid)
+            Redis.client[dbid] = redis.Redis(host=Redis.host, password=Redis.password, port=Redis.port, db=dbid)
 
-        self.db = RedisDb.client[dbid]
+        self.db = Redis.client[dbid]
     
     def set(self, key, value):
         try:
@@ -102,7 +112,8 @@ class RedisDb:
         except Exception, e:
             log.err( "redis incrby operation fail , error:%s", str(e))
             return None
-
+    
+    # 向键为name的zset中添加元素member，score用于排序。如果该元素存在，则更新其顺序
     def zadd(self, key, score, member):
         try:
             return self.db.zadd(key, member, score)
@@ -116,14 +127,14 @@ class RedisDb:
         except Exception, e:
             log.err( "redis zrangebyscore operation fail , error:%s", str( e ) )
             return None
-
+    # 从键为name的集合中删除元素
     def zrem(self, key, member):
         try:
             return self.db.zrem(key, member )
         except Exception, e:
             log.err( "redis zadd operation fail , error:%s", str( e ) )
             return None
-    
+    # 向键为name的集合中添加元素
     def sadd(self, name, member):
             self.db.sadd(name, member)
     

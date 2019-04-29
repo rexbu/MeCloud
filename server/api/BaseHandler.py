@@ -7,7 +7,7 @@ from mecloud.model.MeError import *
 from mecloud.model.MeACL import *
 from mecloud.model.DevelopUser import *
 from mecloud.helper.AppHelper import *
-from mecloud.helper.RedisHelper import RedisDb
+from mecloud.helper.Redis import Redis
 from datetime import *
 import json, time, functools
 
@@ -27,7 +27,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):
         tornado.web.RequestHandler.__init__(self, *args, **kwargs)
         self.project = self.application.project
-        self.cache = RedisDb(0)
+        self.cache = Redis(0)
 
     def get_current_user(self):
         userid = self.get_secure_cookie("u")

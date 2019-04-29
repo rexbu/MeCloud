@@ -37,41 +37,7 @@ class QueryCountHandler(ClassHandler):
                         }]
         #返回数据格式：{"a":11,"b":10}
         '''
-        if action == "albumConfig":
-            if self.request.arguments.has_key('where'):
-                query = eval(self.get_argument('where'))
-                query['settingId'] = 6
-                query['version'] = 0
-                classHelper = ClassHelper("VersionControl")
-                objs = classHelper.find_one(query,keys={'albumConfig':1})
-                albumConfig = objs.get('albumConfig',None)
-                if albumConfig:
-                    albumConfig.sort(key=lambda k: (k['weight']), reverse=False)
-                    items = []
-                    classHelper = ClassHelper("StatCount")
-                    for i,cfig in enumerate(albumConfig):
-                        count = classHelper.find_one({'name':cfig['type']+ "_" +self.user['_id']}) or {}
-                        count = count.get('count',0)
-                        item = {
-                            'title':cfig['title'],
-                            'authorize':cfig['authorize'],
-                            'type':cfig['type'],
-                            'count':count
-                        }
-                        items.append(item)
-                        if i >= 5:
-                            break
-                    data = copy.deepcopy(ERR_SUCCESS)
-                    data.message['data'] = items
-                    self.write(json.dumps(data.message,cls=MeEncoder))
-                else:
-                    self.write(ERR_PATH_PERMISSION.message)
-
-            else:
-                self.write(ERR_PATH_PERMISSION.message)
-
-            # self.write("this is myTest")
-        elif self.request.arguments.has_key('where'):
+        if self.request.arguments.has_key('where'):
             where = eval(self.get_argument('where'))
             result = {}
             for item in where:

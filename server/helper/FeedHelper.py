@@ -4,7 +4,7 @@ import json
 import requests
 from mecloud.api.BaseHandler import BaseConfig
 from mecloud.helper.ClassHelper import ClassHelper
-from mecloud.helper.RedisHelper import RedisDb
+from mecloud.helper.Redis import Redis
 from mecloud.lib import log
 
 
@@ -36,9 +36,9 @@ def addFeedRecord(userId, feedType, actionId, extraInfo=None):
             feedInfo['extraInfo'] = extraInfo
         feedHelper.create(feedInfo)
         feedUserIds.append(fan['user'])
-    rc = RedisDb.get_connection()
+    rc = Redis.get_connection()
     for user in feedUserIds:
-        count = RedisDb.incrby('user_unread_feed_count_%s' % user, 1)
+        count = Redis.incrby('user_unread_feed_count_%s' % user, 1)
         message_json = {'to_id': user, 'count': count, 't': 'feed', 'uri': 'honey://newFeed/$'+userId}
         publish_result = rc.publish('push_channel', json.dumps(message_json, ensure_ascii=False))
         log.debug('public_result: %s', publish_result)

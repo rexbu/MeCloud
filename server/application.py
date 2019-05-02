@@ -208,6 +208,7 @@ class Application(tornado.web.Application):
         if self.config.has_option('mongodb', 'ADDR'):
             addr = self.config.get('mongodb', 'ADDR')
             MongoDb.connect(addr=addr)
+            self.initMongodbIndex()
             log.info('mongodb[%s] init success', addr)
 
     def initWx(self):

@@ -9,20 +9,20 @@ def nowstr():
 
 def debug(format, *args, **kwargs):
 	prefix = '[debug]'+nowstr()+': %s'
-	print prefix%(format%args)
+	print(prefix % (format%args))
 	sys.stdout.flush()
 
 def info(format, *args, **kwargs):
 	prefix = '[info]'+nowstr()+': %s'
-	print prefix%(format%args)
+	print(prefix % (format%args))
 	sys.stdout.flush()
 
 def warn(format, *args, **kwargs):
 	prefix = '[warn]'+nowstr()+': %s'
-	print prefix%(format%args)
+	print(prefix % (format%args))
 	sys.stdout.flush()
 
 def err(format, *args, **kwargs):
 	prefix = '[err]'+nowstr()+': %s'
-	print prefix%(format%args)
+	print(prefix % (format%args))
 	sys.stdout.flush()

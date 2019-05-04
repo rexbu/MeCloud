@@ -124,7 +124,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def wxConfig(self):
         wxconfig = {}
-        wxconfig['appId'] = config.wx['appId']
+        wxconfig['appId'] = self.config.wx['appId']
         wxconfig['timestamp'] = int(time.time())
         wxconfig['nonceStr'] = 'Wm3WZYTPz0wzCcnW'
         wxconfig['url'] = self.request.full_url()

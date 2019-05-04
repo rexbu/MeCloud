@@ -248,7 +248,7 @@ class ClassHandler(BaseHandler):
                     obj = self.check_field(className, obj)
                 if not obj:
                     return
-                returnObj = classHelper.updateOneCreate(query, obj)
+                returnObj = classHelper.update_and_create(query, obj)
                 data = copy.deepcopy(ERR_SUCCESS)
                 data.message['data'] = self.filter_field(returnObj)
                 self.write(json.dumps(data.message, cls=MeEncoder))

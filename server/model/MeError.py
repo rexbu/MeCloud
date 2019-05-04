@@ -31,7 +31,6 @@ ERR_USERPWD_MISMATCH = MeException(210, '用户名或密码错误', 'The usernam
 ERR_USER_NOTFOUND = MeException(211, '没有该用户', 'Could not find user.')
 ERR_PASSWD_INVALID = MeException(218, '无效的密码', 'Invalid password, it must be a non-blank string.')
 
-
 # 用户钱包相关错误
 ERR_ACCOUNT_BALANCE = MeException(221, '账户余额不足', 'Account balance error')
 ERR_ACCOUNT_WALLET = MeException(222, '账户扣费请求失败', 'Account set wallet error')
@@ -63,7 +62,6 @@ ERR_AUTH_CAPTCHA = MeException(607, '验证码错误', 'captcha code error');
 ERR_PARA = MeException(1000, '参数错误', 'param error')
 ERR_NOTFOUND = MeException(1001, '对象不存在', 'object not found')
 ERR_NOPARA = MeException(1003, '缺少参数', 'limit of param')
-
 ERR_COOKIE = MeException(2000, 'cookie错误', 'cookie error')
 
 # 数据库错误
@@ -72,6 +70,8 @@ ERR_OBJECT_DUP = ERR_UNIQUE_KEY
 ERR_OBJECT_MIS = ERR_OBJECTID_MIS
 ERR_TRANSACTION = MeException(706, '事务执行错误', 'Transaction error')
 ERR_DB_OPERATION = MeException(707, '数据库错误', 'Database operation error')
+
+ERR_INTERNET = MeException(800, '网络连接错误', 'Internet error')
 ERR_DEVICE_ALREADY_ACTIVE = MeException(801, '设备已激活,无需重复激活', 'device already active')
 ERR_QRCODE_TO_LOGIN = MeException(802, '无效的二维码', 'qrcode is error to login')
 

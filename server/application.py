@@ -50,12 +50,6 @@ class Application(tornado.web.Application):
         self.config.read(configFile)
         self.version = self.config.get('global', 'version')
         self.project = self.config.get('global', 'project')
-        if not self.port:
-            self.port = self.config.get('global', 'PORT')
-        # 定义全局数据库
-        db = self.config.get('global', 'db')
-        if db:
-            Db.name = db
 
         if self.config.has_section('oss'):
             self.initOSS()
@@ -73,8 +67,10 @@ class Application(tornado.web.Application):
 
         log.info("version:%s project:%s", self.version, self.project)
         self.crypto = False
-        if self.config.get('global', 'crypto') != '0':
+        if self.config.has_option('global', 'crypto') and self.config.get('global', 'crypto') != '0':
             self.crypto = True
+        if not self.port:
+            self.port = self.config.get('global', 'PORT')
 
         # handler 路径
         self.handlers = self.initHandlers()
@@ -169,6 +165,7 @@ class Application(tornado.web.Application):
             urls = self.config.options('handlers')
             for url in urls:
                 handle = (url, self.config.get('handlers', url))
+                log.info('new handler: %s'%str(handle))
                 handlers.append(handle)
         return handlers
 
@@ -205,9 +202,11 @@ class Application(tornado.web.Application):
 
     def initDb(self):
         # mongodb及oss配置
+        if self.config.has_option('global', 'db'):
+            Db.name = self.config.get('global', 'db')
         if self.config.has_option('mongodb', 'ADDR'):
             addr = self.config.get('mongodb', 'ADDR')
-            MongoDb.connect(addr=addr)
+            MongoDb.init(addr)
             self.initMongodbIndex()
             log.info('mongodb[%s] init success', addr)
 
@@ -232,6 +231,7 @@ class Application(tornado.web.Application):
             log.err("Not Weixin Config")
 
     def initMongodbIndex(self):
+        log.info('start init mongo index...')
         db = MongoDb()
         haveIndex = {}
         for classname in BaseConfig.projectClass:
@@ -239,7 +239,7 @@ class Application(tornado.web.Application):
                 haveIndex[classname] = db.listIndex(classname)
                 if {"_sid": 1} not in haveIndex[classname]:
                     db.index(classname, [("_sid", 1)])
-                    log.info("classname:%s, index:%s", classname, json.dumps([("_sid", 1)]))
+                    #log.info("classname:%s, index:%s", classname, json.dumps([("_sid", 1)]))
             except Exception, e:
                 log.err("Error:%s, error:%s", classname, str(e))
 
@@ -261,6 +261,6 @@ class Application(tornado.web.Application):
                         else:
                             items.append((key, value))
                     db.index(obj["className"], items, unique=unique)
-                    log.info("classname:%s, index:%s", obj["className"], json.dumps(items))
+                    #log.info("classname:%s, index:%s", obj["className"], json.dumps(items))
                 except Exception, e:
                     log.err("JSON Error:%s, error:%s", obj["className"], str(e))

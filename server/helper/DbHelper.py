@@ -20,15 +20,16 @@ from Util import *
 class Db:
     # 数据库连接
     conn = None
+    addr = None
     # 数据库名字
     name = None
-    # 事务
-    transaction_map = {}
 
     def __init__(self, db=None):
         if db:
             self.name = db
-
+    @staticmethod
+    def init(addr):
+        Db.addr = addr
     @staticmethod
     def selectDb(dbName):
         Db.name = dbName
@@ -39,7 +40,7 @@ class Db:
         else:
             return Db.name
 
-    def findOne(self, collection, query):
+    def find_one(self, collection, query):
         pass
 
     def find(self, collection, query):
@@ -57,30 +58,6 @@ class Db:
     def update(self, collection, query, obj):
         pass
 
-    """
-    @souceClass: 源表名，如Followee
-    @sourceField:源表字段，如Followee表的user字段
-    @destClass: 目标表，如StatCount
-    @destField: 目标字段，如Followees_xxx/Followers_xxxx
-    @action: 目标动作，如{'$inc:1'}
-    """
-    @staticmethod
-    def transaction(collection, method='create', field=''):
-        # update对应的事务, 此处field直接传入query即可
-        if isinstance(field, dict):
-            for key in field:
-                action_name = collection+'_'+str(method)+'_'+key
-                # 返回一个事务对象
-                if transaction_map.has_key(action_name):
-                    return copy.deepcopy(transaction_map[action_name])
-            return None
-        else:
-            # 返回一个事务对象
-            if transaction_map.has_key(action_name):
-                return copy.deepcopy(transaction_map[action_name])
-            else:
-                return None
-
 ## MongoDb封装
 class MongoDb(Db):
     @staticmethod
@@ -97,11 +74,13 @@ class MongoDb(Db):
 
     ### 构造函数
     def __init__(self, dbName=None):
+        if not Db.conn:
+            Db.conn = pymongo.MongoClient(Db.addr)
         Db.__init__(self, dbName)
         self.db = Db.conn[self.dbName()]
 
     ### 查找第一个
-    def findOne(self, collection, query, keys=None, sort=None):
+    def find_one(self, collection, query, keys=None, sort=None):
         if sort==None:
             doc = self.db[collection].find_one(MongoDb.toBson(query), sort=[('_id', pymongo.DESCENDING)])
         else:
@@ -109,8 +88,7 @@ class MongoDb(Db):
         
         if not doc:
             return None
-        if '__transaction' in doc:
-            del(doc['__transaction'])
+
         return MongoDb.toJson(doc)
 
     ### 查询
@@ -120,11 +98,9 @@ class MongoDb(Db):
             items = self.db[collection].find(MongoDb.toBson(query), keys).sort('_id', pymongo.DESCENDING).skip(skip).limit(limit)
         else:
             items = self.db[collection].find(MongoDb.toBson(query), keys).sort(self.sortToTuple(sort)).skip(0).limit(limit)
-        for item in __items:
-            if '__transaction' in item:
-                del(item['__transaction'])
+        for item in items:
             results.append(MongoDb.toJson(item))
-        return results;
+        return results
     
     """
     游标遍历
@@ -140,98 +116,27 @@ class MongoDb(Db):
     def next(self, cursor):
         try:
             obj = cursor.next()
-            if '__transaction' in obj:
-                del(obj['__transaction'])
             return MongoDb.toJson(obj)
         # except StopIteration,e:
         #     return None
         except Exception, __e:
             raise __e
 
-    ### 使用skip查询
-    # @deprecated
-    # def find_use_skip(self, collection, query, keys=None, sort=None, skip=0, limit=8):
-    #     results = []
-    #     if sort == None:
-    #         items = self.db[collection].find(MongoDb.toBson(query), keys).sort('_id', -1).skip(skip).limit(limit)
-    #     else:
-    #         items = self.db[collection].find(MongoDb.toBson(query), keys).sort(self.sortToTuple(sort)).skip(skip).limit(
-    #             limit)
-    #     for item in items:
-    #         if '__transaction' in item:
-    #             del(item['__transaction'])
-    #         results.append(MongoDb.toJson(item))
-    #     return results;
-
     ### 管道查询查询
     def aggregate(self, collection, query):
         results = []
         items = self.db[collection].aggregate(self.aggregateJson(query))
         for item in items:
-            if '__transaction' in item:
-                del(item['__transaction'])
             results.append(MongoDb.toJson(item))
-        return results;
+        return results
 
-    '''
-    带有事务检查的新建操作，如果外部没有传入事务，则从事务管理器中获取事务
-    @action: 事务对象
-    '''
-    def insert(self, collection, obj, transactions=None):
-        # if action==None:
-        #     action = Db.transaction(collection)
-        if transactions==None:
-            return self.insertOnly(collection, obj)
-
-        # prepare及写数据过程，此过程出错不需要回滚
-        try:
-            # 查找一个空闲状态并改为pending, 如果没有查找到则插入一个
-            actions = {'transaction:':transactions, 'status':1}
-            actions = self.insertOnly('Transaction', actions)
-
-            # 将事务写入数据表, 返回更新之前的数据，如果出错，用于回滚
-            obj['__transaction'] = [actions['_id']]
-            obj = self.insertOnly(collection, obj)
-        except Exception,e:
-            logging.exception(e)
-            raise ERR_TRANSACTION
-            
-        #action = self.db.updateOneOnly('Transaction',{'_id':self.action['_id']}, {'$set':{'sourceId': source['_id']}})
-        # commit过程
-        try:
-            for action in transactions:
-                dest_action = self.parse(action['action'])
-                dest_action['$push'] = {'__transaction': actions['_id']}
-                destination = self.updateOneOnly(action['destClass'], action['query'], dest_action, upsert=True, new=True)
-        except Exception,e:
-            # 回滚
-            log.err('Insert transaction error! object[%s: %s]: %s', collection, obj['_id'], str(e))
-            try:
-                self.remove(collection, {'_id': obj['_id']})
-                self.updateOneOnly('Transaction', {'_id':actions['_id']}, {'$set': {'status':4}})
-            except Exception,e:
-                log.err('Insert transaction rollback error! object[%s: %s]: %s', collection, obj['_id'], str(e))
-            raise e
-
-        # 事务状态改为已经提交，下面如果出错已经不影响数据
-        # self.action = self.db.updateOneOnly('Transaction', {'_id':self.action['_id']}, {'$set': {'status', 2}})
-        try:
-            obj = self.updateOneOnly(collection, {'_id': obj['_id']}, {'$pull':{'__transaction': actions['_id']}})
-            for action in transactions:
-                self.updateOneOnly(action['destClass'], action['query'], {'$pull':{'__transaction': actions['_id']}})
-            self.remove('Transaction', {'_id':actions['_id']})
-        except Exception,e:
-            log.err('Insert transaction done error! transaction[%s: %s] source[%s]: %s', collection, actions['_id'], obj['_id'], str(e))
-            raise e
-
-        if '__transaction' in obj:
-            del(obj['__transaction'])
-        return obj
+    def insert(self, collection, obj):
+        return self.insert_one(collection, obj)
     
     '''
     单纯的新建操作
     '''
-    def insertOnly(self, collection, obj):
+    def insert_one(self, collection, obj):
         if obj.has_key("_id"):
             obj["_sid"] = MongoDb.toId(obj['_id'])
             obj['_id'] = ObjectId(obj['_id'])
@@ -239,9 +144,7 @@ class MongoDb(Db):
         try:
             obj['_id'] =  MongoDb.toId(self.db[collection].insert(MongoDb.toBson(obj)))
             if '_sid' not in obj:
-                obj = self.updateOneOnly(collection, {'_id': obj['_id']}, {'$set':{'_sid': obj['_id']}})
-            if '__transaction' in obj:
-                del(obj['__transaction'])
+                obj = self.update_one(collection, {'_id': obj['_id']}, {'$set':{'_sid': obj['_id']}})
             return obj
         except Exception,e:
             log.err('insert[%s] object[%s] error:%s', collection, MongoDb.toJson(obj), str(e))
@@ -262,97 +165,28 @@ class MongoDb(Db):
             raise e
         return result
 
-    def updateOne(self, collection, query, obj, transactions=None, upsert=False):
-        # if action==None:
-        #     action = Db.transaction(collection, query)
-        if transactions==None:
-            return self.updateOneOnly(collection, query, obj, upsert)
-
-        # prepare及写数据过程，此过程出错不需要回滚
-        try:
-            # 查找一个空闲状态并改为pending, 如果没有查找到则插入一个
-            actions = {'transaction': transactions, 'status':1}
-            actions = self.insertOnly('Transaction', actions)
-
-            # 将事务写入数据表, 返回更新之前的数据，如果出错，用于回滚
-            update_obj = copy.deepcopy(obj)
-            update_obj.update({'$push':{'__transaction': actions['_id']}})
-            old_obj = self.updateOneOnly(collection, query, update_obj, upsert=upsert, new=False)
-        except Exception,e:
-            logging.exception(e)
-            raise ERR_TRANSACTION
-            
-        #action = self.db.updateOneOnly('Transaction',{'_id':self.action['_id']}, {'$set':{'sourceId': source['_id']}})
-        # commit过程
-        try:
-            for action in transactions:
-                dest_action = self.parse(action['action'])
-                dest_action.update({'$push':{'__transaction': actions['_id']}})
-                destination = self.updateOneOnly(action['destClass'], action['query'], dest_action, upsert=True, new=True)
-        except Exception,e:
-            # 回滚
-            log.err('Transaction commit error! transaction[%s: %s] error[%s]', actions['_id'], transactions, str(e))
-            obj_id = old_obj['_id']
-            del(old_obj['_id'])
-            try:
-                # old_obj只返回了一个_id，代表updateOneOnly执行了插入操作，回滚需要删除该数据
-                if len(old_obj)<=0:
-                    self.remove(collection, {'_id': obj_id})
-                else:
-                    self.updateOneOnly(collection, {'_id': obj_id}, {'$set': old_obj})
-                self.updateOneOnly('Transaction', {'_id':actions['_id']}, {'$set': {'status': 4}})
-            except Exception,e:
-                log.err('Update transaction rollback error! object[%s: %s\t%s]: %s', collection, obj_id, json.dumps(old_obj),str(e))
-            # self.remove(collection, {'_id': old_obj['_id']})
-            raise e
-
-        # 事务状态改为已经提交，下面如果出错已经不影响数据
-        # self.action = self.db.updateOneOnly('Transaction', {'_id':self.action['_id']}, {'$set': {'status', 2}})
-        try:
-            obj = self.updateOneOnly(collection, {'_id': old_obj['_id']}, {'$pull':{'__transaction': actions['_id']}})
-            for action in transactions:
-                self.updateOneOnly(action['destClass'], action['query'], {'$pull':{'__transaction': actions['_id']}})
-            self.remove('Transaction', {'_id':actions['_id']})
-        except Exception,e:
-            logging.exception(e)
-            log.err('Update transaction done error! transaction[%s:%s] source[%s] destination[%s]: %s', collection, action['_id'], old_obj['_id'], destination['_id'], str(e))
-            raise e
-
-        return self.findOne(collection, {'_id': old_obj['_id']})
-
     """
     @ upsert: 没有是否新建
     @ new: 是否返回更新后的值, 如果upsert为True, 且之前没有数据，则返回新创建的数据的id
     """
-    def updateOneOnly(self, collection, query, obj, upsert=False, new=True):
+    def update_one(self, collection, query, obj, upsert=False, new=True):
         if new:
             return_doc = pymongo.ReturnDocument.AFTER
         else:
             return_doc = pymongo.ReturnDocument.BEFORE
 
-        doc = self.db[collection].find_one_and_update(MongoDb.toBson(query), obj, upsert=upsert, return_document= return_doc);
+        doc = self.db[collection].find_one_and_update(MongoDb.toBson(query), obj, upsert=upsert, return_document= return_doc)
         if not doc:
             # 如果upsert为True， 则返回新创建数据的id
             if upsert:
-                doc = self.findOne(collection, query)
+                doc = self.find_one(collection, query)
                 if 'createAt' not in doc:
-                    doc = self.updateOneOnly(collection,{"_id":doc['_id']}, {'$set': {'createAt': doc['updateAt'], "_sid": str(doc['_id'])}})
+                    doc = self.update_one(collection,{"_id":doc['_id']}, {'$set': {'createAt': doc['updateAt'], "_sid": str(doc['_id'])}})
                 if doc:
                     return {'_id': doc['_id']}
             log.err('update[%s: %s] not found', collection, json.dumps(query))
-            raise copy.deepcopy(ERR_NOTFOUND)
+            return None
 
-        if '__transaction' in doc:
-            del(doc['__transaction'])
-        return MongoDb.toJson(doc)
-
-    ### 更新，返回更新后的整个对象，多数据量的更新不处理事务
-    @deprecated
-    def update(self, collection, query, obj, upsert=False):
-        log.warn('Function update is deprecated, please use updateOneOnly updateOne updateMany!')
-        doc = self.db[collection].find_and_modify(MongoDb.toBson(query), obj, upsert=upsert, new=True);
-        if '__transaction' in doc:
-            del(doc['__transaction'])
         return MongoDb.toJson(doc)
 
     ### 数量
@@ -525,7 +359,7 @@ class MySqlDb(Db):
     """
         查询一条
     """
-    def findOne(self, collection, query, keys="*"):
+    def find_one(self, collection, query, keys="*"):
         try:
             sql = "select {0} from {1}".format(keys,collection)
             if not query:

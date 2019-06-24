@@ -25,11 +25,8 @@ class ClassHelper:
 
     ### 通过id获取对象
     def get(self, oid, keys=None):
-        if obj:
-            return json.loads(obj)
-        else:
-            obj = self.db.find_one(self.coll, {"_id": oid}, keys)
-            return obj
+        obj = self.db.find_one(self.coll, {"_id": oid}, keys)
+        return obj
     ### 查询第一个对象
     def find_one(self, query, keys=None, sort=None):
         return self.db.find_one(self.coll, query, keys, sort)

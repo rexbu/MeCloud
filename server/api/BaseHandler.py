@@ -55,11 +55,16 @@ class BaseHandler(tornado.web.RequestHandler):
 
         log.info("url:%s\tmethod:%s\tuserid:%s", self.request.path, method, userid)
         if userid:
-            if userid in BaseConfig.adminUser:
-                self.crypto = False
+            self.crypto = False
             userQuery = MeQuery("User")
-            self.user = userQuery.get(userid)
-            # 如果数据库中找不到用户，则清空cookie
+            try:
+                self.user = userQuery.get(userid)
+            except Exception,e:
+                # 如果数据库中找不到用户，则清空cookie
+                self.clear_cookie('u')
+                self.user = None
+                userid = None
+        if userid:
             if not self.user and self.request.uri != '/wx/logout':
                 # self.render("error.html", user=None, wxconfig=self.wxconfig)
                 print 'user is missing, userid:', userid

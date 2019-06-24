@@ -10,7 +10,7 @@ import json, oss2, time, datetime, base64, hmac, urllib, urllib2, os
 from mecloud.model.MeObject import MeObject
 from hashlib import sha1 as sha
 from aliyunsdkcore import client
-from aliyunsdksts.request.v20150401 import AssumeRoleRequest
+#from aliyunsdksts.request.v20150401 import AssumeRoleRequest
 
 class MeFileConfig():
     access_key_id = None
@@ -134,12 +134,14 @@ class MeFile(MeObject):
         :return StsToken: 临时用户密钥
         """
         clt = client.AcsClient(MeFileConfig.access_key_id, MeFileConfig.access_key_secret, MeFileConfig.region_id)
+        ''' 临时修改编译 2019.6.24
         req = AssumeRoleRequest.AssumeRoleRequest()
 
         req.set_accept_format('json')
         req.set_RoleArn(MeFileConfig.sts_role_arn)
         req.set_RoleSessionName(MeFileConfig.role_session_name)
-
+        '''
+        req=None
         body = clt.do_action_with_exception(req)
         print body
         j = json.loads(body)

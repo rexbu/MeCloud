@@ -27,7 +27,7 @@ class MeQuery(ClassHelper):
         
 	### 查询第一个对象	
     def findOne(self, query, keys=None):
-        o = ClassHelper.findOne(self, query, keys)
+        o = ClassHelper.find_one(self, query, keys)
         if o!=None:
             if self.className=='User':
                 return MeUser(o)

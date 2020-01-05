@@ -9,7 +9,8 @@ appid = None
 appsecret = None
 access_token = None
 jsapi_ticket = None
-token_server = '127.0.0.1:8000'
+port = '8000'
+token_server = '127.0.0.1:'+port
 def accessToken():
 	global access_token
 	# 如果为空或者已经过期，则重新获取
@@ -83,6 +84,7 @@ def accessTokenFromWx():
 
 def accessTokenFromCode(code):
 	global appid, appsecret
+	print('appid=',appid,'appsecret=',appsecret)
 	access_string = urllib.urlopen('https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code' % (appid, appsecret, code)).read()
 	web_token = json.loads(access_string)
 	if web_token.has_key("access_token"):

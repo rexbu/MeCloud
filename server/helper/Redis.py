@@ -73,7 +73,8 @@ class Redis:
 
     def setex(self, key, value, expireSeconds):
         try:
-            return self.database.setex(key, value, expireSeconds)
+            # 3.0的客户端已经废弃了Redis这个类，将之前的StrictRedis类改名为Redis，这样在使用SETEX方法时，参数的顺序已经变了(name, time, value)，不再是之前的(name, value,time)
+            return self.database.setex(key, expireSeconds, value)
         except Exception, e:
             log.err("redis setex operation fail , error:%s", str(e))
             return False

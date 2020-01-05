@@ -14,7 +14,7 @@ db = honeyTest
 
 PORT = 8000
 
-PUSHURL = http://t01.me-yun.com:8000/1.0/thirdpush/push
+PUSHURL = 
 
 DELETE_CLASS = ['Test','Followee','Follower','Blacklist']
 
@@ -25,40 +25,40 @@ mongodbIndex = [{"className":"UserInfo","column":"user","index":1,"unique":1}]
 
 [mongodb]
 # mongodb数据库配置
-MONGO_ADDR1	=	dds-2ze898a8f674d1742.mongodb.rds.aliyuncs.com:3717
-MONGO_ADDR2	=	dds-2ze898a8f674d1741.mongodb.rds.aliyuncs.com:3717
-REPLICAT_SET=	mgset-4375909
-USERNAME	=	root
-PASSWORD	=	2egRPV4LaDtoNUE18ZSwB7
+MONGO_ADDR1	=
+MONGO_ADDR2	=
+REPLICAT_SET=
+USERNAME	=
+PASSWORD	=
 
 
 [redis]
 # redis config
-REDIS_HOST=r-2ze80f953f17d1a4.redis.rds.aliyuncs.com
-REDIS_PORT=6379
-REDIS_PASSWORD=2egRPV4LaDtoNUE18ZSwB7
-REDIS_MAX_CONNECTIONS=10
-REDIS_DBID=0
-REDIS_SUB_CHANNEL=push_channel
+REDIS_HOST=
+REDIS_PORT=
+REDIS_PASSWORD=
+REDIS_MAX_CONNECTIONS=
+REDIS_DBID=
+REDIS_SUB_CHANNEL=
 
 [oss]
 #OSS相关
-OSS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
-OSS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
-OSS_BUCKET_NAME = heimitest
-PLATFORM = oss
-OSS_ENDPOINT = oss-cn-beijing.aliyuncs.com
-OSS_STS_ROLE_ARN = acs:ram::1250094474097995:role/heimi-test
-OSS_ROLE_SESSION_NAME = oss-biliankeji
-OSS_REGION_ID =cn-beijing
+OSS_ACCESS_KEY_ID =
+OSS_ACCESS_KEY_SECRET =
+OSS_BUCKET_NAME =
+PLATFORM = 
+OSS_ENDPOINT = 
+OSS_STS_ROLE_ARN =
+OSS_ROLE_SESSION_NAME =
+OSS_REGION_ID =
 
 [sms]
 #SMS相关
-SMS_REGION = cn-hangzhou
-SMS_ACCESS_KEY_ID = LTAIkQ8yPr2iNv7e
-SMS_ACCESS_KEY_SECRET = DYGeKLDb079W9i0i0bjw458BEJaN5C
-SMS_TEMPLATE_CODE = SMS_86875087
-SMS_SIGN_NAME = 阿里云短信测试专用
+SMS_REGION =
+SMS_ACCESS_KEY_ID =
+SMS_ACCESS_KEY_SECRET =
+SMS_TEMPLATE_CODE =
+SMS_SIGN_NAME =
 
 
 [handlers]
@@ -76,8 +76,8 @@ SMS_SIGN_NAME = 阿里云短信测试专用
 # 当前实例是否作为access_token实例
 WX_ACCESSTOKEN_SERVER = 0
 
-WX_APPID = wx1fe011436b82b249
-WX_APPSECRECT = 527c956b0e6180753e243504fa3e6f3c
+WX_APPID = 
+WX_APPSECRECT =
 
 # 微信条状登录url
 WX_REDIRECT = xxx

@@ -1,0 +1,9 @@
+*.pyc
+.idea
+.vscode
+.DS_Store
+*.log
+build/
+dist/
+mecloud.egg-info/
+py2to3_test/

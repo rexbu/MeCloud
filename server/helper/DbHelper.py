@@ -362,67 +362,89 @@ class MySqlDb(Db):
     def find_one(self, collection, query, keys="*"):
         try:
             sql = "select {0} from {1}".format(keys,collection)
-            if not query:
+            if query:
                 sql += " where {0}".format(self.dict2str(query,","))
+            # print(sql)
             self.cursor.execute(sql)
             result = self.cursor.fetchone()
-            print result
-        except Exception,e:
-            print e
+            return result
+        except Exception as e:
             log.err("find_one err:%s", e)
+
     def find(self, collection, query, keys="*", sort=None, limit=8, skip=0):
         try:
             sql = "select {0} from {1}".format(keys, collection)
-            if not query:
+            if query:
                 sql += " where {0} limit {1},{2}".format(self.dict2str(query,","), skip, limit)
+            # print(sql)
             self.cursor.execute(sql)
             result = self.cursor.fetchmany(limit)
-            print result
-        except Exception,e:
-
+            return result
+        except Exception as e:
             log.err("find err:%s",e)
 
     def updateOne(self, collection, query, obj):
         try:
-            if not obj.has_key("update_date"):
-                obj["update_date"] = "now()"
+            # if not obj.has_key("update_date"):
+            #   obj["update_date"] = "now()"
             sql = "update {0} set {1} where {2}".format(collection, self.dict2str(obj,","), self.dict2str(query,","))
+            # print(sql)
             result = self.cursor.execute(sql)
             self.db.commit()
-            print result
-        except Exception,e:
+            return result
+        except Exception as e:
+            self.db.rollback()
             log.err("updateOne err:%s",e)
 
     def insertOne(self, collection, obj):
         try:
-            if not obj.has_key('create_date'):
-                obj["create_date"] = "now()"
-                obj["update_date"] = obj["create_date"]
-            sql = "insert into {0} set {1}".format(collection,self.dict2str(obj,","))
+            # if not obj.has_key('create_date'):
+            #   obj["create_date"] = "now()"
+            #   obj["update_date"] = obj["create_date"]
+            # sql = "insert into {0} set {1}".format(collection,self.dict2str(obj,","))
+            collection_key, values = self.dict2value(obj, collection)
+            sql = "insert into {0} values {1}".format(collection_key, values)
+            # print(sql)
             result = self.cursor.execute(sql)
             self.db.commit()
-            print result
-        except Exception,e:
+            return result
+        except Exception as e:
             self.db.rollback()
             log.err("insert err:%s",e)
 
     def safe(self,s):
         return pymysql.escape_string(s)
+
+    def dict2value(self, dictin, collection):
+        '''
+        将字典变成，'insert into userinfo(user,pwd) values(%s,%s);'的形式
+        '''
+        keylist = []
+        vallist = []
+        for k, v in dictin.items():
+            # if v == "now()":  # 当前时间
+            #   tmp = "%s=%s" % (str(k), str(v))
+            keylist.append('`'+str(k)+'`')
+            if type(v) is str:
+                vallist.append("'"+str(v)+"'")
+            else:
+                vallist.append(str(v))
+        return collection+'('+','.join(keylist)+')','('+','.join(vallist)+')'
     """
-        将json串的key和value转化为字符串
+    将json串的key和value转化为字符串
     """
     def dict2str(self, dictin, joinString):
         '''
-            将字典变成，key='value',key='value' 的形式
-            '''
+        将字典变成，key='value',key='value' 的形式
+        '''
         tmplist = []
         for k, v in dictin.items():
-            if v == "now()":  # 当前时间
-                tmp = "%s=%s" % (str(k), str(v))
-            elif type(v) is str:
-                tmp = "%s='%s'" % (str(k), str(v))
+            # if v == "now()":  # 当前时间
+            #   tmp = "%s=%s" % (str(k), str(v))
+            if type(v) is str:
+                tmp = "`%s`='%s'" % (str(k), str(v))
             else:
-                tmp = "%s=%s" % (str(k), str(v))
+                tmp = "`%s`=%s" % (str(k), str(v))
             tmplist.append(' ' + tmp + ' ')
         return joinString.join(tmplist)
     # """

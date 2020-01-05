@@ -82,9 +82,11 @@ class BaseHandler(tornado.web.RequestHandler):
         if method.upper() in ['POST', 'PUT']:
             try:
                 if self.crypto:
+                    print self.crypto
                     self.request.body = crypto.decrypt(self.request.body)
                 if self.request.body:
-                    self.jsonBody = json.loads(self.request.body)
+                    if not self.request.files:
+                        self.jsonBody = json.loads(self.request.body)
             except Exception, e:
                 print e
                 self.write(ERR_INVALID.message)
@@ -129,7 +131,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def wxConfig(self):
         wxconfig = {}
-        wxconfig['appId'] = self.config.wx['appId']
+        wxconfig['appId'] = self.application.config.get('wx', 'WX_APPID')
         wxconfig['timestamp'] = int(time.time())
         wxconfig['nonceStr'] = 'Wm3WZYTPz0wzCcnW'
         wxconfig['url'] = self.request.full_url()
@@ -278,7 +280,7 @@ def wxauthenticated(method):
     def wrapper(self, *args, **kwargs):
         if not self.current_user:
             if self.request.method in ('GET', 'HEAD'):
-                wx_login = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_base&state=%s#wechat_redirect' % (
+                wx_login = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_userinfo&state=%s#wechat_redirect' % (
                     self.application.wx_appid, self.application.wx_redirect, quote(self.request.uri))
                 self.redirect(wx_login)
                 return

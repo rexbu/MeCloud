@@ -38,8 +38,9 @@ class WxHandler(BaseHandler):
         BaseHandler.__init__(self, *args, **kwargs)
         config = ConfigParser()
         config.read('./config')
-        access_server = config.get('global', 'WX_ACCESSTOKEN_SERVER')
-        if access_server and (not WxHandler.wx_thread):
+        # access_server = config.get('global', 'WX_ACCESSTOKEN_SERVER')
+        access_server = self.application.config.get('wx', 'WX_ACCESSTOKEN_SERVER')
+        if access_server and access_server!='0' and access_server!='False' and (not WxHandler.wx_thread):
             WxHandler.wx_thread = threading.Thread(target=accessTokenTask, args=(7000,))
             WxHandler.wx_thread.daemon = True
             WxHandler.wx_thread.start()
@@ -71,8 +72,9 @@ class WxHandler(BaseHandler):
                 userQuery = MeQuery('User')
                 user = userQuery.findOne({'openid': token['openid']})
                 if not user:
-                    self.render("error.html", user=None, wxconfig= self.wxconfig)
-                    return
+                    user = WxHandler.getUserFromOpenid(token)
+                    # self.render("error.html", user=None, wxconfig= self.wxconfig)
+                    # return
                 self.set_secure_cookie('u', user['_id'])
                 self.redirect(refer)
             else:

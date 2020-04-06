@@ -59,6 +59,10 @@ class BaseHandler(tornado.web.RequestHandler):
             userQuery = MeQuery("User")
             try:
                 self.user = userQuery.get(userid)
+                if not self.user:
+                    self.clear_cookie('u')
+                    self.user = None
+                    userid = None
             except Exception,e:
                 # 如果数据库中找不到用户，则清空cookie
                 self.clear_cookie('u')
